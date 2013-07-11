@@ -1,0 +1,21 @@
+# Translation by kaeza
+
+[moreores] loaded. = [moreores] cargado.
+
+%s Ore = Mineral de %s
+%s Lump = Pepita de %s
+%s Ingot = Lingote de %s
+%s Block = Bloque de %s
+%s Pickaxe = Pico de %s
+%s Shovel = Pala de %s
+%s Axe = Hacha de %s
+%s Sword = Espada de %s
+
+Copper = cobre
+Tin = estaño
+Bronze = bronce
+Silver = plata
+Gold = oro
+Mithril = mitrilo
+
+Copper Rail = Riel de Cobre
