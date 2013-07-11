@@ -10,8 +10,6 @@ end
 
 dofile(minetest.get_modpath("moreores").."/_config.txt")
 
-print(S("[moreores] loaded."))
-
 --[[
 ****
 More Ores
@@ -362,3 +360,5 @@ end
 		height_min     = moreores_mithril_min_depth,
 		height_max     = moreores_mithril_max_depth
 	})
+
+print(S("[moreores] loaded."))
