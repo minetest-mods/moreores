@@ -14,8 +14,8 @@ dofile(minetest.get_modpath("moreores").."/_config.txt")
 ****
 More Ores
 by Calinou
-with the help of MarkTraceur, GloopMaster and Kotolegokot
-Licensed under GPLv3+ for code and CC BY-SA for textures, see: http://www.gnu.org/licenses/gpl-3.0.html
+with the help of Nore/Novatux
+Licensed under the CC0
 ****
 --]]
 
@@ -23,51 +23,82 @@ Licensed under GPLv3+ for code and CC BY-SA for textures, see: http://www.gnu.or
 
 local default_stone_sounds = default.node_sound_stone_defaults()
 
-local stick = "default:stick"
-local recipes = {
-	sword = {{"m"}, {"m"}, {stick}},
-	shovel = {{"m"}, {stick}, {stick}},
-	axe = {{"m", "m"}, {"m", stick}, {"" , stick}},
-	pick = {{"m", "m", "m"}, {"", stick, ""}, {"", stick, ""}}
-}
-
-local function get_tool_recipe(craftitem, toolname)
-	local orig = recipes[toolname]
-	local complete = {}
-	for i, row in ipairs(orig) do
-		local thisrow = {}
-		for j, col in ipairs(row) do
-			if col == "m" then
-				table.insert(thisrow, craftitem)
-			else
-				table.insert(thisrow, col)
-			end
-		end
-		table.insert(complete, thisrow)
+local function hoe_on_use(itemstack, user, pointed_thing, uses)
+	local pt = pointed_thing
+	-- check if pointing at a node
+	if not pt then
+		return
 	end
-	return complete
+	if pt.type ~= "node" then
+		return
+	end
+	
+	local under = minetest.get_node(pt.under)
+	local p = {x=pt.under.x, y=pt.under.y+1, z=pt.under.z}
+	local above = minetest.get_node(p)
+	
+	-- return if any of the nodes is not registered
+	if not minetest.registered_nodes[under.name] then
+		return
+	end
+	if not minetest.registered_nodes[above.name] then
+		return
+	end
+	
+	-- check if the node above the pointed thing is air
+	if above.name ~= "air" then
+		return
+	end
+	
+	-- check if pointing at dirt
+	if minetest.get_item_group(under.name, "soil") ~= 1 then
+		return
+	end
+	
+	-- turn the node into soil, wear out item and play sound
+	minetest.set_node(pt.under, {name="farming:soil"})
+	minetest.sound_play("default_dig_crumbly", {
+		pos = pt.under,
+		gain = 0.5,
+	})
+	itemstack:add_wear(65535/(uses-1))
+	return itemstack
 end
 
-local function add_ore(modname, mineral_name, oredef)
-    local firstlet = string.upper(string.sub(mineral_name, 1, 1))
-    local description = firstlet .. string.sub(mineral_name, 2)
-    local img_base = modname .. "_" .. mineral_name
-    local toolimg_base = modname .. "_tool_"..mineral_name
+local function get_recipe(c, name)
+	if name == "sword":
+		return {{c},{c},{"default:stick"}}
+	if name == "shovel":
+		return {{c},{"default:stick"},{"default:stick"}}
+	if name == "axe":
+		return {{c,c},{c,"default:stick"},{"","default:stick"}}
+	if name == "pick":
+		return {{c,c,c},{"","default:stick",""},{"","default:stick",""}}
+	if name == "hoe":
+		return {{c,c},{"","default:stick"},{"","default:stick"}}
+	if name == "block":
+		return {{c,c,c},{c,c,c},{c,c,c}}
+	if name == "lockedchest":
+		return {{"default:wood","default:wood","default:wood"},{"default:wood",c,"default:wood"},{"default:wood","default:wood","default:wood"}}
+end
+
+local function add_ore(modname, description, mineral_name, oredef)
+	local img_base = modname .. "_" .. mineral_name
+	local toolimg_base = modname .. "_tool_"..mineral_name
 	local tool_base = modname .. ":"
 	local tool_post = "_" .. mineral_name
-    local item_base = tool_base .. mineral_name
+	local item_base = tool_base .. mineral_name
 	local ingot = item_base .. "_ingot"
 	local lumpitem = item_base .. "_lump"
 	local ingotcraft = ingot
 
 	if oredef.makes.ore then
-		local mineral_img_base = modname .. "_mineral_"..mineral_name
 		minetest.register_node(modname .. ":mineral_"..mineral_name, {
 			description = S("%s Ore"):format(S(description)),
-			tiles = {"default_stone.png^"..mineral_img_base..".png"},
+			tiles = {"default_stone.png^"..modname.."_mineral_"..mineral_name..".png"},
 			groups = {cracky=3},
 			sounds = default_stone_sounds,
-			drop = item_base .. "_lump 1"
+			drop = lumpitem
 		})
 	end
 
@@ -80,25 +111,24 @@ local function add_ore(modname, mineral_name, oredef)
 			sounds = default_stone_sounds
 		})
 		minetest.register_alias(mineral_name.."_block", blockitem)
-		local ingotrow = {ingot, ingot, ingot}
-		local nodeblockitem = "node " .. blockitem .. ""
-		minetest.register_craft( {
-			output = nodeblockitem,
-			recipe = {ingotrow, ingotrow, ingotrow}
-		})
-		minetest.register_craft( {
-			output = "craft " .. ingot .. " 9",
-			recipe = {
-				{ nodeblockitem }
-			}
-		})
+		if oredef.makes.ingot then
+			minetest.register_craft( {
+				output = blockitem,
+				recipe = get_recipe(ingot, "block")
+			})
+			minetest.register_craft( {
+				output = ingot .. " 9",
+				recipe = {
+					{ blockitem }
+				}
+			})
+		end
 	end
 
 	if oredef.makes.lump then
 		minetest.register_craftitem(lumpitem, {
 			description = S("%s Lump"):format(S(description)),
 			inventory_image = img_base .. "_lump.png",
-			on_place_on_ground = minetest.craftitem_place_item
 		})
 		minetest.register_alias(mineral_name .. "_lump", lumpitem)
 		if oredef.makes.ingot then
@@ -114,33 +144,31 @@ local function add_ore(modname, mineral_name, oredef)
 		minetest.register_craftitem(ingot, {
 			description = S("%s Ingot"):format(S(description)),
 			inventory_image = img_base .. "_ingot.png",
-			on_place_on_ground = minetest.craftitem_place_item
 		})
 		minetest.register_alias(mineral_name .. "_ingot", ingot)
-		if oredef.makes.chest then
-			minetest.register_craft( {
-				output = "node default:chest_locked 1",
-				recipe = {
-					{ ingotcraft },
-					{ "node default:chest" }
-				}
-			})
-			wood = "node default:wood"
-			woodrow = {wood,wood,wood}
-			minetest.register_craft( {
-				output = "node default:chest_locked 1",
-				recipe = {
-					woodrow,
-					{wood, ingotcraft, wood},
-					woodrow
-				}
-			})
-		end
 	end
+	
+	if oredef.makes.chest then
+		minetest.register_craft( {
+			output = "default:chest_locked 1",
+			recipe = {
+				{ ingot },
+				{ "default:chest" }
+			}
+		})
+		minetest.register_craft( {
+			output = "default:chest_locked 1",
+			recipe = get_recipe(ingot, "lockedchest")
+		})
+	end
+	
+	oredef.oredef.ore_type = "scatter"
+	oredef.oredef.ore = modname..":mineral_"..mineral_name
+	oredef.oredef.wherein = "default:stone"
+	
+	minetest.register_ore(oredef)
 
 	for toolname, tooldef in pairs(oredef.tools) do
-		local tflet = string.upper(string.sub(toolname, 0, 1))
-		local tool_description = tflet..string.sub(toolname, 2)
 		local tdef = {
 			description = "",
 			inventory_image = toolimg_base .. toolname .. ".png",
@@ -166,14 +194,23 @@ local function add_ore(modname, mineral_name, oredef)
 		if toolname == "shovel" then
 			tdef.description = S("%s Shovel"):format(S(description))
 		end
+		
+		if toolname == "hoe" then
+			tdef.description = S("%s Hoe"):format(S(description))
+			local uses = tdef.uses
+			tdef.uses = nil
+			tdef.on_use = function(itemstack, user, pointed_thing)
+				return hoe_on_use(itemstack, user, pointed_thing, uses)
+			end
+		end
 
 		local fulltoolname = tool_base .. toolname .. tool_post
 		minetest.register_tool(fulltoolname, tdef)
 		minetest.register_alias(toolname .. tool_post, fulltoolname)
 		if oredef.makes.ingot then
 			minetest.register_craft({
-				output = "craft " .. fulltoolname .. " 1",
-				recipe = get_tool_recipe(item_base .. "_ingot", toolname)
+				output = fulltoolname,
+				recipe = get_tool_recipe(ingot, toolname)
 			})
 		end
 	end
@@ -186,9 +223,18 @@ local modname = "moreores"
 local oredefs = {
 	silver = {
 		makes = {ore=true, block=true, lump=true, ingot=true, chest=true},
+		oredef = {clust_scarcity = moreores_silver_chunk_size * moreores_silver_chunk_size * moreores_silver_chunk_size,
+			clust_num_ores = moreores_silver_ore_per_chunk,
+			clust_size     = moreores_silver_chunk_size,
+			height_min     = moreores_silver_min_depth,
+			height_max     = moreores_silver_max_depth
+			},
 		tools = {
 			pick = {
 				cracky={times={[1]=2.60, [2]=1.00, [3]=0.60}, uses=100, maxlevel=1}
+			},
+			hoe = {
+				uses = 300
 			},
 			shovel = {
 				crumbly={times={[1]=1.10, [2]=0.40, [3]=0.25}, uses=100, maxlevel=1}
@@ -207,13 +253,28 @@ local oredefs = {
 	},
 	tin = {
 		makes = {ore=true, block=true, lump=true, ingot=true, chest=false},
+		oredef = {clust_scarcity = moreores_tin_chunk_size * moreores_tin_chunk_size * moreores_tin_chunk_size,
+			clust_num_ores = moreores_tin_ore_per_chunk,
+			clust_size     = moreores_tin_chunk_size,
+			height_min     = moreores_tin_min_depth,
+			height_max     = moreores_tin_max_depth
+			},
 		tools = {}
 	},
 	mithril = {
 		makes = {ore=true, block=true, lump=true, ingot=true, chest=false},
+		oredef = {clust_scarcity = moreores_mithril_chunk_size * moreores_mithril_chunk_size * moreores_mithril_chunk_size,
+			clust_num_ores = moreores_mithril_ore_per_chunk,
+			clust_size     = moreores_mithril_chunk_size,
+			height_min     = moreores_mithril_min_depth,
+			height_max     = moreores_mithril_max_depth
+			},
 		tools = {
 			pick = {
 				cracky={times={[1]=2.25, [2]=0.55, [3]=0.35}, uses=200, maxlevel=1}
+			},
+			hoe = {
+				uses = 1000
 			},
 			shovel = {
 				crumbly={times={[1]=0.70, [2]=0.35, [3]=0.20}, uses=200, maxlevel=1}
@@ -241,9 +302,9 @@ end
 minetest.register_craft({
 	output = "moreores:copper_rail 16",
 	recipe = {
-		{"moreores:copper_ingot", "", "moreores:copper_ingot"},
-		{"moreores:copper_ingot", "default:stick", "moreores:copper_ingot"},
-		{"moreores:copper_ingot", "", "moreores:copper_ingot"}
+		{"default:copper_ingot", "", "default:copper_ingot"},
+		{"default:copper_ingot", "default:stick", "default:copper_ingot"},
+		{"default:copper_ingot", "", "default:copper_ingot"}
 	}
 })
 
@@ -251,11 +312,11 @@ minetest.register_craft({
 
 minetest.register_craft( {
 	type = "shapeless",
-	output = "moreores:bronze_ingot 3",
+	output = "default:bronze_ingot 3",
 	recipe = {
 		"moreores:tin_ingot",
-		"moreores:copper_ingot",
-		"moreores:copper_ingot",
+		"default:copper_ingot",
+		"default:copper_ingot",
 	}
 })
 
@@ -278,87 +339,14 @@ minetest.register_node("moreores:copper_rail", {
 	mesecons = {
 		effector = {
 			action_on = function(pos, node)
-				minetest.env:get_meta(pos):set_string("cart_acceleration", "0.5")
+				minetest.get_meta(pos):set_string("cart_acceleration", "0.5")
 			end,
 
 			action_off = function(pos, node)
-				minetest.env:get_meta(pos):set_string("cart_acceleration", "0")
+				minetest.get_meta(pos):set_string("cart_acceleration", "0")
 			end,
 		},
 	},
 })
-
-local function generate_ore(name, wherein, minp, maxp, seed, chunks_per_volume, ore_per_chunk, height_min, height_max)
-	if maxp.y < height_min or minp.y > height_max then
-		return
-	end
-	local y_min = math.max(minp.y, height_min)
-	local y_max = math.min(maxp.y, height_max)
-	local volume = (maxp.x - minp.x + 1) * (y_max - y_min + 1) * (maxp.z - minp.z + 1)
-	local pr = PseudoRandom(seed)
-	local num_chunks = math.floor(chunks_per_volume * volume)
-	local chunk_size = 3
-	if ore_per_chunk <= 4 then
-		chunk_size = 2
-	end
-	local inverse_chance = math.floor(chunk_size * chunk_size * chunk_size / ore_per_chunk)
-	-- print(generate_ore num_chunks: ..dump(num_chunks))
-	for i=1,num_chunks do
-	if (y_max-chunk_size+1 <= y_min) then return end
-		local y0 = pr:next(y_min, y_max-chunk_size+1)
-		if y0 >= height_min and y0 <= height_max then
-			local x0 = pr:next(minp.x, maxp.x-chunk_size+1)
-			local z0 = pr:next(minp.z, maxp.z-chunk_size+1)
-			local p0 = {x=x0, y=y0, z=z0}
-			for x1=0,chunk_size-1 do
-			for y1=0,chunk_size-1 do
-			for z1=0,chunk_size-1 do
-				if pr:next(1,inverse_chance) == 1 then
-					local x2 = x0+x1
-					local y2 = y0+y1	
-					local z2 = z0+z1
-					local p2 = {x=x2, y=y2, z=z2}
-					if minetest.env:get_node(p2).name == wherein then
-						minetest.env:set_node(p2, {name=name})
-					end
-				end
-			end
-			end
-			end
-		end
-	end
-	-- print(generate_ore done)
-end
-
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "moreores:mineral_tin",
-		wherein        = "default:stone",
-		clust_scarcity = moreores_tin_chunk_size * moreores_tin_chunk_size * moreores_tin_chunk_size,
-		clust_num_ores = moreores_tin_ore_per_chunk,
-		clust_size     = moreores_tin_chunk_size,
-		height_min     = moreores_tin_min_depth,
-		height_max     = moreores_tin_max_depth
-	})
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "moreores:mineral_silver",
-		wherein        = "default:stone",
-		clust_scarcity = moreores_silver_chunk_size * moreores_silver_chunk_size * moreores_silver_chunk_size,
-		clust_num_ores = moreores_silver_ore_per_chunk,
-		clust_size     = moreores_silver_chunk_size,
-		height_min     = moreores_silver_min_depth,
-		height_max     = moreores_silver_max_depth
-	})
-	minetest.register_ore({
-		ore_type       = "scatter",
-		ore            = "moreores:mineral_mithril",
-		wherein        = "default:stone",
-		clust_scarcity = moreores_mithril_chunk_size * moreores_mithril_chunk_size * moreores_mithril_chunk_size,
-		clust_num_ores = moreores_mithril_ore_per_chunk,
-		clust_size     = moreores_mithril_chunk_size,
-		height_min     = moreores_mithril_min_depth,
-		height_max     = moreores_mithril_max_depth
-	})
 
 print(S("[moreores] loaded."))
