@@ -66,20 +66,27 @@ local function hoe_on_use(itemstack, user, pointed_thing, uses)
 end
 
 local function get_recipe(c, name)
-	if name == "sword":
+	if name == "sword" then
 		return {{c},{c},{"default:stick"}}
-	if name == "shovel":
+	end
+	if name == "shovel" then
 		return {{c},{"default:stick"},{"default:stick"}}
-	if name == "axe":
+	end
+	if name == "axe" then
 		return {{c,c},{c,"default:stick"},{"","default:stick"}}
-	if name == "pick":
+	end
+	if name == "pick" then
 		return {{c,c,c},{"","default:stick",""},{"","default:stick",""}}
-	if name == "hoe":
+	end
+	if name == "hoe" then
 		return {{c,c},{"","default:stick"},{"","default:stick"}}
-	if name == "block":
+	end
+	if name == "block" then
 		return {{c,c,c},{c,c,c},{c,c,c}}
-	if name == "lockedchest":
+	end
+	if name == "lockedchest" then
 		return {{"default:wood","default:wood","default:wood"},{"default:wood",c,"default:wood"},{"default:wood","default:wood","default:wood"}}
+	end
 end
 
 local function add_ore(modname, description, mineral_name, oredef)
@@ -166,7 +173,7 @@ local function add_ore(modname, description, mineral_name, oredef)
 	oredef.oredef.ore = modname..":mineral_"..mineral_name
 	oredef.oredef.wherein = "default:stone"
 	
-	minetest.register_ore(oredef)
+	minetest.register_ore(oredef.oredef)
 
 	for toolname, tooldef in pairs(oredef.tools) do
 		local tdef = {
@@ -210,7 +217,7 @@ local function add_ore(modname, description, mineral_name, oredef)
 		if oredef.makes.ingot then
 			minetest.register_craft({
 				output = fulltoolname,
-				recipe = get_tool_recipe(ingot, toolname)
+				recipe = get_recipe(ingot, toolname)
 			})
 		end
 	end
@@ -222,6 +229,7 @@ local modname = "moreores"
 
 local oredefs = {
 	silver = {
+		desc = "Silver",
 		makes = {ore=true, block=true, lump=true, ingot=true, chest=true},
 		oredef = {clust_scarcity = moreores_silver_chunk_size * moreores_silver_chunk_size * moreores_silver_chunk_size,
 			clust_num_ores = moreores_silver_ore_per_chunk,
@@ -252,6 +260,7 @@ local oredefs = {
 		punchint = 1.0
 	},
 	tin = {
+		desc = "Tin",
 		makes = {ore=true, block=true, lump=true, ingot=true, chest=false},
 		oredef = {clust_scarcity = moreores_tin_chunk_size * moreores_tin_chunk_size * moreores_tin_chunk_size,
 			clust_num_ores = moreores_tin_ore_per_chunk,
@@ -262,6 +271,7 @@ local oredefs = {
 		tools = {}
 	},
 	mithril = {
+		desc = "Mithril",
 		makes = {ore=true, block=true, lump=true, ingot=true, chest=false},
 		oredef = {clust_scarcity = moreores_mithril_chunk_size * moreores_mithril_chunk_size * moreores_mithril_chunk_size,
 			clust_num_ores = moreores_mithril_ore_per_chunk,
@@ -294,7 +304,7 @@ local oredefs = {
 }
 
 for orename,def in pairs(oredefs) do
-	add_ore(modname, orename, def)
+	add_ore(modname, def.desc, orename, def)
 end
 
 -- Copper rail (special node)
