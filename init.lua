@@ -61,7 +61,7 @@ local function hoe_on_use(itemstack, user, pointed_thing, uses)
 		pos = pt.under,
 		gain = 0.5,
 	})
-	--itemstack:add_wear(65535/(uses-1))
+	itemstack:add_wear(65535/(uses-1))
 	return itemstack
 end
 
@@ -175,13 +175,13 @@ local function add_ore(modname, description, mineral_name, oredef)
 	
 	minetest.register_ore(oredef.oredef)
 
-	for toolname, tdef in pairs(oredef.tools) do
+	for toolname, tooldef in pairs(oredef.tools) do
 		local tdef = {
 			description = "",
 			inventory_image = toolimg_base .. toolname .. ".png",
 			tool_capabilities = {
 				max_drop_level=3,
-				groupcaps=tdef
+				groupcaps=tooldef
 			}
 		}
 
@@ -204,8 +204,8 @@ local function add_ore(modname, description, mineral_name, oredef)
 		
 		if toolname == "hoe" then
 			tdef.description = S("%s Hoe"):format(S(description))
-			local uses = tdef.uses
-			tdef.uses = nil
+			local uses = tooldef.uses
+			tooldef.uses = nil
 			tdef.on_use = function(itemstack, user, pointed_thing)
 				return hoe_on_use(itemstack, user, pointed_thing, uses)
 			end
