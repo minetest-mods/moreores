@@ -175,44 +175,44 @@ local function add_ore(modname, description, mineral_name, oredef)
 	
 	minetest.register_ore(oredef.oredef)
 
-	for toolname, tooldef in pairs(oredef.tools) do
-		local tooldef = {
+	for toolname, tdef in pairs(oredef.tools) do
+		local tdef = {
 			description = "",
 			inventory_image = toolimg_base .. toolname .. ".png",
 			tool_capabilities = {
 				max_drop_level=3,
-				groupcaps=tooldef
+				groupcaps=tdef
 			}
 		}
 
 		if toolname == "sword" then
-			tooldef.full_punch_interval = oredef.punchint
-			tooldef.description = S("%s Sword"):format(S(description))
+			tdef.full_punch_interval = oredef.punchint
+			tdef.description = S("%s Sword"):format(S(description))
 		end
 
 		if toolname == "pick" then
-			tooldef.description = S("%s Pickaxe"):format(S(description))
+			tdef.description = S("%s Pickaxe"):format(S(description))
 		end
 		
 		if toolname == "axe" then
-			tooldef.description = S("%s Axe"):format(S(description))
+			tdef.description = S("%s Axe"):format(S(description))
 		end
 
 		if toolname == "shovel" then
-			tooldef.description = S("%s Shovel"):format(S(description))
+			tdef.description = S("%s Shovel"):format(S(description))
 		end
 		
 		if toolname == "hoe" then
-			tooldef.description = S("%s Hoe"):format(S(description))
+			tdef.description = S("%s Hoe"):format(S(description))
 			local uses = tooldef.uses
-			tooldef.uses = nil
-			tooldef.on_use = function(itemstack, user, pointed_thing)
+			tdef.uses = nil
+			tdef.on_use = function(itemstack, user, pointed_thing)
 				return hoe_on_use(itemstack, user, pointed_thing, uses)
 			end
 		end
 
 		local fulltoolname = tool_base .. toolname .. tool_post
-		minetest.register_tool(fulltoolname, tooldef)
+		minetest.register_tool(fulltoolname, tdef)
 		minetest.register_alias(toolname .. tool_post, fulltoolname)
 		if oredef.makes.ingot then
 			minetest.register_craft({
