@@ -204,7 +204,7 @@ local function add_ore(modname, description, mineral_name, oredef)
 		
 		if toolname == "hoe" then
 			tdef.description = S("%s Hoe"):format(S(description))
-			local uses = tooldef.uses
+			local uses = tdef.uses
 			tdef.uses = nil
 			tdef.on_use = function(itemstack, user, pointed_thing)
 				return hoe_on_use(itemstack, user, pointed_thing, uses)
