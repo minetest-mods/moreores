@@ -61,7 +61,7 @@ local function hoe_on_use(itemstack, user, pointed_thing, uses)
 		pos = pt.under,
 		gain = 0.5,
 	})
-	itemstack:add_wear(65535/(uses-1))
+	--itemstack:add_wear(65535/(uses-1))
 	return itemstack
 end
 
