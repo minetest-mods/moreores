@@ -359,4 +359,9 @@ minetest.register_node("moreores:copper_rail", {
 	},
 })
 
+-- mg suppport
+if minetest.get_modpath("mg") then
+	dofile(modpath.."/mg.lua")
+end
+
 print(S("[moreores] loaded."))
