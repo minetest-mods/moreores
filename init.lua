@@ -8,7 +8,8 @@ if (minetest.get_modpath("intllib")) then
 	S = function ( s ) return s end
 end
 
-dofile(minetest.get_modpath("moreores").."/_config.txt")
+moreores_modpath = minetest.get_modpath("moreores")
+dofile(moreores_modpath.."/_config.txt")
 
 --[[
 ****
@@ -361,7 +362,7 @@ minetest.register_node("moreores:copper_rail", {
 
 -- mg suppport
 if minetest.get_modpath("mg") then
-	dofile(modpath.."/mg.lua")
+	dofile(moreores_modpath.."/mg.lua")
 end
 
 print(S("[moreores] loaded."))
