@@ -68,25 +68,25 @@ end
 
 local function get_recipe(c, name)
 	if name == "sword" then
-		return {{c},{c},{"default:stick"}}
+		return {{c},{c},{"group:stick"}}
 	end
 	if name == "shovel" then
-		return {{c},{"default:stick"},{"default:stick"}}
+		return {{c},{"group:stick"},{"group:stick"}}
 	end
 	if name == "axe" then
-		return {{c,c},{c,"default:stick"},{"","default:stick"}}
+		return {{c,c},{c,"group:stick"},{"","group:stick"}}
 	end
 	if name == "pick" then
-		return {{c,c,c},{"","default:stick",""},{"","default:stick",""}}
+		return {{c,c,c},{"","group:stick",""},{"","group:stick",""}}
 	end
 	if name == "hoe" then
-		return {{c,c},{"","default:stick"},{"","default:stick"}}
+		return {{c,c},{"","group:stick"},{"","group:stick"}}
 	end
 	if name == "block" then
 		return {{c,c,c},{c,c,c},{c,c,c}}
 	end
 	if name == "lockedchest" then
-		return {{"default:wood","default:wood","default:wood"},{"default:wood",c,"default:wood"},{"default:wood","default:wood","default:wood"}}
+		return {{"group:wood","group:wood","group:wood"},{"group:wood",c,"group:wood"},{"group:wood","group:wood","group:wood"}}
 	end
 end
 
@@ -314,7 +314,7 @@ minetest.register_craft({
 	output = "moreores:copper_rail 16",
 	recipe = {
 		{"default:copper_ingot", "", "default:copper_ingot"},
-		{"default:copper_ingot", "default:stick", "default:copper_ingot"},
+		{"default:copper_ingot", "group:stick", "default:copper_ingot"},
 		{"default:copper_ingot", "", "default:copper_ingot"}
 	}
 })
