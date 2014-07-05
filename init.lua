@@ -174,25 +174,28 @@ local function add_ore(modname, description, mineral_name, oredef)
 				groupcaps = tooldef
 			}
 		}
-
+		
 		if toolname == "sword" then
-			tdef.full_punch_interval = oredef.full_punch_interval
-			tdef.damage_groups = oredef.damage_groups
+			tdef.tool_capabilities.full_punch_interval = oredef.full_punch_interval
+			tdef.tool_capabilities.damage_groups = oredef.damage_groups
 			tdef.description = S("%s Sword"):format(S(description))
 		end
-
+	
 		if toolname == "pick" then
-			tdef.full_punch_interval = oredef.full_punch_interval
+			tdef.tool_capabilities.full_punch_interval = oredef.full_punch_interval
+			tdef.tool_capabilities.damage_groups = oredef.damage_groups
 			tdef.description = S("%s Pickaxe"):format(S(description))
 		end
-		
+		  
 		if toolname == "axe" then
-			tdef.full_punch_interval = oredef.full_punch_interval
+			tdef.tool_capabilities.full_punch_interval = oredef.full_punch_interval
+			tdef.tool_capabilities.damage_groups = oredef.damage_groups
 			tdef.description = S("%s Axe"):format(S(description))
 		end
 
 		if toolname == "shovel" then
 			tdef.full_punch_interval = oredef.full_punch_interval
+			tdef.tool_capabilities.damage_groups = oredef.damage_groups
 			tdef.description = S("%s Shovel"):format(S(description))
 		end
 		
