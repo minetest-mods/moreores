@@ -1,32 +1,32 @@
--- Load translation library if intllib is installed
-
-local S
-if (minetest.get_modpath("intllib")) then
-	dofile(minetest.get_modpath("intllib").."/intllib.lua")
-	S = intllib.Getter(minetest.get_current_modname())
-	else
-	S = function ( s ) return s end
-end
-
-moreores_modpath = minetest.get_modpath("moreores")
-dofile(moreores_modpath .. "/_config.txt")
-
 --[[
-****
-More Ores
-by Calinou
-with the help of Nore/Novatux
-Licensed under the CC0
-****
+======================================================================
+** More Ores **
+By Calinou, with the help of Nore.
+
+Copyright (c) 2011-2014 Calinou and contributors.
+Licensed under the zlib license. See LICENSE.txt for more information.
+======================================================================
 --]]
 
+local S
+if minetest.get_modpath("intllib") then
+	S = intllib.Getter()
+else
+	S = function(s) return s end
+end
+
+local modpath = minetest.get_modpath("moreores")
+
+dofile(modpath .. "/_config.txt")
+
 -- Utility functions
+-- =================
 
 local default_stone_sounds = default.node_sound_stone_defaults()
 
 local function hoe_on_use(itemstack, user, pointed_thing, uses)
 	local pt = pointed_thing
-	-- check if pointing at a node
+	-- Check if pointing at a node:
 	if not pt then
 		return
 	end
@@ -86,53 +86,53 @@ local function add_ore(modname, description, mineral_name, oredef)
 	local tool_post = "_" .. mineral_name
 	local item_base = tool_base .. mineral_name
 	local ingot = item_base .. "_ingot"
-	local lumpitem = item_base .. "_lump"
+	local lump_item = item_base .. "_lump"
 	local ingotcraft = ingot
 
 	if oredef.makes.ore then
-		minetest.register_node(modname .. ":mineral_"..mineral_name, {
+		minetest.register_node(modname .. ":mineral_" .. mineral_name, {
 			description = S("%s Ore"):format(S(description)),
-			tiles = {"default_stone.png^"..modname.."_mineral_"..mineral_name..".png"},
+			tiles = {"default_stone.png^" .. modname .. "_mineral_" .. mineral_name .. ".png"},
 			groups = {cracky = 3},
 			sounds = default_stone_sounds,
-			drop = lumpitem
+			drop = lump_item
 		})
 	end
 
 	if oredef.makes.block then
-		local blockitem = item_base .. "_block"
-		minetest.register_node(blockitem, {
+		local block_item = item_base .. "_block"
+		minetest.register_node(block_item, {
 			description = S("%s Block"):format(S(description)),
 			tiles = { img_base .. "_block.png" },
-			groups = {snappy = 1,bendy = 2, cracky = 1,melty = 2,level= 2},
+			groups = {snappy = 1, bendy = 2, cracky = 1, melty = 2, level= 2},
 			sounds = default_stone_sounds
 		})
-		minetest.register_alias(mineral_name.."_block", blockitem)
+		minetest.register_alias(mineral_name.."_block", block_item)
 		if oredef.makes.ingot then
 			minetest.register_craft( {
-				output = blockitem,
+				output = block_item,
 				recipe = get_recipe(ingot, "block")
 			})
 			minetest.register_craft( {
 				output = ingot .. " 9",
 				recipe = {
-					{ blockitem }
+					{ block_item }
 				}
 			})
 		end
 	end
 
 	if oredef.makes.lump then
-		minetest.register_craftitem(lumpitem, {
+		minetest.register_craftitem(lump_item, {
 			description = S("%s Lump"):format(S(description)),
 			inventory_image = img_base .. "_lump.png",
 		})
-		minetest.register_alias(mineral_name .. "_lump", lumpitem)
+		minetest.register_alias(mineral_name .. "_lump", lump_item)
 		if oredef.makes.ingot then
 			minetest.register_craft({
 				type = "cooking",
 				output = ingot,
-				recipe = lumpitem
+				recipe = lump_item
 			})
 		end
 	end
@@ -165,41 +165,41 @@ local function add_ore(modname, description, mineral_name, oredef)
 	
 	minetest.register_ore(oredef.oredef)
 
-	for toolname, tooldef in pairs(oredef.tools) do
+	for tool_name, tooldef in pairs(oredef.tools) do
 		local tdef = {
 			description = "",
-			inventory_image = toolimg_base .. toolname .. ".png",
+			inventory_image = toolimg_base .. tool_name .. ".png",
 			tool_capabilities = {
 				max_drop_level = 3,
 				groupcaps = tooldef
 			}
 		}
 		
-		if toolname == "sword" then
+		if tool_name == "sword" then
 			tdef.tool_capabilities.full_punch_interval = oredef.full_punch_interval
 			tdef.tool_capabilities.damage_groups = oredef.damage_groups
 			tdef.description = S("%s Sword"):format(S(description))
 		end
 	
-		if toolname == "pick" then
+		if tool_name == "pick" then
 			tdef.tool_capabilities.full_punch_interval = oredef.full_punch_interval
 			tdef.tool_capabilities.damage_groups = oredef.damage_groups
 			tdef.description = S("%s Pickaxe"):format(S(description))
 		end
 		  
-		if toolname == "axe" then
+		if tool_name == "axe" then
 			tdef.tool_capabilities.full_punch_interval = oredef.full_punch_interval
 			tdef.tool_capabilities.damage_groups = oredef.damage_groups
 			tdef.description = S("%s Axe"):format(S(description))
 		end
 
-		if toolname == "shovel" then
+		if tool_name == "shovel" then
 			tdef.full_punch_interval = oredef.full_punch_interval
 			tdef.tool_capabilities.damage_groups = oredef.damage_groups
 			tdef.description = S("%s Shovel"):format(S(description))
 		end
 		
-		if toolname == "hoe" then
+		if tool_name == "hoe" then
 			tdef.description = S("%s Hoe"):format(S(description))
 			local uses = tooldef.uses
 			tooldef.uses = nil
@@ -208,13 +208,13 @@ local function add_ore(modname, description, mineral_name, oredef)
 			end
 		end
 
-		local fulltoolname = tool_base .. toolname .. tool_post
-		minetest.register_tool(fulltoolname, tdef)
-		minetest.register_alias(toolname .. tool_post, fulltoolname)
+		local fulltool_name = tool_base .. tool_name .. tool_post
+		minetest.register_tool(fulltool_name, tdef)
+		minetest.register_alias(tool_name .. tool_post, fulltool_name)
 		if oredef.makes.ingot then
 			minetest.register_craft({
-				output = fulltoolname,
-				recipe = get_recipe(ingot, toolname)
+				output = fulltool_name,
+				recipe = get_recipe(ingot, tool_name)
 			})
 		end
 	end
@@ -225,7 +225,7 @@ local modname = "moreores"
 
 local oredefs = {
 	silver = {
-		desc = "Silver",
+		description = "Silver",
 		makes = {ore = true, block = true, lump = true, ingot = true, chest = true},
 		oredef = {clust_scarcity = moreores_silver_chunk_size * moreores_silver_chunk_size * moreores_silver_chunk_size,
 			clust_num_ores = moreores_silver_ore_per_chunk,
@@ -257,7 +257,7 @@ local oredefs = {
 		damage_groups = {fleshy = 6},
 	},
 	tin = {
-		desc = "Tin",
+		description = "Tin",
 		makes = {ore = true, block = true, lump = true, ingot = true, chest = false},
 		oredef = {clust_scarcity = moreores_tin_chunk_size * moreores_tin_chunk_size * moreores_tin_chunk_size,
 			clust_num_ores = moreores_tin_ore_per_chunk,
@@ -268,7 +268,7 @@ local oredefs = {
 		tools = {}
 	},
 	mithril = {
-		desc = "Mithril",
+		description = "Mithril",
 		makes = {ore = true, block = true, lump = true, ingot = true, chest = false},
 		oredef = {clust_scarcity = moreores_mithril_chunk_size * moreores_mithril_chunk_size * moreores_mithril_chunk_size,
 			clust_num_ores = moreores_mithril_ore_per_chunk,
@@ -302,11 +302,10 @@ local oredefs = {
 }
 
 for orename,def in pairs(oredefs) do
-	add_ore(modname, def.desc, orename, def)
+	add_ore(modname, def.description, orename, def)
 end
 
--- Copper rail (special node)
-
+-- Copper rail (special node):
 minetest.register_craft({
 	output = "moreores:copper_rail 16",
 	recipe = {
@@ -355,11 +354,11 @@ minetest.register_node("moreores:copper_rail", {
 	},
 })
 
--- mg support:
+-- `mg` support:
 if minetest.get_modpath("mg") then
 	dofile(moreores_modpath.."/mg.lua")
 end
 
 if minetest.setting_getbool("log_mods") then
-	print(S("[moreores] loaded."))
+	minetest.log("action", S("[moreores] loaded."))
 end
