@@ -3,7 +3,7 @@
 ** More Ores **
 By Calinou, with the help of Nore.
 
-Copyright (c) 2011-2014 Calinou and contributors.
+Copyright (c) 2011-2015 Calinou and contributors.
 Licensed under the zlib license. See LICENSE.txt for more information.
 ======================================================================
 --]]
@@ -18,6 +18,11 @@ end
 local modpath = minetest.get_modpath("moreores")
 
 dofile(modpath .. "/_config.txt")
+
+-- `mg` support:
+if minetest.get_modpath("mg") then
+	dofile(modpath .. "/mg.lua")
+end
 
 -- Utility functions
 -- =================
@@ -354,10 +359,6 @@ minetest.register_node("moreores:copper_rail", {
 	},
 })
 
--- `mg` support:
-if minetest.get_modpath("mg") then
-	dofile(moreores_modpath.."/mg.lua")
-end
 
 if minetest.setting_getbool("log_mods") then
 	minetest.log("action", S("[moreores] loaded."))
