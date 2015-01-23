@@ -312,7 +312,7 @@ end
 
 -- Copper rail (special node):
 minetest.register_craft({
-	output = "moreores:copper_rail 16",
+	output = "moreores:copper_rail 24",
 	recipe = {
 		{"default:copper_ingot", "", "default:copper_ingot"},
 		{"default:copper_ingot", "group:stick", "default:copper_ingot"},
