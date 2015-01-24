@@ -256,7 +256,7 @@ local oredefs = {
 				fleshy = {times = {[2] = 0.70, [3] = 0.30}, uses = 100, maxlevel= 1},
 				snappy = {times = {[2] = 0.70, [3] = 0.30}, uses = 100, maxlevel= 1},
 				choppy = {times = {[3] = 0.80}, uses = 100, maxlevel= 0}
-			}
+			},
 		},
 		full_punch_interval = 1.0,
 		damage_groups = {fleshy = 6},
@@ -270,7 +270,7 @@ local oredefs = {
 			height_min     = moreores_tin_min_depth,
 			height_max     = moreores_tin_max_depth
 			},
-		tools = {}
+		tools = {},
 	},
 	mithril = {
 		description = "Mithril",
