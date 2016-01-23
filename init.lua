@@ -38,21 +38,21 @@ local function hoe_on_use(itemstack, user, pointed_thing, uses)
 	if pt.type ~= "node" then
 		return
 	end
-	
+
 	local under = minetest.get_node(pt.under)
 	local pos = {x = pt.under.x, y = pt.under.y + 1, z = pt.under.z}
 	local above = minetest.get_node(pos)
-	
+
 	-- Return if any of the nodes is not registered:
 	if not minetest.registered_nodes[under.name] then return end
 	if not minetest.registered_nodes[above.name] then return end
-	
+
 	-- Check if the node above the pointed thing is air:
 	if above.name ~= "air" then return end
-	
+
 	-- Check if pointing at dirt:
 	if minetest.get_item_group(under.name, "soil") ~= 1 then return end
-	
+
 	-- Turn the node into soil, wear out item and play sound:
 	minetest.set_node(pt.under, {name ="farming:soil"})
 	minetest.sound_play("default_dig_crumbly", {pos = pt.under, gain = 0.5})
@@ -149,7 +149,7 @@ local function add_ore(modname, description, mineral_name, oredef)
 		})
 		minetest.register_alias(mineral_name .. "_ingot", ingot)
 	end
-	
+
 	if oredef.makes.chest then
 		minetest.register_craft( {
 			output = "default:chest_locked",
@@ -163,11 +163,11 @@ local function add_ore(modname, description, mineral_name, oredef)
 			recipe = get_recipe(ingot, "lockedchest")
 		})
 	end
-	
+
 	oredef.oredef.ore_type = "scatter"
 	oredef.oredef.ore = modname .. ":mineral_" .. mineral_name
 	oredef.oredef.wherein = "default:stone"
-	
+
 	minetest.register_ore(oredef.oredef)
 
 	for tool_name, tooldef in pairs(oredef.tools) do
@@ -179,19 +179,19 @@ local function add_ore(modname, description, mineral_name, oredef)
 				groupcaps = tooldef
 			}
 		}
-		
+
 		if tool_name == "sword" then
 			tdef.tool_capabilities.full_punch_interval = oredef.full_punch_interval
 			tdef.tool_capabilities.damage_groups = oredef.damage_groups
 			tdef.description = S("%s Sword"):format(S(description))
 		end
-	
+
 		if tool_name == "pick" then
 			tdef.tool_capabilities.full_punch_interval = oredef.full_punch_interval
 			tdef.tool_capabilities.damage_groups = oredef.damage_groups
 			tdef.description = S("%s Pickaxe"):format(S(description))
 		end
-		  
+
 		if tool_name == "axe" then
 			tdef.tool_capabilities.full_punch_interval = oredef.full_punch_interval
 			tdef.tool_capabilities.damage_groups = oredef.damage_groups
@@ -203,7 +203,7 @@ local function add_ore(modname, description, mineral_name, oredef)
 			tdef.tool_capabilities.damage_groups = oredef.damage_groups
 			tdef.description = S("%s Shovel"):format(S(description))
 		end
-		
+
 		if tool_name == "hoe" then
 			tdef.description = S("%s Hoe"):format(S(description))
 			local uses = tooldef.uses
