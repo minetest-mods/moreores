@@ -22,7 +22,7 @@ minetest.register_tool("moreores:tin_dagger", {
 			pointedthing.ref:punch(user,1,tindaggercaps)
 
 			-- explicitly non-physical entities should not incur wear, cater for nil
-			if not (pointedthing.ref:get_luaentity().physical_state == false) then
+			if pointedthing.ref:get_luaentity().physical_state ~= false then
 			        itemstack:add_wear(math.ceil(65536/maxuses))
 			end
 		end
