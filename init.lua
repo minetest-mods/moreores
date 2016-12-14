@@ -28,6 +28,7 @@ end
 -- =================
 
 local default_stone_sounds = default.node_sound_stone_defaults()
+local default_metal_sounds = default.node_sound_metal_defaults()
 
 local function hoe_on_use(itemstack, user, pointed_thing, uses)
 	local pt = pointed_thing
@@ -110,7 +111,7 @@ local function add_ore(modname, description, mineral_name, oredef)
 			description = S("%s Block"):format(S(description)),
 			tiles = { img_base .. "_block.png" },
 			groups = {snappy = 1, bendy = 2, cracky = 1, melty = 2, level= 2},
-			sounds = default_stone_sounds
+			sounds = default_metal_sounds,
 		})
 		minetest.register_alias(mineral_name.."_block", block_item)
 		if oredef.makes.ingot then
@@ -347,6 +348,7 @@ minetest.register_node("moreores:copper_rail", {
 		type = "fixed",
 		fixed = {-1/2, -1/2, -1/2, 1/2, -1/2+1/16, 1/2},
 	},
+	sounds = default_metal_sounds,
 	groups = {bendy = 2,snappy = 1,dig_immediate = 2,rail= 1, connect_to_raillike = 1},
 	mesecons = {
 		effector = {
