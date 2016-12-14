@@ -177,7 +177,8 @@ local function add_ore(modname, description, mineral_name, oredef)
 			tool_capabilities = {
 				max_drop_level = 3,
 				groupcaps = tooldef
-			}
+			},
+            sound = {breaks = "default_tool_breaks"},
 		}
 
 		if tool_name == "sword" then
@@ -202,6 +203,7 @@ local function add_ore(modname, description, mineral_name, oredef)
 			tdef.full_punch_interval = oredef.full_punch_interval
 			tdef.tool_capabilities.damage_groups = oredef.damage_groups
 			tdef.description = S("%s Shovel"):format(S(description))
+            tdef.wield_image = toolimg_base .. tool_name .. ".png^[transformR90"
 		end
 
 		if tool_name == "hoe" then
