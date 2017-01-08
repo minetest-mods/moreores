@@ -8,6 +8,8 @@ Licensed under the zlib license. See LICENSE.md for more information.
 =====================================================================
 --]]
 
+moreores = {}
+
 local S
 if minetest.get_modpath("intllib") then
 	S = intllib.Getter()
@@ -235,11 +237,11 @@ local oredefs = {
 	silver = {
 		description = "Silver",
 		makes = {ore = true, block = true, lump = true, ingot = true, chest = true},
-		oredef = {clust_scarcity = moreores_silver_chunk_size * moreores_silver_chunk_size * moreores_silver_chunk_size,
-			clust_num_ores = moreores_silver_ore_per_chunk,
-			clust_size     = moreores_silver_chunk_size,
-			y_min     = moreores_silver_min_depth,
-			y_max     = moreores_silver_max_depth
+		oredef = {clust_scarcity = moreores.silver_chunk_size * moreores.silver_chunk_size * moreores.silver_chunk_size,
+			clust_num_ores = moreores.silver_ore_per_chunk,
+			clust_size     = moreores.silver_chunk_size,
+			y_min     = moreores.silver_min_depth,
+			y_max     = moreores.silver_max_depth
 			},
 		tools = {
 			pick = {
@@ -267,22 +269,22 @@ local oredefs = {
 	tin = {
 		description = "Tin",
 		makes = {ore = true, block = true, lump = true, ingot = true, chest = false},
-		oredef = {clust_scarcity = moreores_tin_chunk_size * moreores_tin_chunk_size * moreores_tin_chunk_size,
-			clust_num_ores = moreores_tin_ore_per_chunk,
-			clust_size     = moreores_tin_chunk_size,
-			y_min     = moreores_tin_min_depth,
-			y_max     = moreores_tin_max_depth
+		oredef = {clust_scarcity = moreores.tin_chunk_size * moreores.tin_chunk_size * moreores.tin_chunk_size,
+			clust_num_ores = moreores.tin_ore_per_chunk,
+			clust_size     = moreores.tin_chunk_size,
+			y_min     = moreores.tin_min_depth,
+			y_max     = moreores.tin_max_depth
 			},
 		tools = {},
 	},
 	mithril = {
 		description = "Mithril",
 		makes = {ore = true, block = true, lump = true, ingot = true, chest = false},
-		oredef = {clust_scarcity = moreores_mithril_chunk_size * moreores_mithril_chunk_size * moreores_mithril_chunk_size,
-			clust_num_ores = moreores_mithril_ore_per_chunk,
-			clust_size     = moreores_mithril_chunk_size,
-			y_min     = moreores_mithril_min_depth,
-			y_max     = moreores_mithril_max_depth
+		oredef = {clust_scarcity = moreores.mithril_chunk_size * moreores.mithril_chunk_size * moreores.mithril_chunk_size,
+			clust_num_ores = moreores.mithril_ore_per_chunk,
+			clust_size     = moreores.mithril_chunk_size,
+			y_min     = moreores.mithril_min_depth,
+			y_max     = moreores.mithril_max_depth
 			},
 		tools = {
 			pick = {
