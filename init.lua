@@ -3,23 +3,18 @@
 ** More Ores **
 By Calinou, with the help of Nore.
 
-Copyright (c) 2011-2015 Calinou and contributors.
+Copyright (c) 2011-2017 Calinou and contributors.
 Licensed under the zlib license. See LICENSE.md for more information.
 =====================================================================
 --]]
 
 moreores = {}
 
-local S
-if minetest.get_modpath("intllib") then
-	S = intllib.Getter()
-else
-	S = function(s) return s end
-end
-
+-- internationalization boilerplate
 local modpath = minetest.get_modpath("moreores")
+local S, NS = dofile(modpath.."/intllib.lua")
 
-dofile(modpath .. "/_config.txt")
+dofile(modpath .. "/readsettings.lua")
 
 -- `mg` support:
 if minetest.get_modpath("mg") then
@@ -233,83 +228,91 @@ end
 -- Add everything:
 local modname = "moreores"
 
-local oredefs = {
-	silver = {
-		description = "Silver",
-		makes = {ore = true, block = true, lump = true, ingot = true, chest = true},
-		oredef = {clust_scarcity = moreores.silver_chunk_size * moreores.silver_chunk_size * moreores.silver_chunk_size,
-			clust_num_ores = moreores.silver_ore_per_chunk,
-			clust_size     = moreores.silver_chunk_size,
-			y_min     = moreores.silver_min_depth,
-			y_max     = moreores.silver_max_depth
-			},
-		tools = {
-			pick = {
-				cracky = {times = {[1] = 2.60, [2] = 1.00, [3] = 0.60}, uses = 100, maxlevel= 1}
-			},
-			hoe = {
-				uses = 300
-			},
-			shovel = {
-				crumbly = {times = {[1] = 1.10, [2] = 0.40, [3] = 0.25}, uses = 100, maxlevel= 1}
-			},
-			axe = {
-				choppy = {times = {[1] = 2.50, [2] = 0.80, [3] = 0.50}, uses = 100, maxlevel= 1},
-				fleshy = {times = {[2] = 1.10, [3] = 0.60}, uses = 100, maxlevel= 1}
-			},
-			sword = {
-				fleshy = {times = {[2] = 0.70, [3] = 0.30}, uses = 100, maxlevel= 1},
-				snappy = {times = {[2] = 0.70, [3] = 0.30}, uses = 100, maxlevel= 1},
-				choppy = {times = {[3] = 0.80}, uses = 100, maxlevel= 0}
-			},
+local oredefs = {}
+
+if moreores.silver_enabled then
+oredefs.silver = {
+	description = S("Silver"),
+	makes = {ore = true, block = true, lump = true, ingot = true, chest = true},
+	oredef = {clust_scarcity = moreores.silver_chunk_size * moreores.silver_chunk_size * moreores.silver_chunk_size,
+		clust_num_ores = moreores.silver_ore_per_chunk,
+		clust_size     = moreores.silver_chunk_size,
+		y_min     = moreores.silver_min_depth,
+		y_max     = moreores.silver_max_depth
 		},
-		full_punch_interval = 1.0,
-		damage_groups = {fleshy = 6},
-	},
-	tin = {
-		description = "Tin",
-		makes = {ore = true, block = true, lump = true, ingot = true, chest = false},
-		oredef = {clust_scarcity = moreores.tin_chunk_size * moreores.tin_chunk_size * moreores.tin_chunk_size,
-			clust_num_ores = moreores.tin_ore_per_chunk,
-			clust_size     = moreores.tin_chunk_size,
-			y_min     = moreores.tin_min_depth,
-			y_max     = moreores.tin_max_depth
-			},
-		tools = {},
-	},
-	mithril = {
-		description = "Mithril",
-		makes = {ore = true, block = true, lump = true, ingot = true, chest = false},
-		oredef = {clust_scarcity = moreores.mithril_chunk_size * moreores.mithril_chunk_size * moreores.mithril_chunk_size,
-			clust_num_ores = moreores.mithril_ore_per_chunk,
-			clust_size     = moreores.mithril_chunk_size,
-			y_min     = moreores.mithril_min_depth,
-			y_max     = moreores.mithril_max_depth
-			},
-		tools = {
-			pick = {
-				cracky = {times = {[1] = 2.25, [2] = 0.55, [3] = 0.35}, uses = 200, maxlevel= 1}
-			},
-			hoe = {
-				uses = 1000
-			},
-			shovel = {
-				crumbly = {times = {[1] = 0.70, [2] = 0.35, [3] = 0.20}, uses = 200, maxlevel= 1}
-			},
-			axe = {
-				choppy = {times = {[1] = 1.75, [2] = 0.45, [3] = 0.45}, uses = 200, maxlevel= 1},
-				fleshy = {times = {[2] = 0.95, [3] = 0.30}, uses = 200, maxlevel= 1}
-			},
-			sword = {
-				fleshy = {times = {[2] = 0.65, [3] = 0.25}, uses = 200, maxlevel= 1},
-				snappy = {times = {[2] = 0.70, [3] = 0.25}, uses = 200, maxlevel= 1},
-				choppy = {times = {[3] = 0.65}, uses = 200, maxlevel= 0}
-			}
+	tools = {
+		pick = {
+			cracky = {times = {[1] = 2.60, [2] = 1.00, [3] = 0.60}, uses = 100, maxlevel= 1}
 		},
-		full_punch_interval = 0.45,
-		damage_groups = {fleshy = 9},
-	}
+		hoe = {
+			uses = 300
+		},
+		shovel = {
+			crumbly = {times = {[1] = 1.10, [2] = 0.40, [3] = 0.25}, uses = 100, maxlevel= 1}
+		},
+		axe = {
+			choppy = {times = {[1] = 2.50, [2] = 0.80, [3] = 0.50}, uses = 100, maxlevel= 1},
+			fleshy = {times = {[2] = 1.10, [3] = 0.60}, uses = 100, maxlevel= 1}
+		},
+		sword = {
+			fleshy = {times = {[2] = 0.70, [3] = 0.30}, uses = 100, maxlevel= 1},
+			snappy = {times = {[2] = 0.70, [3] = 0.30}, uses = 100, maxlevel= 1},
+			choppy = {times = {[3] = 0.80}, uses = 100, maxlevel= 0}
+		},
+	},
+	full_punch_interval = 1.0,
+	damage_groups = {fleshy = 6},
 }
+end
+
+if moreores.tin_enabled then
+oredefs.tin = {
+	description = S("Tin"),
+	makes = {ore = true, block = true, lump = true, ingot = true, chest = false},
+	oredef = {clust_scarcity = moreores.tin_chunk_size * moreores.tin_chunk_size * moreores.tin_chunk_size,
+		clust_num_ores = moreores.tin_ore_per_chunk,
+		clust_size     = moreores.tin_chunk_size,
+		y_min     = moreores.tin_min_depth,
+		y_max     = moreores.tin_max_depth
+		},
+	tools = {},
+}
+end
+
+if moreores.mithril_enabled then
+oredefs.mithril = {
+	description = S("Mithril"),
+	makes = {ore = true, block = true, lump = true, ingot = true, chest = false},
+	oredef = {clust_scarcity = moreores.mithril_chunk_size * moreores.mithril_chunk_size * moreores.mithril_chunk_size,
+		clust_num_ores = moreores.mithril_ore_per_chunk,
+		clust_size     = moreores.mithril_chunk_size,
+		y_min     = moreores.mithril_min_depth,
+		y_max     = moreores.mithril_max_depth
+		},
+	tools = {
+		pick = {
+			cracky = {times = {[1] = 2.25, [2] = 0.55, [3] = 0.35}, uses = 200, maxlevel= 1}
+		},
+		hoe = {
+			uses = 1000
+		},
+		shovel = {
+			crumbly = {times = {[1] = 0.70, [2] = 0.35, [3] = 0.20}, uses = 200, maxlevel= 1}
+		},
+		axe = {
+			choppy = {times = {[1] = 1.75, [2] = 0.45, [3] = 0.45}, uses = 200, maxlevel= 1},
+			fleshy = {times = {[2] = 0.95, [3] = 0.30}, uses = 200, maxlevel= 1}
+		},
+		sword = {
+			fleshy = {times = {[2] = 0.65, [3] = 0.25}, uses = 200, maxlevel= 1},
+			snappy = {times = {[2] = 0.70, [3] = 0.25}, uses = 200, maxlevel= 1},
+			choppy = {times = {[3] = 0.65}, uses = 200, maxlevel= 0}
+		}
+	},
+	full_punch_interval = 0.45,
+	damage_groups = {fleshy = 9},
+}
+end
 
 for orename,def in pairs(oredefs) do
 	add_ore(modname, def.description, orename, def)
@@ -325,16 +328,26 @@ minetest.register_craft({
 	}
 })
 
+if moreores.tin_enabled then
 -- Bronze has some special cases, because it is made from copper and tin:
-minetest.register_craft( {
-	type = "shapeless",
-	output = "default:bronze_ingot 3",
-	recipe = {
-		"moreores:tin_ingot",
-		"default:copper_ingot",
-		"default:copper_ingot",
-	}
-})
+	minetest.register_craft( {
+		type = "shapeless",
+		output = "default:bronze_ingot 3",
+		recipe = {
+			"moreores:tin_ingot",
+			"default:copper_ingot",
+			"default:copper_ingot",
+		}
+	})
+	
+	if moreores.override_default_bronze_recipe then
+		minetest.register_craft({
+			type = "shapeless",
+			output = "default:bronze_ingot 0",
+			recipe = {"default:steel_ingot", "default:copper_ingot"},
+		})	
+	end
+end
 
 -- Unique node:
 minetest.register_node("moreores:copper_rail", {
@@ -364,7 +377,6 @@ minetest.register_node("moreores:copper_rail", {
 		},
 	},
 })
-
 
 if minetest.setting_getbool("log_mods") then
 	minetest.log("action", S("[moreores] loaded."))
