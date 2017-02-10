@@ -17,8 +17,6 @@ moreores.tin_max_depth = tonumber(minetest.setting_get("moreores_tin_max_depth")
 
 moreores.override_default_bronze_recipe = minetest.setting_getbool("moreores_override_default_bronze_recipe") -- defaults to false
 
-minetest.debug("tin", tostring(moreores.tin_enabled), moreores.tin_chunk_size, moreores.tin_ore_per_chunk, moreores.tin_min_depth, moreores.tin_max_depth)
-
 -- Silver
 
 moreores.silver_enabled = minetest.setting_getbool("moreores_silver_enabled")
@@ -28,8 +26,6 @@ moreores.silver_ore_per_chunk = tonumber(minetest.setting_get("moreores_silver_o
 moreores.silver_min_depth = tonumber(minetest.setting_get("moreores_silver_min_depth")) or -31000
 moreores.silver_max_depth = tonumber(minetest.setting_get("moreores_silver_max_depth")) or -2
 
-minetest.debug("silver", tostring(moreores.silver_enabled), moreores.silver_chunk_size, moreores.silver_ore_per_chunk, moreores.silver_min_depth, moreores.silver_max_depth)
-
 -- Mithril
 
 moreores.mithril_enabled = minetest.setting_getbool("moreores_mithril_enabled")
@@ -38,5 +34,3 @@ moreores.mithril_chunk_size = tonumber(minetest.setting_get("moreores_mithril_ch
 moreores.mithril_ore_per_chunk = tonumber(minetest.setting_get("moreores_mithril_ore_per_chunk")) or 1
 moreores.mithril_min_depth = tonumber(minetest.setting_get("moreores_mithril_min_depth")) or -31000
 moreores.mithril_max_depth = tonumber(minetest.setting_get("moreores_mithril_max_depth")) or -512
-
-minetest.debug("mithril", tostring(moreores.mithril_enabled), moreores.mithril_chunk_size, moreores.mithril_ore_per_chunk, moreores.mithril_min_depth, moreores.mithril_max_depth)
