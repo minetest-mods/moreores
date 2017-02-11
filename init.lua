@@ -15,11 +15,8 @@ local modpath = minetest.get_modpath("moreores")
 local S, NS = dofile(modpath.."/intllib.lua")
 
 dofile(modpath .. "/readsettings.lua")
-
--- `mg` support:
-if minetest.get_modpath("mg") then
-	dofile(modpath .. "/mg.lua")
-end
+dofile(modpath .. "/loot.lua")
+dofile(modpath .. "/mg.lua")
 
 -- Utility functions
 -- =================

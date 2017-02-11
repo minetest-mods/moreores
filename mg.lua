@@ -4,6 +4,10 @@ More Ores: `mg` mod support
 Copyright (c) 2011-2015 Calinou and contributors.
 Licensed under the zlib license. See LICENSE.md for more information.
 --]]
+if not minetest.get_modpath("mg") then
+	return
+end
+
 
 if moreores.tin_enabled then
 mg.register_ore({
