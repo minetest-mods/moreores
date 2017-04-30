@@ -3,7 +3,7 @@
 ** More Ores **
 By Calinou, with the help of Nore.
 
-Copyright (c) 2011-2017 Calinou and contributors.
+Copyright (c) 2011-2017 Hugo Locurcio and contributors.
 Licensed under the zlib license. See LICENSE.md for more information.
 =====================================================================
 --]]
@@ -14,9 +14,13 @@ moreores = {}
 local modpath = minetest.get_modpath("moreores")
 local S, NS = dofile(modpath.."/intllib.lua")
 
-dofile(modpath .. "/readsettings.lua")
 dofile(modpath .. "/loot.lua")
-dofile(modpath .. "/mg.lua")
+dofile(modpath .. "/readsettings.lua")
+
+-- `mg` support:
+if minetest.get_modpath("mg") then
+	dofile(modpath .. "/mg.lua")
+end
 
 -- Utility functions
 -- =================
