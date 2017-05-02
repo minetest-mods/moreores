@@ -1,0 +1,39 @@
+[Tin]
+# Enables/disables tin generation
+moreores_tin_enabled (Generate) bool true
+#Chunk sizes for ore generation (bigger = ore deposits are more scattered around)
+moreores_tin_chunk_size (Chunk size) int 7 1 100
+#Amount of ore per chunk (higher = bigger ore deposits)
+moreores_tin_ore_per_chunk (Ore per chunk) int 3 1 100
+#Minimal depths of ore generation (Y coordinate, 0 being sea level by default)
+moreores_tin_min_depth (Min depth) int -31000 -31000 31000
+#Maximal depths of ore generation (Y coordinate, 0 being sea level by default)
+moreores_tin_max_depth (Max depth) int 8 -31000 31000
+
+#When tin is enabled and this is true, removes the default bronze recipe
+#(steel + copper) in favor of the tin + copper recipe included in this mod.
+moreores_override_default_bronze_recipe (Override default bronze recipe) bool false
+
+[Silver]
+# Enables/disables silver generation
+moreores_silver_enabled (Generate) bool true
+#Chunk sizes for ore generation (bigger = ore deposits are more scattered around)
+moreores_silver_chunk_size (Chunk size) int 11 1 100
+#Amount of ore per chunk (higher = bigger ore deposits)
+moreores_silver_ore_per_chunk (Ore per chunk) int 4 1 100
+#Minimal depths of ore generation (Y coordinate, 0 being sea level by default)
+moreores_silver_min_depth (Min depth) int -31000 -31000 31000
+#Maximal depths of ore generation (Y coordinate, 0 being sea level by default)
+moreores_silver_max_depth (Max depth) int -2 -31000 31000
+
+[Mithril]
+# Enables/disables mithril generation
+moreores_mithril_enabled (Generate) bool true
+#Chunk sizes for ore generation (bigger = ore deposits are more scattered around)
+moreores_mithril_chunk_size (Chunk size) int 11 1 100
+#Amount of ore per chunk (higher = bigger ore deposits)
+moreores_mithril_ore_per_chunk (Ore per chunk) int 1 1 100
+#Minimal depths of ore generation (Y coordinate, 0 being sea level by default)
+moreores_mithril_min_depth (Min depth) int -31000 -31000 31000
+#Maximal depths of ore generation (Y coordinate, 0 being sea level by default)
+moreores_mithril_max_depth (Max depth) int -512 -31000 31000

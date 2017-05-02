@@ -1,10 +1,15 @@
 --[[
 More Ores: `mg` mod support
 
-Copyright (c) 2011-2017 Hugo Locurcio and contributors.
+Copyright (c) 2011-2015 Calinou and contributors.
 Licensed under the zlib license. See LICENSE.md for more information.
 --]]
+if not minetest.get_modpath("mg") then
+	return
+end
 
+
+if moreores.tin_enabled then
 mg.register_ore({
 	name = "moreores:mineral_tin",
 	wherein = "default:stone",
@@ -19,7 +24,9 @@ mg.register_ore({
 	forkturnangle = 57,
 	numperblock = 2
 })
+end
 
+if moreores.silver_enabled then
 mg.register_ore({
 	name = "moreores:mineral_silver",
 	wherein = "default:stone",
@@ -36,7 +43,9 @@ mg.register_ore({
 	forkturnangle = 57,
 	numperblock = 2
 })
+end
 
+if moreores.mithril_enabled then
 mg.register_ore({
 	name = "moreores:mineral_mithril",
 	wherein = "default:stone",
@@ -51,3 +60,4 @@ mg.register_ore({
 	segincldev = 0.6,
 	turnangle = 57,
 })
+end
