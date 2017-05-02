@@ -1,6 +1,6 @@
-# More Ores
+## More Ores
 
-More Ores for [Minetest](http://minetest.net), a free and open source infinite
+More Ores for Minetest <http://minetest.net>, a free/libre infinite
 world block sandbox game.
 
 It adds three new ores: silver, tin, and mithril. The ores can be enabled independently
