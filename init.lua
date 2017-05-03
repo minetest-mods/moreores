@@ -266,17 +266,6 @@ local oredefs = {
 		full_punch_interval = 1.0,
 		damage_groups = {fleshy = 6},
 	},
-	tin = {
-		description = "Tin",
-		makes = {ore = true, block = true, lump = true, ingot = true, chest = false},
-		oredef = {clust_scarcity = moreores.tin_chunk_size * moreores.tin_chunk_size * moreores.tin_chunk_size,
-			clust_num_ores = moreores.tin_ore_per_chunk,
-			clust_size     = moreores.tin_chunk_size,
-			y_min     = moreores.tin_min_depth,
-			y_max     = moreores.tin_max_depth
-			},
-		tools = {},
-	},
 	mithril = {
 		description = "Mithril",
 		makes = {ore = true, block = true, lump = true, ingot = true, chest = false},
@@ -322,17 +311,6 @@ minetest.register_craft({
 		{"default:copper_ingot", "", "default:copper_ingot"},
 		{"default:copper_ingot", "group:stick", "default:copper_ingot"},
 		{"default:copper_ingot", "", "default:copper_ingot"}
-	}
-})
-
--- Bronze has some special cases, because it is made from copper and tin:
-minetest.register_craft( {
-	type = "shapeless",
-	output = "default:bronze_ingot 3",
-	recipe = {
-		"moreores:tin_ingot",
-		"default:copper_ingot",
-		"default:copper_ingot",
 	}
 })
 
