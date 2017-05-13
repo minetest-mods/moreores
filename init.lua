@@ -381,6 +381,6 @@ minetest.register_node("moreores:copper_rail", {
 })
 
 
-if minetest.setting_getbool("log_mods") then
+if minetest.settings:get_bool("log_mods") then
 	minetest.log("action", S("[moreores] loaded."))
 end
