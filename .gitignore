@@ -1,3 +1,7 @@
 ## Generic ignorable patterns and files
 *~
 debug.txt
+
+## Eclipse project files & directories
+.project
+.settings
