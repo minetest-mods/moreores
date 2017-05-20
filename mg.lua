@@ -5,20 +5,22 @@ Copyright (c) 2011-2017 Hugo Locurcio and contributors.
 Licensed under the zlib license. See LICENSE.md for more information.
 --]]
 
-mg.register_ore({
-	name = "moreores:mineral_tin",
-	wherein = "default:stone",
-	seeddiff = 8,
-	maxvdistance = 10.5,
-	maxheight = 8,
-	seglenghtn = 15,
-	seglenghtdev = 6,
-	segincln = 0,
-	segincldev = 0.6,
-	turnangle = 57,
-	forkturnangle = 57,
-	numperblock = 2
-})
+if not minetest.registered_items["default:tin_ingot"] then
+	mg.register_ore({
+		name = "moreores:mineral_tin",
+		wherein = "default:stone",
+		seeddiff = 8,
+		maxvdistance = 10.5,
+		maxheight = 8,
+		seglenghtn = 15,
+		seglenghtdev = 6,
+		segincln = 0,
+		segincldev = 0.6,
+		turnangle = 57,
+		forkturnangle = 57,
+		numperblock = 2
+	})
+end
 
 mg.register_ore({
 	name = "moreores:mineral_silver",

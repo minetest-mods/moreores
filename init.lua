@@ -10,6 +10,11 @@ Licensed under the zlib license. See LICENSE.md for more information.
 
 moreores = {}
 
+local default_tin = false
+if minetest.registered_items["default:tin_ingot"] then
+	default_tin = true
+end
+
 local S
 if minetest.get_modpath("intllib") then
 	S = intllib.Getter()
@@ -266,17 +271,6 @@ local oredefs = {
 		full_punch_interval = 1.0,
 		damage_groups = {fleshy = 6},
 	},
-	tin = {
-		description = "Tin",
-		makes = {ore = true, block = true, lump = true, ingot = true, chest = false},
-		oredef = {clust_scarcity = moreores.tin_chunk_size * moreores.tin_chunk_size * moreores.tin_chunk_size,
-			clust_num_ores = moreores.tin_ore_per_chunk,
-			clust_size     = moreores.tin_chunk_size,
-			y_min     = moreores.tin_min_depth,
-			y_max     = moreores.tin_max_depth
-			},
-		tools = {},
-	},
 	mithril = {
 		description = "Mithril",
 		makes = {ore = true, block = true, lump = true, ingot = true, chest = false},
@@ -311,6 +305,20 @@ local oredefs = {
 	}
 }
 
+if not default_tin then
+	oredefs.tin = {
+		description = "Tin",
+		makes = {ore = true, block = true, lump = true, ingot = true, chest = false},
+		oredef = {clust_scarcity = moreores.tin_chunk_size * moreores.tin_chunk_size * moreores.tin_chunk_size,
+			clust_num_ores = moreores.tin_ore_per_chunk,
+			clust_size     = moreores.tin_chunk_size,
+			y_min     = moreores.tin_min_depth,
+			y_max     = moreores.tin_max_depth
+		},
+		tools = {},
+	}
+end
+
 for orename,def in pairs(oredefs) do
 	add_ore(modname, def.description, orename, def)
 end
@@ -325,16 +333,23 @@ minetest.register_craft({
 	}
 })
 
--- Bronze has some special cases, because it is made from copper and tin:
-minetest.register_craft( {
-	type = "shapeless",
-	output = "default:bronze_ingot 3",
-	recipe = {
-		"moreores:tin_ingot",
-		"default:copper_ingot",
-		"default:copper_ingot",
-	}
-})
+if default_tin then
+	minetest.register_alias("moreores:mineral_tin", "default:stone_with_tin")
+	minetest.register_alias("moreores:tin_lump", "default:tin_lump")
+	minetest.register_alias("moreores:tin_ingot", "default:tin_ingot")
+	minetest.register_alias("moreores:tin_block", "default:tinblock")
+else
+	-- Bronze has some special cases, because it is made from copper and tin:
+	minetest.register_craft( {
+		type = "shapeless",
+		output = "default:bronze_ingot 3",
+		recipe = {
+			"moreores:tin_ingot",
+			"default:copper_ingot",
+			"default:copper_ingot",
+		}
+	})
+end
 
 -- Unique node:
 minetest.register_node("moreores:copper_rail", {
