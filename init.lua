@@ -380,6 +380,9 @@ minetest.register_node("moreores:copper_rail", {
 	},
 })
 
+-- something usefule with tin
+dofile(minetest.get_modpath("moreores").."/dagger.lua" )
+
 
 if minetest.setting_getbool("log_mods") then
 	minetest.log("action", S("[moreores] loaded."))
