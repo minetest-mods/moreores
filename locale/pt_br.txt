@@ -1,0 +1,21 @@
+# Translation by github.com/caiorrs
+
+[moreores] loaded. = [moreores] carregado.
+
+%s Ore = Minério de %s
+%s Lump = Pepita de %s
+%s Ingot = Lingote de %s
+%s Block = Bloco de %s
+%s Pickaxe = Picareta de %s
+%s Shovel = Pá de %s
+%s Axe = Machado de %s
+%s Sword = Espada de %s
+
+Copper = Cobre
+Tin = Estanho
+Bronze = Bronze
+Silver = Prata
+Gold = Ouro
+Mithril = Mitrilo
+
+Copper Rail = Trilho de Cobre
