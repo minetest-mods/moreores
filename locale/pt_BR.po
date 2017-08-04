@@ -1,0 +1,137 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-04 18:11+0200\n"
+"PO-Revision-Date: 2017-08-04 18:46+0200\n"
+"Last-Translator: Caiorrs <caiorrs@gmail.com>\n"
+"Language-Team: Brazilian Portuguese\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.12\n"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Ore"
+msgstr "Minério de Prata"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Lump"
+msgstr "Pepita de Prata"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Ingot"
+msgstr "Lingote de Prata"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Block"
+msgstr "Bloco de Prata"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Pickaxe"
+msgstr "Picareta de Prata"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Shovel"
+msgstr "Pá de Prata"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Axe"
+msgstr "Machado de Prata"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Hoe"
+msgstr "Enxada de Prata"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sword"
+msgstr "Espada de Prata"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Ore"
+msgstr "Minério de Mitrilo"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Lump"
+msgstr "Pepita de Mitrilo"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Ingot"
+msgstr "Lingote de Mitrilo"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Block"
+msgstr "Bloco de Mitrilo"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Pickaxe"
+msgstr "Picareta de Mitrilo"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Shovel"
+msgstr "Pá de Mitrilo"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Axe"
+msgstr "Machado de Mitrilo"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Hoe"
+msgstr "Enxada de Mitrilo"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Sword"
+msgstr "Espada de Mitrilo"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Ore"
+msgstr "Minério de Estanho"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Lump"
+msgstr "Pepita de Estanho"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Ingot"
+msgstr "Lingote de Estanho"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Block"
+msgstr "Bloco de Estanho"
+
+#: init.lua
+#, fuzzy
+msgid "Copper Rail"
+msgstr "Trilho de Cobre"
+
+#: init.lua
+msgid "[moreores] loaded."
+msgstr "[moreores] carregado."

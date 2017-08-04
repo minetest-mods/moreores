@@ -1,0 +1,141 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-04 18:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Pagliaccio\n"
+"Language-Team: Italian\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Ore"
+msgstr "Minerale di argento"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Lump"
+msgstr "Argento grezzo"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Ingot"
+msgstr "Lingotto di argento"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Block"
+msgstr "Blocco di argento"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Pickaxe"
+msgstr "Piccone di argento"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Shovel"
+msgstr "Badile di argento"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Axe"
+msgstr "Ascia di argento"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Hoe"
+msgstr "Zappa di argento"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sword"
+msgstr "Spada di argento"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Ore"
+msgstr "Minerale di mithril"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Lump"
+msgstr "Mithril grezzo"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Ingot"
+msgstr "Lingotto di mithril"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Block"
+msgstr "Blocco di mithril"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Pickaxe"
+msgstr "Piccone di mithril"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Shovel"
+msgstr "Badile di mithril"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Axe"
+msgstr "Ascia di mithril"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Hoe"
+msgstr "Zappa di mithril"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Sword"
+msgstr "Spada di mithril"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sword"
+msgstr "Spada di argento"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Ore"
+msgstr "Minerale di stagno"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Lump"
+msgstr "Stagno grezzo"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Ingot"
+msgstr "Lingotto di stagno"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Block"
+msgstr "Blocco di stagno"
+
+#: init.lua
+msgid "Copper Rail"
+msgstr "Binario di rame"
+
+#: init.lua
+msgid "[moreores] loaded."
+msgstr "[moreores] caricato."

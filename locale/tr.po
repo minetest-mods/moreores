@@ -1,0 +1,136 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-04 18:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Mahmutelmas06 <mahmutelmas06@hotmail.com>\n"
+"Language-Team: Turkish\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Ore"
+msgstr "Gümüş madeni"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Lump"
+msgstr "Gümüş yığını"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Ingot"
+msgstr "Gümüş klesi"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Block"
+msgstr "Gümüş blok"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Pickaxe"
+msgstr "Gümüş kazma"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Shovel"
+msgstr "Gümüş kürek"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Axe"
+msgstr "Gümüş balta"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Hoe"
+msgstr "Gümüş çapa"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sword"
+msgstr "Gümüş kılıç"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Ore"
+msgstr "Mithril madeni"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Lump"
+msgstr "Mithril yığını"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Ingot"
+msgstr "Mithril külçesi"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Block"
+msgstr "Mithril blok"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Pickaxe"
+msgstr "Mithril kazma"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Shovel"
+msgstr "Mithril kürek"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Axe"
+msgstr "Mithril balta"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Hoe"
+msgstr "Mithril çapa"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Sword"
+msgstr "Mithril kılıç"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Ore"
+msgstr "Kalay madeni"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Lump"
+msgstr "Kalay yığını"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Ingot"
+msgstr "Kalay klesi"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Block"
+msgstr "Kalay blok"
+
+#: init.lua
+msgid "Copper Rail"
+msgstr "Bakr ray"
+
+#: init.lua
+msgid "[moreores] loaded."
+msgstr "[moreores] yklendi."

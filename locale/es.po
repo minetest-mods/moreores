@@ -1,0 +1,114 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-04 18:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: kaeza\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: init.lua
+msgid "Silver Ore"
+msgstr "Plata"
+
+#: init.lua
+msgid "Silver Lump"
+msgstr "Pepita de plata"
+
+#: init.lua
+msgid "Silver Ingot"
+msgstr "Lingote de plata"
+
+#: init.lua
+msgid "Silver Block"
+msgstr "Bloque de plata"
+
+#: init.lua
+msgid "Silver Pickaxe"
+msgstr "Pico de plata"
+
+#: init.lua
+msgid "Silver Shovel"
+msgstr "Pala de plata"
+
+#: init.lua
+msgid "Silver Axe"
+msgstr "Hacha de plata"
+
+#: init.lua
+msgid "Silver Hoe"
+msgstr "Azada de plata"
+
+#: init.lua
+msgid "Silver Sword"
+msgstr "Espada de plata"
+
+#: init.lua
+msgid "Mythril Ore"
+msgstr "Mitrilo"
+
+#: init.lua
+msgid "Mythril Lump"
+msgstr "Pepita de mitrilo"
+
+#: init.lua
+msgid "Mythril Ingot"
+msgstr "Lingote de mitrilo"
+
+#: init.lua
+msgid "Mythril Block"
+msgstr "Bloque de mitrilo"
+
+#: init.lua
+msgid "Mythril Pickaxe"
+msgstr "Pico de mitrilo"
+
+#: init.lua
+msgid "Mythril Shovel"
+msgstr "Pala de mitrilo"
+
+#: init.lua
+msgid "Mythril Axe"
+msgstr "Hacha de mitrilo"
+
+#: init.lua
+msgid "Mythril Hoe"
+msgstr "Azada de mitrilo"
+
+#: init.lua
+msgid "Mythril Sword"
+msgstr "Espada de mitrilo"
+
+#: init.lua
+msgid "Tin Ore"
+msgstr "Estaño"
+
+#: init.lua
+msgid "Tin Lump"
+msgstr "Pepita de estaño"
+
+#: init.lua
+msgid "Tin Ingot"
+msgstr "Lingote de estaño"
+
+#: init.lua
+msgid "Tin Block"
+msgstr "Bloque de estaño"
+
+#: init.lua
+msgid "Copper Rail"
+msgstr "Riel de cobre"
+
+#: init.lua
+msgid "[moreores] loaded."
+msgstr "[moreores] cargado."

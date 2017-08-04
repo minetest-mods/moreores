@@ -1,0 +1,136 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-04 18:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Xanthin\n"
+"Language-Team: German\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Ore"
+msgstr "Silbererz"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Lump"
+msgstr "Silberklumpen"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Ingot"
+msgstr "Silberbarren"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Block"
+msgstr "Silberblock"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Pickaxe"
+msgstr "Silberspitzhacke"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Shovel"
+msgstr "Silberschaufel"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Axe"
+msgstr "Silberaxt"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Hoe"
+msgstr "Silberhacke"
+
+#: init.lua
+#, fuzzy
+msgid "Silver Sword"
+msgstr "Silberschwert"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Ore"
+msgstr "Mithrilerz"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Lump"
+msgstr "Mithrilklumpen"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Ingot"
+msgstr "Mithrilbarren"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Block"
+msgstr "Mithrilblock"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Pickaxe"
+msgstr "Mithrilspitzhacke"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Shovel"
+msgstr "Mithrilschaufel"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Axe"
+msgstr "Mithrilaxt"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Hoe"
+msgstr "Mithrilhacke"
+
+#: init.lua
+#, fuzzy
+msgid "Mythril Sword"
+msgstr "Mithrilschwert"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Ore"
+msgstr "Zinnerz"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Lump"
+msgstr "Zinnklumpen"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Ingot"
+msgstr "Zinnbarren"
+
+#: init.lua
+#, fuzzy
+msgid "Tin Block"
+msgstr "Zinnblock"
+
+#: init.lua
+msgid "Copper Rail"
+msgstr "Kupferschiene"
+
+#: init.lua
+msgid "[moreores] loaded."
+msgstr "[moreores] geladen."
