@@ -10,6 +10,8 @@
 %s Lump = %s yığını
 %s Ingot = %s külçesi
 %s Block = %s blok
+%s Block Slab =
+%s Block Stair =
 %s Pickaxe = %s kazma
 %s Shovel = %s kürek
 %s Axe = %s balta

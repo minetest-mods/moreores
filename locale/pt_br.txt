@@ -6,6 +6,8 @@
 %s Lump = Pepita de %s
 %s Ingot = Lingote de %s
 %s Block = Bloco de %s
+%s Block Slab =
+%s Block Stair =
 %s Pickaxe = Picareta de %s
 %s Shovel = Pá de %s
 %s Axe = Machado de %s

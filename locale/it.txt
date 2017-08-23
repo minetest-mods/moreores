@@ -6,6 +6,8 @@
 %s Lump = %s grezzo
 %s Ingot = Lingotto di %s
 %s Block = Blocco di %s
+%s Block Slab =
+%s Block Stair =
 %s Pickaxe = Piccone di %s
 %s Shovel = Badile di %s
 %s Axe = Ascia di %s

@@ -6,6 +6,8 @@
 %s Lump = Roche en %s
 %s Ingot = Lingot en %s
 %s Block = Bloc en %s
+%s Block Slab = Demi-dalle en %s
+%s Block Stair = Escaliers en %s
 %s Pickaxe = Pioche en %s
 %s Shovel = Pelle en %s
 %s Axe = Hache en %s
