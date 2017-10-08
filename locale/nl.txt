@@ -1,0 +1,20 @@
+[moreores] loaded. = [moreores] geladen.
+
+%s Ore = %s Erts
+%s Lump = %s Klomp
+%s Ingot = %s Staaf
+%s Block = %s Blok
+%s Pickaxe = %s Pikhouweel
+%s Shovel = %s Schep
+%s Axe = %s Bijl
+%s Sword = %s Zwaard
+%s Hoe = %s Schoffel
+
+Copper = Koper
+Tin = Tin
+Bronze = Brons
+Silver = Silver
+Gold = Goud
+Mithril = Mithril
+
+Copper Rail = Koperen Spoor
