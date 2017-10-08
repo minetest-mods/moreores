@@ -17,4 +17,4 @@ Silver = Silver
 Gold = Goud
 Mithril = Mithril
 
-Copper Rail = 
+Copper Rail = Koperen Spoor
