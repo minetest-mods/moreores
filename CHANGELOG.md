@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Handle tin which is now included in [Minetest Game](https://github.com/minetest/minetest_game).
   If it is detected, then the tin nodes and items from More Ores won't be registered.
 
-## [1.0.0] - 2017-02-19
+## 1.0.0 - 2017-02-19
 
 - Initial versioned release.
 
