@@ -162,15 +162,23 @@ local function add_ore(modname, description, mineral_name, oredef)
         
         if tool_name == "hoe" and minetest.get_modpath("farming") then
             local uses = tooldef.uses
-            tooldef.uses = nil
+            local deprecated = tooldef.deprecated or false
+            tooldef.uses, tooldef.deprecated = nil, nil
             
             tdef.max_uses = uses
             tdef.description = S("%s Hoe"):format(S(description))
             
+            if deprecated then
+                if not tdef.groups then
+                    tdef.groups = {}
+                end
+                tdef.groups.not_in_creative_inventory = 1
+            end
+            
             farming.register_hoe(fulltool_name, tdef)
             minetest.register_alias(tool_name .. tool_post, fulltool_name)
             
-            if oredef.makes.ingot then
+            if oredef.makes.ingot and not deprecated then
                 minetest.register_craft({
                     output = fulltool_name,
                     recipe = get_recipe(ingot, tool_name)
@@ -233,7 +241,8 @@ local oredefs = {
 				cracky = {times = {[1] = 2.60, [2] = 1.00, [3] = 0.60}, uses = 100, maxlevel= 1}
 			},
 			hoe = {
-				uses = 300
+				uses = 300,
+				deprecated = false,
 			},
 			shovel = {
 				crumbly = {times = {[1] = 1.10, [2] = 0.40, [3] = 0.25}, uses = 100, maxlevel= 1}
@@ -265,7 +274,8 @@ local oredefs = {
 				cracky = {times = {[1] = 2.25, [2] = 0.55, [3] = 0.35}, uses = 200, maxlevel= 2}
 			},
 			hoe = {
-				uses = 1000
+				uses = 1000,
+				deprecated = false,
 			},
 			shovel = {
 				crumbly = {times = {[1] = 0.70, [2] = 0.35, [3] = 0.20}, uses = 200, maxlevel= 2}
