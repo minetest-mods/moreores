@@ -155,71 +155,71 @@ local function add_ore(modname, description, mineral_name, oredef)
 				max_drop_level = 3,
 				groupcaps = tooldef
 			},
-            sound = {breaks = "default_tool_breaks"},
+			sound = {breaks = "default_tool_breaks"},
 		}
 		
 		local fulltool_name = tool_base .. tool_name .. tool_post
-        
-        if tool_name == "hoe" and minetest.get_modpath("farming") then
-            local uses = tooldef.uses
-            local deprecated = tooldef.deprecated or false
-            tooldef.uses, tooldef.deprecated = nil, nil
-            
-            tdef.max_uses = uses
-            tdef.description = S("%s Hoe"):format(S(description))
-            
-            if deprecated then
-                if not tdef.groups then
-                    tdef.groups = {}
-                end
-                tdef.groups.not_in_creative_inventory = 1
-            end
-            
-            farming.register_hoe(fulltool_name, tdef)
-            minetest.register_alias(tool_name .. tool_post, fulltool_name)
-            
-            if oredef.makes.ingot and not deprecated then
-                minetest.register_craft({
-                    output = fulltool_name,
-                    recipe = get_recipe(ingot, tool_name)
-                })
-            end
-            
-        else
-            if tool_name == "sword" then
-                tdef.tool_capabilities.full_punch_interval = oredef.full_punch_interval
-                tdef.tool_capabilities.damage_groups = oredef.damage_groups
-                tdef.description = S("%s Sword"):format(S(description))
-            end
+		
+		if tool_name == "hoe" and minetest.get_modpath("farming") then
+			local uses = tooldef.uses
+			local deprecated = tooldef.deprecated or false
+			tooldef.uses, tooldef.deprecated = nil, nil
+			
+			tdef.max_uses = uses
+			tdef.description = S("%s Hoe"):format(S(description))
+			
+			if deprecated then
+				if not tdef.groups then
+					tdef.groups = {}
+				end
+				tdef.groups.not_in_creative_inventory = 1
+			end
+			
+			farming.register_hoe(fulltool_name, tdef)
+			minetest.register_alias(tool_name .. tool_post, fulltool_name)
+			
+			if oredef.makes.ingot and not deprecated then
+				minetest.register_craft({
+					output = fulltool_name,
+					recipe = get_recipe(ingot, tool_name)
+				})
+			end
+			
+		else
+			if tool_name == "sword" then
+				tdef.tool_capabilities.full_punch_interval = oredef.full_punch_interval
+				tdef.tool_capabilities.damage_groups = oredef.damage_groups
+				tdef.description = S("%s Sword"):format(S(description))
+			end
 
-            if tool_name == "pick" then
-                tdef.tool_capabilities.full_punch_interval = oredef.full_punch_interval
-                tdef.tool_capabilities.damage_groups = oredef.damage_groups
-                tdef.description = S("%s Pickaxe"):format(S(description))
-            end
+			if tool_name == "pick" then
+				tdef.tool_capabilities.full_punch_interval = oredef.full_punch_interval
+				tdef.tool_capabilities.damage_groups = oredef.damage_groups
+				tdef.description = S("%s Pickaxe"):format(S(description))
+			end
 
-            if tool_name == "axe" then
-                tdef.tool_capabilities.full_punch_interval = oredef.full_punch_interval
-                tdef.tool_capabilities.damage_groups = oredef.damage_groups
-                tdef.description = S("%s Axe"):format(S(description))
-            end
+			if tool_name == "axe" then
+				tdef.tool_capabilities.full_punch_interval = oredef.full_punch_interval
+				tdef.tool_capabilities.damage_groups = oredef.damage_groups
+				tdef.description = S("%s Axe"):format(S(description))
+			end
 
-            if tool_name == "shovel" then
-                tdef.full_punch_interval = oredef.full_punch_interval
-                tdef.tool_capabilities.damage_groups = oredef.damage_groups
-                tdef.description = S("%s Shovel"):format(S(description))
-                tdef.wield_image = toolimg_base .. tool_name .. ".png^[transformR90"
-            end
+			if tool_name == "shovel" then
+				tdef.full_punch_interval = oredef.full_punch_interval
+				tdef.tool_capabilities.damage_groups = oredef.damage_groups
+				tdef.description = S("%s Shovel"):format(S(description))
+				tdef.wield_image = toolimg_base .. tool_name .. ".png^[transformR90"
+			end
 
-            minetest.register_tool(fulltool_name, tdef)
-            minetest.register_alias(tool_name .. tool_post, fulltool_name)
-            if oredef.makes.ingot then
-                minetest.register_craft({
-                    output = fulltool_name,
-                    recipe = get_recipe(ingot, tool_name)
-                })
-            end
-        end
+			minetest.register_tool(fulltool_name, tdef)
+			minetest.register_alias(tool_name .. tool_post, fulltool_name)
+			if oredef.makes.ingot then
+				minetest.register_craft({
+					output = fulltool_name,
+					recipe = get_recipe(ingot, tool_name)
+				})
+			end
+		end
 	end
 end
 
