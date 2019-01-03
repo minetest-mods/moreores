@@ -242,7 +242,6 @@ local oredefs = {
 			},
 			hoe = {
 				uses = 300,
-				deprecated = false,
 			},
 			shovel = {
 				crumbly = {times = {[1] = 1.10, [2] = 0.40, [3] = 0.25}, uses = 100, maxlevel= 1}
@@ -275,7 +274,6 @@ local oredefs = {
 			},
 			hoe = {
 				uses = 1000,
-				deprecated = false,
 			},
 			shovel = {
 				crumbly = {times = {[1] = 0.70, [2] = 0.35, [3] = 0.20}, uses = 200, maxlevel= 2}
