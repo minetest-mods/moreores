@@ -88,7 +88,11 @@ local function get_recipe(c, name)
 		return {{c, c, c}, {c, c, c}, {c, c, c}}
 	end
 	if name == "lockedchest" then
-		return {{"group:wood", "group:wood", "group:wood"}, {"group:wood", c, "group:wood"}, {"group:wood", "group:wood", "group:wood"}}
+		return {
+			{"group:wood", "group:wood", "group:wood"},
+			{"group:wood", c, "group:wood"},
+			{"group:wood", "group:wood", "group:wood"},
+		}
 	end
 end
 
@@ -100,7 +104,6 @@ local function add_ore(modname, description, mineral_name, oredef)
 	local item_base = tool_base .. mineral_name
 	local ingot = item_base .. "_ingot"
 	local lump_item = item_base .. "_lump"
-	local ingotcraft = ingot
 
 	if oredef.makes.ore then
 		minetest.register_node(modname .. ":mineral_" .. mineral_name, {
@@ -242,12 +245,13 @@ local oredefs = {
 	silver = {
 		description = "Silver",
 		makes = {ore = true, block = true, lump = true, ingot = true, chest = true},
-		oredef = {clust_scarcity = moreores.silver_chunk_size * moreores.silver_chunk_size * moreores.silver_chunk_size,
+		oredef = {
+			clust_scarcity = moreores.silver_chunk_size ^ 3,
 			clust_num_ores = moreores.silver_ore_per_chunk,
 			clust_size     = moreores.silver_chunk_size,
 			y_min     = moreores.silver_min_depth,
 			y_max     = moreores.silver_max_depth
-			},
+		},
 		tools = {
 			pick = {
 				cracky = {times = {[1] = 2.60, [2] = 1.00, [3] = 0.60}, uses = 100, maxlevel= 1}
@@ -274,12 +278,13 @@ local oredefs = {
 	mithril = {
 		description = "Mithril",
 		makes = {ore = true, block = true, lump = true, ingot = true, chest = false},
-		oredef = {clust_scarcity = moreores.mithril_chunk_size * moreores.mithril_chunk_size * moreores.mithril_chunk_size,
+		oredef = {
+			clust_scarcity = moreores.mithril_chunk_size ^ 3,
 			clust_num_ores = moreores.mithril_ore_per_chunk,
 			clust_size     = moreores.mithril_chunk_size,
 			y_min     = moreores.mithril_min_depth,
 			y_max     = moreores.mithril_max_depth
-			},
+		},
 		tools = {
 			pick = {
 				cracky = {times = {[1] = 2.25, [2] = 0.55, [3] = 0.35}, uses = 200, maxlevel= 2}
@@ -309,7 +314,8 @@ if not default_tin then
 	oredefs.tin = {
 		description = "Tin",
 		makes = {ore = true, block = true, lump = true, ingot = true, chest = false},
-		oredef = {clust_scarcity = moreores.tin_chunk_size * moreores.tin_chunk_size * moreores.tin_chunk_size,
+		oredef = {
+			clust_scarcity = moreores.tin_chunk_size ^ 3,
 			clust_num_ores = moreores.tin_ore_per_chunk,
 			clust_size     = moreores.tin_chunk_size,
 			y_min     = moreores.tin_min_depth,
@@ -355,7 +361,12 @@ end
 minetest.register_node("moreores:copper_rail", {
 	description = S("Copper Rail"),
 	drawtype = "raillike",
-	tiles = {"moreores_copper_rail.png", "moreores_copper_rail_curved.png", "moreores_copper_rail_t_junction.png", "moreores_copper_rail_crossing.png"},
+	tiles = {
+		"moreores_copper_rail.png",
+		"moreores_copper_rail_curved.png",
+		"moreores_copper_rail_t_junction.png",
+		"moreores_copper_rail_crossing.png",
+	},
 	inventory_image = "moreores_copper_rail.png",
 	wield_image = "moreores_copper_rail.png",
 	paramtype = "light",
