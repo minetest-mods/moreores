@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Brazilian and Dutch translations.
 
+### Changed
+
+- Ores are now slower to mine and cannot be mined using wooden tools anymore.
+
 ### Deprecated
 
 - Deprecated hoes to follow Minetest Game's deprecation of hoes

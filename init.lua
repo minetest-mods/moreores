@@ -75,7 +75,7 @@ local function add_ore(modname, description, mineral_name, oredef)
 		minetest.register_node(modname .. ":mineral_" .. mineral_name, {
 			description = S("%s Ore"):format(S(description)),
 			tiles = {"default_stone.png^" .. modname .. "_mineral_" .. mineral_name .. ".png"},
-			groups = {cracky = 3},
+			groups = {cracky = 2},
 			sounds = default_stone_sounds,
 			drop = lump_item
 		})
