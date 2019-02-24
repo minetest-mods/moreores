@@ -9,7 +9,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
-- Brazilian translation.
+- Brazilian and Dutch translations.
+
+### Deprecated
+
+- Deprecated hoes to follow Minetest Game's deprecation of hoes
+  made of "rare" materials.
+  - Hoes are still available in existing worlds, but they
+    cannot be crafted anymore.
 
 ### Fixed
 

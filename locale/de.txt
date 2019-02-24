@@ -10,7 +10,6 @@
 %s Shovel = %sschaufel
 %s Axe = %saxt
 %s Sword = %sschwert
-%s Hoe = %shacke
 
 Copper = Kupfer
 Tin = Zinn

@@ -37,37 +37,6 @@ end
 local default_stone_sounds = default.node_sound_stone_defaults()
 local default_metal_sounds = default.node_sound_metal_defaults()
 
-local function hoe_on_use(itemstack, user, pointed_thing, uses)
-	local pt = pointed_thing
-	-- Check if pointing at a node:
-	if not pt then
-		return
-	end
-	if pt.type ~= "node" then
-		return
-	end
-
-	local under = minetest.get_node(pt.under)
-	local pos = {x = pt.under.x, y = pt.under.y + 1, z = pt.under.z}
-	local above = minetest.get_node(pos)
-
-	-- Return if any of the nodes is not registered:
-	if not minetest.registered_nodes[under.name] then return end
-	if not minetest.registered_nodes[above.name] then return end
-
-	-- Check if the node above the pointed thing is air:
-	if above.name ~= "air" then return end
-
-	-- Check if pointing at dirt:
-	if minetest.get_item_group(under.name, "soil") ~= 1 then return end
-
-	-- Turn the node into soil, wear out item and play sound:
-	minetest.set_node(pt.under, {name ="farming:soil"})
-	minetest.sound_play("default_dig_crumbly", {pos = pt.under, gain = 0.5})
-	itemstack:add_wear(65535 / (uses - 1))
-	return itemstack
-end
-
 local function get_recipe(c, name)
 	if name == "sword" then
 		return {{c}, {c}, {"group:stick"}}
@@ -80,9 +49,6 @@ local function get_recipe(c, name)
 	end
 	if name == "pick" then
 		return {{c, c, c}, {"", "group:stick", ""}, {"", "group:stick", ""}}
-	end
-	if name == "hoe" then
-		return {{c, c}, {"", "group:stick"}, {"", "group:stick"}}
 	end
 	if name == "block" then
 		return {{c, c, c}, {c, c, c}, {c, c, c}}
@@ -189,7 +155,7 @@ local function add_ore(modname, description, mineral_name, oredef)
 				max_drop_level = 3,
 				groupcaps = tooldef
 			},
-            sound = {breaks = "default_tool_breaks"},
+			sound = {breaks = "default_tool_breaks"},
 		}
 
 		if tool_name == "sword" then
@@ -214,27 +180,33 @@ local function add_ore(modname, description, mineral_name, oredef)
 			tdef.full_punch_interval = oredef.full_punch_interval
 			tdef.tool_capabilities.damage_groups = oredef.damage_groups
 			tdef.description = S("%s Shovel"):format(S(description))
-            tdef.wield_image = toolimg_base .. tool_name .. ".png^[transformR90"
-		end
-
-		if tool_name == "hoe" then
-			tdef.description = S("%s Hoe"):format(S(description))
-			local uses = tooldef.uses
-			tooldef.uses = nil
-			tdef.on_use = function(itemstack, user, pointed_thing)
-				return hoe_on_use(itemstack, user, pointed_thing, uses)
-			end
+			tdef.wield_image = toolimg_base .. tool_name .. ".png^[transformR90"
 		end
 
 		local fulltool_name = tool_base .. tool_name .. tool_post
-		minetest.register_tool(fulltool_name, tdef)
-		minetest.register_alias(tool_name .. tool_post, fulltool_name)
-		if oredef.makes.ingot then
-			minetest.register_craft({
-				output = fulltool_name,
-				recipe = get_recipe(ingot, tool_name)
-			})
+
+		if tool_name == "hoe" and minetest.get_modpath("farming") then
+			tdef.max_uses = tooldef.uses
+			tdef.description = S("%s Hoe"):format(S(description))
+			farming.register_hoe(fulltool_name, tdef)
 		end
+
+		-- Hoe registration is handled above.
+		-- There are no crafting recipes for hoes, as they have been
+		-- deprecated from Minetest Game:
+		-- https://github.com/minetest/minetest_game/commit/9c459e77a
+		if tool_name ~= "hoe" then
+			minetest.register_tool(fulltool_name, tdef)
+
+			if oredef.makes.ingot then
+				minetest.register_craft({
+					output = fulltool_name,
+					recipe = get_recipe(ingot, tool_name)
+				})
+			end
+		end
+
+		minetest.register_alias(tool_name .. tool_post, fulltool_name)
 	end
 end
 
