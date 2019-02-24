@@ -20,6 +20,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+- Hoes now use the `farming` mod's handling function and can no longer
+  turn desert sand into dirt.
 - Handle tin which is now included in [Minetest Game](https://github.com/minetest/minetest_game).
   If it is detected, then the tin nodes and items from More Ores won't be registered.
 
