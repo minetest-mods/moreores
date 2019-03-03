@@ -10,14 +10,11 @@ Licensed under the zlib license. See LICENSE.md for more information.
 
 moreores = {}
 
-local S
-if minetest.get_modpath("intllib") then
-	S = intllib.Getter()
-else
-	S = function(s) return s end
-end
-
 local modpath = minetest.get_modpath("moreores")
+
+local S, NS = dofile(modpath .. "/intllib.lua")
+moreores.S = S
+moreores.NS = NS
 
 dofile(modpath .. "/_config.txt")
 
