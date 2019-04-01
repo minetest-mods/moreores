@@ -1,0 +1,21 @@
+# Translation by mat9117
+
+[moreores] loaded. = [moreores] załadowano.
+
+%s Ore = %Ruda
+%s Lump = %Bryłka
+%s Ingot = %Sztabka
+%s Block = %sBlok
+%s Pickaxe = %sKilof
+%s Shovel = %sŁopatka
+%s Axe = %sSiekiera
+%s Sword = %sMiecz
+
+Copper = Miedź
+Tin = Cyna
+Bronze = Brąz
+Silver = Srebro
+Gold = Złoto
+Mithril = Mithril
+
+Copper Rail = Miedziany tor
