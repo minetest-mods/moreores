@@ -11,5 +11,6 @@ install:
   - luarocks install --local luacheck
 
 script:
+  # All linters are run with pre-commit hooks
+  - export PATH="$HOME/.luarocks/bin:$PATH"
   - $HOME/.local/bin/pre-commit run --all-files
-  - $HOME/.luarocks/bin/luacheck .

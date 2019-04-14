@@ -382,7 +382,3 @@ for orename, def in pairs(oredefs) do
 	-- Register everything
 	add_ore("moreores", def.description, orename, def)
 end
-
-if minetest.settings:get_bool("log_mods") then
-	minetest.log("action", S("[moreores] loaded."))
-end
