@@ -329,45 +329,20 @@ else
 end
 
 -- Copper rail (unique node)
-minetest.register_node("moreores:copper_rail", {
-	description = S("Copper Rail"),
-	drawtype = "raillike",
-	tiles = {
-		"moreores_copper_rail.png",
-		"moreores_copper_rail_curved.png",
-		"moreores_copper_rail_t_junction.png",
-		"moreores_copper_rail_crossing.png",
-	},
-	inventory_image = "moreores_copper_rail.png",
-	wield_image = "moreores_copper_rail.png",
-	paramtype = "light",
-	sunlight_propagates = true,
-	walkable = false,
-	selection_box = {
-		type = "fixed",
-		fixed = {
-			-1/2,
-			-1/2,
-			-1/2,
-			1/2,
-			-1/2 + 1/16,
-			1/2,
+if minetest.get_modpath("carts") then
+	carts:register_rail("moreores:copper_rail", {
+		description = S("Copper Rail"),
+		tiles = {
+			"moreores_copper_rail.png",
+			"moreores_copper_rail_curved.png",
+			"moreores_copper_rail_t_junction.png",
+			"moreores_copper_rail_crossing.png",
 		},
-	},
-	sounds = default_metal_sounds,
-	groups = {bendy = 2, snappy = 1, dig_immediate = 2, rail = 1, connect_to_raillike = 1},
-	mesecons = {
-		effector = {
-			action_on = function(pos, node)
-				minetest.get_meta(pos):set_string("cart_acceleration", "0.5")
-			end,
-
-			action_off = function(pos, node)
-				minetest.get_meta(pos):set_string("cart_acceleration", "0")
-			end,
-		},
-	},
-})
+		inventory_image = "moreores_copper_rail.png",
+		wield_image = "moreores_copper_rail.png",
+		groups = carts:get_rail_groups(),
+	}, {})
+end
 
 minetest.register_craft({
 	output = "moreores:copper_rail 24",

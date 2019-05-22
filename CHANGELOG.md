@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - The minimum supported Minetest version is now 5.0.0.
+- Copper rails are now registered using functions from the `carts` mod,
+  making them interoperate seamlessly with default rails.
+  - Copper rails can no longer be placed in the air.
 
 ## [1.1.0] - 2019-03-23
 
