@@ -23,6 +23,9 @@ if minetest.get_modpath("mg") then
 	dofile(modpath .. "/mg.lua")
 end
 
+-- `frame` support
+local use_frame = minetest.get_modpath("frame")
+
 local default_stone_sounds = default.node_sound_stone_defaults()
 local default_metal_sounds = default.node_sound_metal_defaults()
 
@@ -89,6 +92,10 @@ local function add_ore(modname, description, mineral_name, oredef)
 			sounds = default_stone_sounds,
 			drop = lump_item,
 		})
+
+		if use_frame then
+			frame.register(modname .. ":mineral_" .. mineral_name)
+		end
 	end
 
 	if oredef.makes.block then
@@ -112,6 +119,9 @@ local function add_ore(modname, description, mineral_name, oredef)
 				}
 			})
 		end
+		if use_frame then
+			frame.register(block_item)
+		end
 	end
 
 	if oredef.makes.lump then
@@ -127,6 +137,9 @@ local function add_ore(modname, description, mineral_name, oredef)
 				recipe = lump_item,
 			})
 		end
+		if use_frame then
+			frame.register(lump_item)
+		end
 	end
 
 	if oredef.makes.ingot then
@@ -135,6 +148,9 @@ local function add_ore(modname, description, mineral_name, oredef)
 			inventory_image = img_base .. "_ingot.png",
 		})
 		minetest.register_alias(mineral_name .. "_ingot", ingot)
+		if use_frame then
+			frame.register(ingot)
+		end
 	end
 
 	if oredef.makes.chest then
@@ -217,6 +233,9 @@ local function add_ore(modname, description, mineral_name, oredef)
 		end
 
 		minetest.register_alias(tool_name .. tool_post, fulltool_name)
+		if use_frame then
+			frame.register(fulltool_name)
+		end
 	end
 end
 
