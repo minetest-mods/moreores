@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+- More Ores nodes/items/tools can now be placed in item frames
+  from the [`frame`](https://github.com/minetest-mods/frame) mod.
 - Polish translation.
 
 ### Changed
