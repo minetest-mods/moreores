@@ -30,4 +30,5 @@ read_globals = {
 	"frame",
 	"intllib",
 	"mg",
+	"toolranks",
 }
