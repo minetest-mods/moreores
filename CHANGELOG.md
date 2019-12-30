@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- More Ores tools now have [`toolranks`](https://github.com/lisacvuk/minetest-toolranks) support.
+
 ## [2.0.0] - 2019-11-25
 
 ### Added

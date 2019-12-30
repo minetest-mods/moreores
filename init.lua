@@ -232,6 +232,14 @@ local function add_ore(modname, description, mineral_name, oredef)
 			end
 		end
 
+		-- Toolranks support
+		if minetest.get_modpath("toolranks") then
+			minetest.override_item(fulltool_name, {
+				original_description = tdef.description,
+				description = toolranks.create_description(tdef.description, 0, 1),
+				after_use = toolranks.new_afteruse})
+		end
+
 		minetest.register_alias(tool_name .. tool_post, fulltool_name)
 		if use_frame then
 			frame.register(fulltool_name)
