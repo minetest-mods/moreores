@@ -12,9 +12,8 @@ moreores = {}
 
 local modpath = minetest.get_modpath("moreores")
 
-local S, NS = dofile(modpath .. "/intllib.lua")
+local S = minetest.get_translator("moreores")
 moreores.S = S
-moreores.NS = NS
 
 dofile(modpath .. "/_config.txt")
 
@@ -86,7 +85,7 @@ local function add_ore(modname, description, mineral_name, oredef)
 
 	if oredef.makes.ore then
 		minetest.register_node(modname .. ":mineral_" .. mineral_name, {
-			description = S("%s Ore"):format(S(description)),
+			description = S("@1 Ore", S(description)),
 			tiles = {"default_stone.png^" .. modname .. "_mineral_" .. mineral_name .. ".png"},
 			groups = {cracky = 2},
 			sounds = default_stone_sounds,
@@ -101,7 +100,7 @@ local function add_ore(modname, description, mineral_name, oredef)
 	if oredef.makes.block then
 		local block_item = item_base .. "_block"
 		minetest.register_node(block_item, {
-			description = S("%s Block"):format(S(description)),
+			description = S("@1 Block", S(description)),
 			tiles = {img_base .. "_block.png"},
 			groups = {snappy = 1, bendy = 2, cracky = 1, melty = 2, level = 2},
 			sounds = default_metal_sounds,
@@ -126,7 +125,7 @@ local function add_ore(modname, description, mineral_name, oredef)
 
 	if oredef.makes.lump then
 		minetest.register_craftitem(lump_item, {
-			description = S("%s Lump"):format(S(description)),
+			description = S("@1 Lump", S(description)),
 			inventory_image = img_base .. "_lump.png",
 		})
 		minetest.register_alias(mineral_name .. "_lump", lump_item)
@@ -144,7 +143,7 @@ local function add_ore(modname, description, mineral_name, oredef)
 
 	if oredef.makes.ingot then
 		minetest.register_craftitem(ingot, {
-			description = S("%s Ingot"):format(S(description)),
+			description = S("@1 Ingot", S(description)),
 			inventory_image = img_base .. "_ingot.png",
 		})
 		minetest.register_alias(mineral_name .. "_ingot", ingot)
@@ -187,25 +186,25 @@ local function add_ore(modname, description, mineral_name, oredef)
 		if tool_name == "sword" then
 			tdef.tool_capabilities.full_punch_interval = oredef.full_punch_interval
 			tdef.tool_capabilities.damage_groups = oredef.damage_groups
-			tdef.description = S("%s Sword"):format(S(description))
+			tdef.description = S("@1 Sword", S(description))
 		end
 
 		if tool_name == "pick" then
 			tdef.tool_capabilities.full_punch_interval = oredef.full_punch_interval
 			tdef.tool_capabilities.damage_groups = oredef.damage_groups
-			tdef.description = S("%s Pickaxe"):format(S(description))
+			tdef.description = S("@1 Pickaxe", S(description))
 		end
 
 		if tool_name == "axe" then
 			tdef.tool_capabilities.full_punch_interval = oredef.full_punch_interval
 			tdef.tool_capabilities.damage_groups = oredef.damage_groups
-			tdef.description = S("%s Axe"):format(S(description))
+			tdef.description = S("@1 Axe", S(description))
 		end
 
 		if tool_name == "shovel" then
 			tdef.full_punch_interval = oredef.full_punch_interval
 			tdef.tool_capabilities.damage_groups = oredef.damage_groups
-			tdef.description = S("%s Shovel"):format(S(description))
+			tdef.description = S("@1 Shovel", S(description))
 			tdef.wield_image = toolimg_base .. tool_name .. ".png^[transformR90"
 		end
 
@@ -213,7 +212,7 @@ local function add_ore(modname, description, mineral_name, oredef)
 
 		if tool_name == "hoe" and minetest.get_modpath("farming") then
 			tdef.max_uses = tooldef.uses
-			tdef.description = S("%s Hoe"):format(S(description))
+			tdef.description = S("@1 Hoe", S(description))
 			farming.register_hoe(fulltool_name, tdef)
 		end
 

@@ -1,0 +1,28 @@
+# textdomain: moreores
+
+# Translation by Mahmutelmas06
+# mahmutelmas06@hotmail.com
+
+# Türkçe Çeviri
+# Turkish translation
+# Language 2 letter iso code is "tr"
+
+[moreores] loaded.=[moreores] yüklendi.
+
+@1 Ore=@1 madeni
+@1 Lump=@1 yığını
+@1 Ingot=@1 külçesi
+@1 Block=@1 blok
+@1 Pickaxe=@1 kazma
+@1 Shovel=@1 kürek
+@1 Axe=@1 balta
+@1 Sword=@1 kılıç
+
+Copper=Bakır
+Tin=Kalay
+Bronze=Bronz
+Silver=Gümüş
+Gold=Altın
+Mithril=Mithril
+
+Copper Rail=Bakır ray

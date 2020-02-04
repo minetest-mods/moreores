@@ -1,0 +1,21 @@
+# textdomain: moreores
+
+[moreores] loaded.=[moreores] loaded.
+
+@1 Ore=@1 Ore
+@1 Lump=@1 Lump
+@1 Ingot=@1 Ingot
+@1 Block=@1 Block
+@1 Pickaxe=@1 Pickaxe
+@1 Shovel=@1 Shovel
+@1 Axe=@1 Axe
+@1 Sword=@1 Sword
+@1 Hoe=@1 Hoe
+
+Copper=Copper
+Tin=Tin
+Bronze=Bronze
+Silver=Silver
+Gold=Gold
+Mithril=Mithril
+Copper Rail=Copper Rail

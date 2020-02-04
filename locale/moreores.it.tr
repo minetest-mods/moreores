@@ -1,0 +1,22 @@
+# textdomain: moreores
+
+# Translation by Pagliaccio
+
+[moreores] loaded.=[moreores] caricato.
+
+@1 Ore=Minerale di @1
+@1 Lump=@1 grezzo
+@1 Ingot=Lingotto di @1
+@1 Block=Blocco di @1
+@1 Pickaxe=Piccone di @1
+@1 Shovel=Badile di @1
+@1 Axe=Ascia di @1
+@1 Sword=Spada di @1
+
+Copper=Rame
+Tin=Stagno
+Bronze=Bronzo
+Silver=Argento
+Gold=Oro
+Mithril=Mithril
+Copper Rail=Binario di rame
