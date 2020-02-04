@@ -11,6 +11,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - More Ores tools now have [`toolranks`](https://github.com/lisacvuk/minetest-toolranks) support.
 
+### Changed
+
+- Migrated translations to the
+  [Minetest translation file format](https://rubenwardy.com/minetest_modding_book/lua_api.html#translation-file-format).
+
 ## [2.0.0] - 2019-11-25
 
 ### Added
