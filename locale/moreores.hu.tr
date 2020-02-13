@@ -1,0 +1,22 @@
+# textdomain: moreores
+
+# Translation by An0n3m0us
+
+[moreores] loaded.=[moreores] betöltve.
+
+@1 Ore=@1 érc
+@1 Lump=@1 rög
+@1 Ingot=@1 öntvény
+@1 Block=@1 blokk
+@1 Pickaxe=@1 csákány
+@1 Shovel=@1 ásó
+@1 Axe=@1 fejsze
+@1 Sword=@1 kard
+
+Copper=Réz
+Tin=Ón
+Bronze=Bronz
+Silver=Ezüst
+Gold=Arany
+Mithril=Mithril
+Copper Rail=Réz sín
