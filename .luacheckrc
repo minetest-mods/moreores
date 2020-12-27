@@ -30,4 +30,6 @@ read_globals = {
 	"frame",
 	"mg",
 	"toolranks",
+	"stairs",
+	"stairsplus",
 }
