@@ -103,14 +103,14 @@ local function add_ore(modname, description, mineral_name, oredef)
 			description = S("@1 Block", S(description)),
 			tiles = {img_base .. "_block.png"},
 			groups = {snappy = 1, bendy = 2, cracky = 1, melty = 2, level = 2},
-			sounds = default.node_sound_metal_defaults(),
+			sounds = default_metal_sounds,
 		})
 		if minetest.get_modpath("moreblocks") then	
 			stairsplus:register_all("moreores", mineral_name.."_block", block_item, {
 				description = S("@1 Block", S(description)),
 				tiles = { img_base .. "_block.png" },
 				groups = {snappy = 1, bendy = 2, cracky = 1, melty = 2, level= 2},
-				sounds = default.node_sound_metal_defaults()
+				sounds = default_metal_sounds
 			})
 		elseif minetest.get_modpath("stairs") then
 			stairs.register_stair_and_slab(
@@ -120,7 +120,7 @@ local function add_ore(modname, description, mineral_name, oredef)
 				{ img_base .. "_block.png"},
 				S("@1 Stair", S(description)),
 				S("@1 Slab", S(description)),
-				default.node_sound_metal_defaults(),
+				default_metal_sounds,
 				false,
 				S("Inner @1 Stair", S(description)),
 				S("Outer @1 Stair", S(description))
