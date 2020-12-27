@@ -20,3 +20,8 @@ Silver=Srebro
 Gold=Złoto
 Mithril=Mithril
 Copper Rail=Miedziany tor
+
+@1 Slab=
+@1 Stair=
+Inner @1 Stair=
+Outer @1 Stair=

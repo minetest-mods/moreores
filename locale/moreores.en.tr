@@ -19,3 +19,8 @@ Silver=Silver
 Gold=Gold
 Mithril=Mithril
 Copper Rail=Copper Rail
+
+@1 Slab=
+@1 Stair=
+Inner @1 Stair=
+Outer @1 Stair=

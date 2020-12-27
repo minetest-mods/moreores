@@ -20,3 +20,8 @@ Silver=Argento
 Gold=Oro
 Mithril=Mithril
 Copper Rail=Binario di rame
+
+@1 Slab=
+@1 Stair=
+Inner @1 Stair=
+Outer @1 Stair=

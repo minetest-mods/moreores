@@ -20,3 +20,8 @@ Silver=Ezüst
 Gold=Arany
 Mithril=Mithril
 Copper Rail=Réz sín
+
+@1 Slab=
+@1 Stair=
+Inner @1 Stair=
+Outer @1 Stair=

@@ -17,3 +17,8 @@ Bronze=Brons
 Silver=Silver
 Gold=Goud
 Mithril=Mithril
+
+@1 Slab=
+@1 Stair=
+Inner @1 Stair=
+Outer @1 Stair=

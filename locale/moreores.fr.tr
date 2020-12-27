@@ -21,3 +21,8 @@ Silver=argent
 Gold=or
 Mithril=mithril
 Copper Rail=Rail en cuivre
+
+@1 Slab=Dalle en @1
+@1 Stair=Escalier en @1
+Inner @1 Stair=Escalier intérieur de @1
+Outer @1 Stair=Escalier extérieur de @1
