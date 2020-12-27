@@ -123,7 +123,7 @@ local function add_ore(modname, description, mineral_name, oredef)
 				default.node_sound_metal_defaults(),
 				false,
 				S("Inner @1 Stair", S(description)),
-				S("Outer @1 Stair", S(description)),
+				S("Outer @1 Stair", S(description))
 			)
 		end
 		minetest.register_alias(mineral_name.."_block", block_item)
