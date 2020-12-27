@@ -21,7 +21,7 @@ Gold=Gold
 Mithril=Mithril
 Copper Rail=Kupferschiene
 
-@1 Slab=
-@1 Stair=
-Inner @1 Stair=
-Outer @1 Stair=
+@1 Slab= @1treppe
+@1 Stair= @1platte
+Inner @1 Stair=Innere @1treppe
+Outer @1 Stair=Äußere @1treppe

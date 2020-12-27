@@ -23,5 +23,5 @@ Copper Rail=Riel de Cobre
 
 @1 Slab=Losa de @1
 @1 Stair=Escalera de @1
-Inner @1 Stair=
-Outer @1 Stair=
+Inner @1 Stair=Escalera interior de @1
+Outer @1 Stair=Escalera exterior de @1

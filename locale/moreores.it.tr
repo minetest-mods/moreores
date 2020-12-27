@@ -21,7 +21,7 @@ Gold=Oro
 Mithril=Mithril
 Copper Rail=Binario di rame
 
-@1 Slab=
-@1 Stair=
-Inner @1 Stair=
-Outer @1 Stair=
+@1 Slab=Scala di @1
+@1 Stair=Lastra di @1
+Inner @1 Stair=Scala di @1 interna
+Outer @1 Stair=Scala di @1 esterna
