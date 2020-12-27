@@ -1,4 +1,0 @@
-default
-mg?
-moreblocks?
-stairs?

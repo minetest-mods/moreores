@@ -1,0 +1,19 @@
+# textdomain: moreores
+
+[moreores] loaded.=[moreores] geladen.
+
+@1 Ore=@1 Erts
+@1 Lump=@1 Klomp
+@1 Ingot=@1 Staaf
+@1 Block=@1 Blok
+@1 Pickaxe=@1 Pikhouweel
+@1 Shovel=@1 Schep
+@1 Axe=@1 Bijl
+@1 Sword=@1 Zwaard
+
+Copper=Koper
+Tin=Tin
+Bronze=Brons
+Silver=Silver
+Gold=Goud
+Mithril=Mithril
