@@ -178,32 +178,26 @@ local function add_ore(modname, description, mineral_name, oredef)
 			inventory_image = toolimg_base .. tool_name .. ".png",
 			tool_capabilities = {
 				max_drop_level = 3,
-				groupcaps = tooldef,
+				groupcaps = tooldef.groupcaps,
+				damage_groups = tooldef.damage_groups,
+				full_punch_interval = oredef.full_punch_interval,
 			},
 			sound = {breaks = "default_tool_breaks"},
 		}
 
 		if tool_name == "sword" then
-			tdef.tool_capabilities.full_punch_interval = oredef.full_punch_interval
-			tdef.tool_capabilities.damage_groups = oredef.tools.sword.damage_groups
 			tdef.description = S("@1 Sword", S(description))
 		end
 
 		if tool_name == "pick" then
-			tdef.tool_capabilities.full_punch_interval = oredef.full_punch_interval
-			tdef.tool_capabilities.damage_groups = oredef.tools.pick.damage_groups
 			tdef.description = S("@1 Pickaxe", S(description))
 		end
 
 		if tool_name == "axe" then
-			tdef.tool_capabilities.full_punch_interval = oredef.full_punch_interval
-			tdef.tool_capabilities.damage_groups = oredef.tools.axe.damage_groups
 			tdef.description = S("@1 Axe", S(description))
 		end
 
 		if tool_name == "shovel" then
-			tdef.full_punch_interval = oredef.full_punch_interval
-			tdef.tool_capabilities.damage_groups = oredef.tools.shovel.damage_groups
 			tdef.description = S("@1 Shovel", S(description))
 			tdef.wield_image = toolimg_base .. tool_name .. ".png^[transformR90"
 		end
@@ -211,7 +205,7 @@ local function add_ore(modname, description, mineral_name, oredef)
 		local fulltool_name = tool_base .. tool_name .. tool_post
 
 		if tool_name == "hoe" and minetest.get_modpath("farming") then
-			tdef.max_uses = tooldef.uses
+			tdef.max_uses = tooldef.max_uses
 			tdef.description = S("@1 Hoe", S(description))
 			farming.register_hoe(fulltool_name, tdef)
 		end
@@ -259,25 +253,33 @@ local oredefs = {
 		},
 		tools = {
 			pick = {
-				cracky = {times = {[1] = 2.60, [2] = 1.00, [3] = 0.60}, uses = 100, maxlevel = 1},
+				groupcaps = {
+					cracky = {times = {[1] = 2.60, [2] = 1.00, [3] = 0.60}, uses = 100, maxlevel = 1},
+				},
 				damage_groups = {fleshy = 4},
 			},
 			hoe = {
-				uses = 300,
+				max_uses = 300,
 			},
 			shovel = {
-				crumbly = {times = {[1] = 1.10, [2] = 0.40, [3] = 0.25}, uses = 100, maxlevel = 1},
+				groupcaps = {
+					crumbly = {times = {[1] = 1.10, [2] = 0.40, [3] = 0.25}, uses = 100, maxlevel = 1},
+				},
 				damage_groups = {fleshy = 3},
 			},
 			axe = {
-				choppy = {times = {[1] = 2.50, [2] = 0.80, [3] = 0.50}, uses = 100, maxlevel = 1},
-				fleshy = {times = {[2] = 1.10, [3] = 0.60}, uses = 100, maxlevel = 1},
+				groupcaps = {
+					choppy = {times = {[1] = 2.50, [2] = 0.80, [3] = 0.50}, uses = 100, maxlevel = 1},
+					fleshy = {times = {[2] = 1.10, [3] = 0.60}, uses = 100, maxlevel = 1},
+				},
 				damage_groups = {fleshy = 5},
 			},
 			sword = {
-				fleshy = {times = {[2] = 0.70, [3] = 0.30}, uses = 100, maxlevel = 1},
-				snappy = {times = {[1] = 1.70, [2] = 0.70, [3] = 0.30}, uses = 100, maxlevel = 1},
-				choppy = {times = {[3] = 0.80}, uses = 100, maxlevel = 0},
+				groupcaps = {
+					fleshy = {times = {[2] = 0.70, [3] = 0.30}, uses = 100, maxlevel = 1},
+					snappy = {times = {[1] = 1.70, [2] = 0.70, [3] = 0.30}, uses = 100, maxlevel = 1},
+					choppy = {times = {[3] = 0.80}, uses = 100, maxlevel = 0},
+				},
 				damage_groups = {fleshy = 6},
 			},
 		},
@@ -295,25 +297,33 @@ local oredefs = {
 		},
 		tools = {
 			pick = {
-				cracky = {times = {[1] = 2.25, [2] = 0.55, [3] = 0.35}, uses = 200, maxlevel = 3},
+				groupcaps = {
+					cracky = {times = {[1] = 2.25, [2] = 0.55, [3] = 0.35}, uses = 200, maxlevel = 3},
+				},
 				damage_groups = {fleshy = 6},
 			},
 			hoe = {
-				uses = 1000,
+				max_uses = 1000,
 			},
 			shovel = {
-				crumbly = {times = {[1] = 0.70, [2] = 0.35, [3] = 0.20}, uses = 200, maxlevel = 3},
+				groupcaps = {
+					crumbly = {times = {[1] = 0.70, [2] = 0.35, [3] = 0.20}, uses = 200, maxlevel = 3},
+				},
 				damage_groups = {fleshy = 5},
 			},
 			axe = {
-				choppy = {times = {[1] = 1.75, [2] = 0.45, [3] = 0.45}, uses = 200, maxlevel = 3},
-				fleshy = {times = {[2] = 0.95, [3] = 0.30}, uses = 200, maxlevel = 2},
+				groupcaps = {
+					choppy = {times = {[1] = 1.75, [2] = 0.45, [3] = 0.45}, uses = 200, maxlevel = 3},
+					fleshy = {times = {[2] = 0.95, [3] = 0.30}, uses = 200, maxlevel = 2},
+				},
 				damage_groups = {fleshy = 8},
 			},
 			sword = {
-				fleshy = {times = {[2] = 0.65, [3] = 0.25}, uses = 200, maxlevel = 2},
-				snappy = {times = {[1] = 1.70, [2] = 0.70, [3] = 0.25}, uses = 200, maxlevel = 3},
-				choppy = {times = {[3] = 0.65}, uses = 200, maxlevel = 0},
+				groupcaps = {
+					fleshy = {times = {[2] = 0.65, [3] = 0.25}, uses = 200, maxlevel = 2},
+					snappy = {times = {[1] = 1.70, [2] = 0.70, [3] = 0.25}, uses = 200, maxlevel = 3},
+					choppy = {times = {[3] = 0.65}, uses = 200, maxlevel = 0},
+				},
 				damage_groups = {fleshy = 10},
 			},
 		},
