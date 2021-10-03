@@ -166,11 +166,21 @@ local function add_ore(modname, description, mineral_name, oredef)
 		})
 	end
 
+	oredef.oredef_high.ore_type = "scatter"
+	oredef.oredef_high.ore = modname .. ":mineral_" .. mineral_name
+	oredef.oredef_high.wherein = "default:stone"
+
 	oredef.oredef.ore_type = "scatter"
 	oredef.oredef.ore = modname .. ":mineral_" .. mineral_name
 	oredef.oredef.wherein = "default:stone"
 
-	minetest.register_ore(oredef.oredef)
+	oredef.oredef_deep.ore_type = "scatter"
+	oredef.oredef_deep.ore = modname .. ":mineral_" .. mineral_name
+	oredef.oredef_deep.wherein = "default:stone"
+
+	minetest.register_ore(oredef.oredef_high)
+    minetest.register_ore(oredef.oredef)
+    minetest.register_ore(oredef.oredef_deep)
 
 	for tool_name, tooldef in pairs(oredef.tools) do
 		local tdef = {
@@ -244,12 +254,26 @@ local oredefs = {
 	silver = {
 		description = "Silver",
 		makes = {ore = true, block = true, lump = true, ingot = true, chest = true},
+		oredef_high= {
+			clust_scarcity = moreores.silver_chunk_size_high ^ 3,
+			clust_num_ores = moreores.silver_ore_per_chunk_high,
+			clust_size = moreores.silver_clust_size_high,
+			y_min = moreores.silver_min_depth_high,
+			y_max = moreores.silver_max_depth_high,
+		},
 		oredef = {
 			clust_scarcity = moreores.silver_chunk_size ^ 3,
 			clust_num_ores = moreores.silver_ore_per_chunk,
-			clust_size = moreores.silver_chunk_size,
+			clust_size = moreores.silver_clust_size,
 			y_min = moreores.silver_min_depth,
 			y_max = moreores.silver_max_depth,
+		},
+		oredef_deep = {
+			clust_scarcity = moreores.silver_chunk_size_deep ^ 3,
+			clust_num_ores = moreores.silver_ore_per_chunk_deep,
+			clust_size = moreores.silver_clust_size_deep,
+			y_min = moreores.silver_min_depth_deep,
+			y_max = moreores.silver_max_depth_deep,
 		},
 		tools = {
 			pick = {
@@ -288,12 +312,26 @@ local oredefs = {
 	mithril = {
 		description = "Mithril",
 		makes = {ore = true, block = true, lump = true, ingot = true, chest = false},
+		oredef_high = {
+			clust_scarcity = moreores.mithril_chunk_size_high ^ 3,
+			clust_num_ores = moreores.mithril_ore_per_chunk_high,
+			clust_size = moreores.mithril_clust_size_high,
+			y_min = moreores.mithril_min_depth_high,
+			y_max = moreores.mithril_max_depth_high,
+		},
 		oredef = {
 			clust_scarcity = moreores.mithril_chunk_size ^ 3,
 			clust_num_ores = moreores.mithril_ore_per_chunk,
-			clust_size = moreores.mithril_chunk_size,
+			clust_size = moreores.mithril_clust_size,
 			y_min = moreores.mithril_min_depth,
 			y_max = moreores.mithril_max_depth,
+		},
+		oredef_deep = {
+			clust_scarcity = moreores.mithril_chunk_size_deep ^ 3,
+			clust_num_ores = moreores.mithril_ore_per_chunk_deep,
+			clust_size = moreores.mithril_clust_size_deep,
+			y_min = moreores.mithril_min_depth_deep,
+			y_max = moreores.mithril_max_depth_deep,
 		},
 		tools = {
 			pick = {
