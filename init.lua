@@ -87,7 +87,7 @@ local function add_ore(modname, description, mineral_name, oredef)
 		minetest.register_node(modname .. ":mineral_" .. mineral_name, {
 			description = S("@1 Ore", S(description)),
 			tiles = {"default_stone.png^" .. modname .. "_mineral_" .. mineral_name .. ".png"},
-			groups = {cracky = 2},
+			groups = oredef.mineral.groups,
 			sounds = default_stone_sounds,
 			drop = lump_item,
 		})
@@ -102,7 +102,7 @@ local function add_ore(modname, description, mineral_name, oredef)
 		minetest.register_node(block_item, {
 			description = S("@1 Block", S(description)),
 			tiles = {img_base .. "_block.png"},
-			groups = {snappy = 1, bendy = 2, cracky = 1, melty = 2, level = 2},
+			groups = oredef.block.groups, -- {snappy = 1, bendy = 2, cracky = 1, melty = 2, level = 2},
 			sounds = default_metal_sounds,
 		})
 		minetest.register_alias(mineral_name.."_block", block_item)
@@ -134,6 +134,7 @@ local function add_ore(modname, description, mineral_name, oredef)
 				type = "cooking",
 				output = ingot,
 				recipe = lump_item,
+				cooktime = oredef.lump.cooktime,
 			})
 		end
 		if use_frame then
@@ -251,6 +252,9 @@ local oredefs = {
 			y_min = moreores.silver_min_depth,
 			y_max = moreores.silver_max_depth,
 		},
+		mineral = {groups = {cracky = 2}},
+		block = {groups = {cracky = 1, level = 2}},
+		lump = {cooktime = 2},
 		tools = {
 			pick = {
 				groupcaps = {
@@ -295,10 +299,13 @@ local oredefs = {
 			y_min = moreores.mithril_min_depth,
 			y_max = moreores.mithril_max_depth,
 		},
+		mineral = {groups = {cracky = 1}},
+		block = {groups = {cracky = 0, level = 4}},
+		lump = {cooktime = 10},
 		tools = {
 			pick = {
 				groupcaps = {
-					cracky = {times = {[1] = 2.25, [2] = 0.55, [3] = 0.35}, uses = 200, maxlevel = 3},
+					cracky = {times = {[0] = 5.00, [1] = 1.90, [2] = 0.90, [3] = 0.45}, uses = 66, maxlevel = 4},
 				},
 				damage_groups = {fleshy = 6},
 			},
@@ -307,21 +314,21 @@ local oredefs = {
 			},
 			shovel = {
 				groupcaps = {
-					crumbly = {times = {[1] = 0.70, [2] = 0.35, [3] = 0.20}, uses = 200, maxlevel = 3},
+					crumbly = {times = {[0] = 2.00, [1] = 1.00, [2] = 0.45, [3] = 0.25}, uses = 66, maxlevel = 4},
 				},
 				damage_groups = {fleshy = 5},
 			},
 			axe = {
 				groupcaps = {
-					choppy = {times = {[1] = 1.75, [2] = 0.45, [3] = 0.45}, uses = 200, maxlevel = 3},
+					choppy = {times = {[0] = 3.00, [1] = 2.00, [2] = 0.80, [3] = 0.45}, uses = 66, maxlevel = 4},
 					fleshy = {times = {[2] = 0.95, [3] = 0.30}, uses = 200, maxlevel = 2},
 				},
 				damage_groups = {fleshy = 8},
 			},
 			sword = {
 				groupcaps = {
-					fleshy = {times = {[2] = 0.65, [3] = 0.25}, uses = 200, maxlevel = 2},
-					snappy = {times = {[1] = 1.70, [2] = 0.70, [3] = 0.25}, uses = 200, maxlevel = 3},
+					fleshy = {times = {[2] = 0.65, [3] = 0.25}, uses = 66, maxlevel = 3},
+					snappy = {times = {[0] = 3.00, [1] = 1.80, [2] = 0.80, [3] = 0.25}, uses = 66, maxlevel = 4},
 					choppy = {times = {[3] = 0.65}, uses = 200, maxlevel = 0},
 				},
 				damage_groups = {fleshy = 10},
