@@ -83,28 +83,43 @@ local function add_ore(modname, description, mineral_name, oredef)
 	local ingot = item_base .. "_ingot"
 	local lump_item = item_base .. "_lump"
 
-	if oredef.makes.ore then
-		minetest.register_node(modname .. ":mineral_" .. mineral_name, {
-			description = S("@1 Ore", S(description)),
-			tiles = {"default_stone.png^" .. modname .. "_mineral_" .. mineral_name .. ".png"},
-			groups = oredef.mineral.groups,
-			sounds = default_stone_sounds,
-			drop = lump_item,
-		})
-
+	if oredef.mineral then
+		if oredef.mineral.description == nil then
+			oredef.mineral.description = S("@1 Ore", S(description))
+		end
+		if oredef.mineral.tiles == nil then
+			oredef.mineral.tiles = {"default_stone.png^" .. modname .. "_mineral_" .. mineral_name .. ".png"}
+		end
+		if oredef.mineral.groups == nil then
+			oredef.mineral.groups = {cracky = 2}
+		end
+		if oredef.mineral.sounds == nil then
+			oredef.mineral.sounds = default_stone_sounds
+		end
+		if oredef.mineral.drop == nil then
+				oredef.mineral.drop = lump_item
+		end
+		minetest.register_node(modname .. ":mineral_" .. mineral_name, oredef.mineral)
 		if use_frame then
 			frame.register(modname .. ":mineral_" .. mineral_name)
 		end
 	end
 
-	if oredef.makes.block then
+	if oredef.block then
 		local block_item = item_base .. "_block"
-		minetest.register_node(block_item, {
-			description = S("@1 Block", S(description)),
-			tiles = {img_base .. "_block.png"},
-			groups = oredef.block.groups, -- {snappy = 1, bendy = 2, cracky = 1, melty = 2, level = 2},
-			sounds = default_metal_sounds,
-		})
+				if oredef.block.description == nil then
+					oredef.block.description = S("@1 Block", S(description))
+				end
+				if oredef.block.tiles == nil then
+					oredef.block.tiles = {img_base .. "_block.png"}
+				end
+				if oredef.block.groups == nil then
+					oredef.block.groups = {cracky = 1, level = 2}
+				end
+				if oredef.block.sounds == nil then
+					oredef.block.sounds = default_metal_sounds
+				end
+		minetest.register_node(block_item, oredef.block)
 		minetest.register_alias(mineral_name.."_block", block_item)
 		if oredef.makes.ingot then
 			minetest.register_craft( {
@@ -134,7 +149,7 @@ local function add_ore(modname, description, mineral_name, oredef)
 				type = "cooking",
 				output = ingot,
 				recipe = lump_item,
-				cooktime = oredef.lump.cooktime,
+				cooktime = oredef.craftingot.cooktime,
 			})
 		end
 		if use_frame then
@@ -244,7 +259,7 @@ end
 local oredefs = {
 	silver = {
 		description = "Silver",
-		makes = {ore = true, block = true, lump = true, ingot = true, chest = true},
+		makes = {lump = true, ingot = true, chest = true},
 		oredef = {
 			clust_scarcity = moreores.silver_chunk_size ^ 3,
 			clust_num_ores = moreores.silver_ore_per_chunk,
@@ -254,7 +269,7 @@ local oredefs = {
 		},
 		mineral = {groups = {cracky = 2}},
 		block = {groups = {cracky = 1, level = 2}},
-		lump = {cooktime = 2},
+		craftingot = {cooktime = 2},
 		tools = {
 			pick = {
 				groupcaps = {
@@ -291,7 +306,7 @@ local oredefs = {
 	},
 	mithril = {
 		description = "Mithril",
-		makes = {ore = true, block = true, lump = true, ingot = true, chest = false},
+		makes = {lump = true, ingot = true, chest = false},
 		oredef = {
 			clust_scarcity = moreores.mithril_chunk_size ^ 3,
 			clust_num_ores = moreores.mithril_ore_per_chunk,
@@ -300,8 +315,8 @@ local oredefs = {
 			y_max = moreores.mithril_max_depth,
 		},
 		mineral = {groups = {cracky = 1}},
-		block = {groups = {cracky = 0, level = 4}},
-		lump = {cooktime = 10},
+		block = {groups = {cracky = 0, level = 4}, on_blast = function() end},
+		craftingot = {cooktime = 10},
 		tools = {
 			pick = {
 				groupcaps = {
@@ -354,7 +369,7 @@ if default_tin then
 else
 	oredefs.tin = {
 		description = "Tin",
-		makes = {ore = true, block = true, lump = true, ingot = true, chest = false},
+		makes = {lump = true, ingot = true, chest = false},
 		oredef = {
 			clust_scarcity = moreores.tin_chunk_size ^ 3,
 			clust_num_ores = moreores.tin_ore_per_chunk,
@@ -362,6 +377,9 @@ else
 			y_min = moreores.tin_min_depth,
 			y_max = moreores.tin_max_depth,
 		},
+		mineral = {groups = {cracky = 2}},
+		block = {groups = {cracky = 1, level = 2}},
+		craftingot = {cooktime = 3},
 		tools = {},
 	}
 
