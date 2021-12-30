@@ -179,8 +179,8 @@ local function add_ore(modname, description, mineral_name, oredef)
 	oredef.oredef_deep.wherein = "default:stone"
 
 	minetest.register_ore(oredef.oredef_high)
-    minetest.register_ore(oredef.oredef)
-    minetest.register_ore(oredef.oredef_deep)
+	minetest.register_ore(oredef.oredef)
+	minetest.register_ore(oredef.oredef_deep)
 
 	for tool_name, tooldef in pairs(oredef.tools) do
 		local tdef = {

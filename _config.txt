@@ -34,20 +34,22 @@ moreores.mithril_clust_size = 3
 moreores.mithril_clust_size_deep = 3
 
 -- Maximal and minimal depths of ore generation (Y coordinate, 0 being sea level by default)
---Tin
+-- Tin
 moreores.tin_max_depth = -64
 moreores.tin_min_depth = -31000
---Silver
+
+-- Silver
 moreores.silver_max_depth_high = 31000 
 moreores.silver_min_depth_high = 1025
-moreores.silver_max_depth = -64         --For v6 mapgen -32 fits better
-moreores.silver_min_depth = -127        --For v6 mapgen -63 fits better
-moreores.silver_max_depth_deep = -128   --For v6 mapgen -64 fits better
+moreores.silver_max_depth = -64         -- For v6 mapgen, -32 fits better
+moreores.silver_min_depth = -127        -- For v6 mapgen, -63 fits better
+moreores.silver_max_depth_deep = -128   -- For v6 mapgen, -64 fits better
 moreores.silver_min_depth_deep = -31000
---Mithril
+
+-- Mithril
 moreores.mithril_max_depth_high = 31000
 moreores.mithril_min_depth_high = 2049
-moreores.mithril_max_depth = -2048          --For v6 mapgen -256 fits better
-moreores.mithril_min_depth = -4095          --For v6 mapgen -511 fits better
-moreores.mithril_max_depth_deep = -4096     --For v6 mapgen -512 fits better
+moreores.mithril_max_depth = -2048          -- For v6 mapgen, -256 fits better
+moreores.mithril_min_depth = -4095          -- For v6 mapgen, -511 fits better
+moreores.mithril_max_depth_deep = -4096     -- For v6 mapgen, -512 fits better
 moreores.mithril_min_depth_deep = -31000
