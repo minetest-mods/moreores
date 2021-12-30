@@ -11,9 +11,9 @@ moreores.tin_chunk_size = 10
 moreores.silver_chunk_size_high = 11
 moreores.silver_chunk_size = 13
 moreores.silver_chunk_size_deep = 11
-moreores.mithril_chunk_size_high = 17
+moreores.mithril_chunk_size_high = 19
 moreores.mithril_chunk_size = 21
-moreores.mithril_chunk_size_deep = 21
+moreores.mithril_chunk_size_deep = 19
 
 -- Amount of ore per chunk (higher = bigger ore deposits)
 moreores.tin_ore_per_chunk = 5
@@ -21,8 +21,8 @@ moreores.silver_ore_per_chunk_high = 4
 moreores.silver_ore_per_chunk = 2
 moreores.silver_ore_per_chunk_deep = 4
 moreores.mithril_ore_per_chunk_high = 3
-moreores.mithril_ore_per_chunk = 3
-moreores.mithril_ore_per_chunk_deep = 7
+moreores.mithril_ore_per_chunk = 2
+moreores.mithril_ore_per_chunk_deep = 4
 
 -- Clust sizes for ore generation (bigger = ores in ore deposits are less bound together)
 moreores.tin_clust_size = 3
@@ -31,7 +31,7 @@ moreores.silver_clust_size = 3
 moreores.silver_clust_size_deep = 3
 moreores.mithril_clust_size_high = 3
 moreores.mithril_clust_size = 3
-moreores.mithril_clust_size_deep = 4
+moreores.mithril_clust_size_deep = 3
 
 -- Maximal and minimal depths of ore generation (Y coordinate, 0 being sea level by default)
 --Tin
