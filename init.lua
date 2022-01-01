@@ -84,21 +84,11 @@ local function add_ore(modname, description, mineral_name, oredef)
 	local lump_item = item_base .. "_lump"
 
 	if oredef.mineral then
-		if oredef.mineral.description == nil then
-			oredef.mineral.description = S("@1 Ore", S(description))
-		end
-		if oredef.mineral.tiles == nil then
-			oredef.mineral.tiles = {"default_stone.png^" .. modname .. "_mineral_" .. mineral_name .. ".png"}
-		end
-		if oredef.mineral.groups == nil then
-			oredef.mineral.groups = {cracky = 2}
-		end
-		if oredef.mineral.sounds == nil then
-			oredef.mineral.sounds = default_stone_sounds
-		end
-		if oredef.mineral.drop == nil then
-				oredef.mineral.drop = lump_item
-		end
+		oredef.mineral.description = oredef.mineral.description or S("@1 Ore", S(description))
+		oredef.mineral.tiles = oredef.mineral.tiles or {"default_stone.png^" .. modname .. "_mineral_" .. mineral_name .. ".png"}
+		oredef.mineral.groups = oredef.mineral.groups or {cracky = 2}
+		oredef.mineral.sounds = oredef.mineral.sounds or default_stone_sounds
+		oredef.mineral.drop = oredef.mineral.drop or lump_item
 		minetest.register_node(modname .. ":mineral_" .. mineral_name, oredef.mineral)
 		if use_frame then
 			frame.register(modname .. ":mineral_" .. mineral_name)
@@ -107,18 +97,10 @@ local function add_ore(modname, description, mineral_name, oredef)
 
 	if oredef.block then
 		local block_item = item_base .. "_block"
-				if oredef.block.description == nil then
-					oredef.block.description = S("@1 Block", S(description))
-				end
-				if oredef.block.tiles == nil then
-					oredef.block.tiles = {img_base .. "_block.png"}
-				end
-				if oredef.block.groups == nil then
-					oredef.block.groups = {cracky = 1, level = 2}
-				end
-				if oredef.block.sounds == nil then
-					oredef.block.sounds = default_metal_sounds
-				end
+		oredef.block.description = oredef.block.description or S("@1 Block", S(description))
+		oredef.block.tiles = oredef.block.tiles or {img_base .. "_block.png"}
+		oredef.block.groups = oredef.block.groups or {cracky = 1, level = 2}
+		oredef.block.sounds = oredef.block.sounds or default_metal_sounds
 		minetest.register_node(block_item, oredef.block)
 		minetest.register_alias(mineral_name.."_block", block_item)
 		if oredef.makes.ingot then
