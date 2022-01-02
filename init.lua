@@ -297,12 +297,12 @@ local oredefs = {
 			y_max = moreores.mithril_max_depth,
 		},
 		mineral = {groups = {cracky = 1}},
-		block = {groups = {cracky = 0, level = 4}, on_blast = function() end},
+		block = {groups = {cracky = 1, level = 5}, on_blast = function() end},
 		craftingot = {cooktime = 10},
 		tools = {
 			pick = {
 				groupcaps = {
-					cracky = {times = {[0] = 5.00, [1] = 1.90, [2] = 0.90, [3] = 0.45}, uses = 66, maxlevel = 4},
+					cracky = {times = {[1] = 3.00, [2] = 1.40, [3] = 0.65}, uses = 23, maxlevel = 5},
 				},
 				damage_groups = {fleshy = 6},
 			},
@@ -311,21 +311,21 @@ local oredefs = {
 			},
 			shovel = {
 				groupcaps = {
-					crumbly = {times = {[0] = 2.00, [1] = 1.00, [2] = 0.45, [3] = 0.25}, uses = 66, maxlevel = 4},
+					crumbly = {times = {[1] = 1.65, [2] = 0.70, [3] = 0.40}, uses = 23, maxlevel = 5},
 				},
 				damage_groups = {fleshy = 5},
 			},
 			axe = {
 				groupcaps = {
-					choppy = {times = {[0] = 3.00, [1] = 2.00, [2] = 0.80, [3] = 0.45}, uses = 66, maxlevel = 4},
+					choppy = {times = {[1] = 3.20, [2] = 1.20, [3] = 0.65}, uses = 23, maxlevel = 5},
 					fleshy = {times = {[2] = 0.95, [3] = 0.30}, uses = 200, maxlevel = 2},
 				},
 				damage_groups = {fleshy = 8},
 			},
 			sword = {
 				groupcaps = {
-					fleshy = {times = {[2] = 0.65, [3] = 0.25}, uses = 66, maxlevel = 3},
-					snappy = {times = {[0] = 3.00, [1] = 1.80, [2] = 0.80, [3] = 0.25}, uses = 66, maxlevel = 4},
+					fleshy = {times = {[2] = 0.65, [3] = 0.25}, uses = 67, maxlevel = 3},
+					snappy = {times = {[1] = 2.80, [2] = 1.20, [3] = 0.40}, uses = 23, maxlevel = 5},
 					choppy = {times = {[3] = 0.65}, uses = 200, maxlevel = 0},
 				},
 				damage_groups = {fleshy = 10},
