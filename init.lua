@@ -386,12 +386,26 @@ else
 	oredefs.tin = {
 		description = "Tin",
 		makes = {ore = true, block = true, lump = true, ingot = true, chest = false},
+		oredef_high = {
+			clust_scarcity = moreores.tin_chunk_size_high ^ 3,
+			clust_num_ores = moreores.tin_ore_per_chunk_high,
+			clust_size = moreores.tin_clust_size_high,
+			y_min = moreores.tin_min_depth_high,
+			y_max = moreores.tin_max_depth_high,
+		},
 		oredef = {
 			clust_scarcity = moreores.tin_chunk_size ^ 3,
 			clust_num_ores = moreores.tin_ore_per_chunk,
-			clust_size = moreores.tin_chunk_size,
+			clust_size = moreores.tin_clust_size,
 			y_min = moreores.tin_min_depth,
 			y_max = moreores.tin_max_depth,
+		},
+		oredef_deep = {
+			clust_scarcity = moreores.tin_chunk_size_deep ^ 3,
+			clust_num_ores = moreores.tin_ore_per_chunk_deep,
+			clust_size = moreores.tin_clust_size_deep,
+			y_min = moreores.tin_min_depth_deep,
+			y_max = moreores.tin_max_depth_deep,
 		},
 		tools = {},
 	}
