@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- [Tweaked ore generation to better fit Minetest's new defaults.](https://github.com/minetest-mods/moreores/pull/45)
+  - Three layers (two underground and one high air/space) are now used instead of just one layer.
+  - Chunk size is no longer used as clust size anymore. Clust sizes are usually
+    just 3 nodes and not the whole area ("chunk"), where the ores are generated.
+  - Adjusted several default values.
+    - Mithril is now generated *below* diamond. Note that there was a change
+      in Minetest 5.0.0 where most ore generation was shifted to much lower
+      altitude (shifting diamond generation altitude below mithril generation altitude).
+    - The mithril ores are now also grouped together and not just found as a
+      single node in one chunk.
+    - The same overall ore density is retained in the deep layer.
+
 ## [2.1.0] - 2021-06-28
 
 ### Added
