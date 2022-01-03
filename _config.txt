@@ -38,7 +38,7 @@ moreores.mithril_clust_size_deep = 3
 moreores.tin_max_depth = -64
 moreores.tin_min_depth = -31000
 --Silver
-moreores.silver_max_depth_high = 31000 
+moreores.silver_max_depth_high = 31000
 moreores.silver_min_depth_high = 1025
 moreores.silver_max_depth = -64         --For v6 mapgen -32 fits better
 moreores.silver_min_depth = -127        --For v6 mapgen -63 fits better
