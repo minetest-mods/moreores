@@ -216,6 +216,7 @@ local function add_ore(modname, description, mineral_name, oredef)
 
 		if tool_name == "hoe" and minetest.get_modpath("farming") then
 			tdef.max_uses = tooldef.max_uses
+			tdef.material = ingot
 			tdef.description = S("@1 Hoe", S(description))
 			farming.register_hoe(fulltool_name, tdef)
 		end
