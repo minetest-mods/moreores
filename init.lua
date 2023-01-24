@@ -197,18 +197,22 @@ local function add_ore(modname, description, mineral_name, oredef)
 
 		if tool_name == "sword" then
 			tdef.description = S("@1 Sword", S(description))
+			tdef.groups = {sword = 1}
 		end
 
 		if tool_name == "pick" then
 			tdef.description = S("@1 Pickaxe", S(description))
+			tdef.groups = {pickaxe = 1}
 		end
 
 		if tool_name == "axe" then
 			tdef.description = S("@1 Axe", S(description))
+			tdef.groups = {axe = 1}
 		end
 
 		if tool_name == "shovel" then
 			tdef.description = S("@1 Shovel", S(description))
+			tdef.groups = {shovel = 1}
 			tdef.wield_image = toolimg_base .. tool_name .. ".png^[transformR90"
 		end
 
