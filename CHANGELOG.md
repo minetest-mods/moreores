@@ -21,6 +21,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
       single node in one chunk.
     - The same overall ore density is retained in the deep layer.
 
+- Switch to GitHub Actions.
+  - Benefits include faster responses, easier management, and more.
+
 ## [2.1.0] - 2021-06-28
 
 ### Added
