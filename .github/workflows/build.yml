@@ -12,13 +12,11 @@ jobs:
       - run: |
          sudo apt-get update -qq
          sudo apt-get install -qqq luarocks
-      - name: Install pre-commit
-        run: pip3 install pre-commit
-
-      - name: Install LuaCheck
-        run: luarocks install --local luacheck
-
+      - name: Install LuaCheck and pre-commit
+        run: |
+          pip3 install pre-commit
+          luarocks install --local luacheck
       - name: Run LuaCheck using pre-commit
         run: |
+         export PATH="$HOME/.luarocks/bin:$PATH"
          pre-commit run --all-files
-         $HOME/.luarocks/bin/luacheck .
