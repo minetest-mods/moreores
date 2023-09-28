@@ -1,7 +1,5 @@
 # textdomain: moreores
 
-[moreores] loaded.=
-
 @1 Ore=
 @1 Lump=
 @1 Ingot=

@@ -1,7 +1,5 @@
 # textdomain: moreores
 
-[moreores] loaded.=[moreores] geladen.
-
 @1 Ore=@1 Erts
 @1 Lump=@1 Klomp
 @1 Ingot=@1 Staaf
