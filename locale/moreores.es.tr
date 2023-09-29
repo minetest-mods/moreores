@@ -2,8 +2,6 @@
 
 # Translation by kaeza
 
-[moreores] loaded.=[moreores] cargado.
-
 @1 Ore=Mineral de @1
 @1 Lump=Pepita de @1
 @1 Ingot=Lingote de @1
@@ -13,10 +11,10 @@
 @1 Axe=Hacha de @1
 @1 Sword=Espada de @1
 
-Copper=cobre
-Tin=estaño
-Bronze=bronce
-Silver=plata
-Gold=oro
-Mithril=mitrilo
+Copper=Cobre
+Tin=Estaño
+Bronze=Bronce
+Silver=Plata
+Gold=Oro
+Mithril=Mitrilo
 Copper Rail=Riel de Cobre

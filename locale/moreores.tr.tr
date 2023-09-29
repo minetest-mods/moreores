@@ -7,8 +7,6 @@
 # Turkish translation
 # Language 2 letter iso code is "tr"
 
-[moreores] loaded.=[moreores] yüklendi.
-
 @1 Ore=@1 madeni
 @1 Lump=@1 yığını
 @1 Ingot=@1 külçesi

@@ -1,0 +1,18 @@
+# textdomain: moreores
+
+@1 Ore=
+@1 Lump=
+@1 Ingot=
+@1 Block=
+@1 Pickaxe=
+@1 Shovel=
+@1 Axe=
+@1 Sword=
+
+Copper=
+Tin=
+Bronze=
+Silver=
+Gold=
+Mithril=
+Copper Rail=
