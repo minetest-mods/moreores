@@ -83,28 +83,25 @@ local function add_ore(modname, description, mineral_name, oredef)
 	local ingot = item_base .. "_ingot"
 	local lump_item = item_base .. "_lump"
 
-	if oredef.makes.ore then
-		minetest.register_node(modname .. ":mineral_" .. mineral_name, {
-			description = S("@1 Ore", S(description)),
-			tiles = {"default_stone.png^" .. modname .. "_mineral_" .. mineral_name .. ".png"},
-			groups = {cracky = 2},
-			sounds = default_stone_sounds,
-			drop = lump_item,
-		})
-
+	if oredef.mineral then
+		oredef.mineral.description = oredef.mineral.description or S("@1 Ore", S(description))
+		oredef.mineral.tiles = oredef.mineral.tiles or {"default_stone.png^" .. modname .. "_mineral_" .. mineral_name .. ".png"}
+		oredef.mineral.groups = oredef.mineral.groups or {cracky = 2}
+		oredef.mineral.sounds = oredef.mineral.sounds or default_stone_sounds
+		oredef.mineral.drop = oredef.mineral.drop or lump_item
+		minetest.register_node(modname .. ":mineral_" .. mineral_name, oredef.mineral)
 		if use_frame then
 			frame.register(modname .. ":mineral_" .. mineral_name)
 		end
 	end
 
-	if oredef.makes.block then
+	if oredef.block then
 		local block_item = item_base .. "_block"
-		minetest.register_node(block_item, {
-			description = S("@1 Block", S(description)),
-			tiles = {img_base .. "_block.png"},
-			groups = {snappy = 1, bendy = 2, cracky = 1, melty = 2, level = 2},
-			sounds = default_metal_sounds,
-		})
+		oredef.block.description = oredef.block.description or S("@1 Block", S(description))
+		oredef.block.tiles = oredef.block.tiles or {img_base .. "_block.png"}
+		oredef.block.groups = oredef.block.groups or {cracky = 1, level = 2}
+		oredef.block.sounds = oredef.block.sounds or default_metal_sounds
+		minetest.register_node(block_item, oredef.block)
 		minetest.register_alias(mineral_name.."_block", block_item)
 		if oredef.makes.ingot then
 			minetest.register_craft( {
@@ -134,6 +131,7 @@ local function add_ore(modname, description, mineral_name, oredef)
 				type = "cooking",
 				output = ingot,
 				recipe = lump_item,
+				cooktime = oredef.craftingot.cooktime,
 			})
 		end
 		if use_frame then
@@ -258,7 +256,7 @@ end
 local oredefs = {
 	silver = {
 		description = "Silver",
-		makes = {ore = true, block = true, lump = true, ingot = true, chest = true},
+		makes = {lump = true, ingot = true, chest = true},
 		oredef_high= {
 			clust_scarcity = moreores.silver_chunk_size_high ^ 3,
 			clust_num_ores = moreores.silver_ore_per_chunk_high,
@@ -280,6 +278,9 @@ local oredefs = {
 			y_min = moreores.silver_min_depth_deep,
 			y_max = moreores.silver_max_depth_deep,
 		},
+		mineral = {groups = {cracky = 2}},
+		block = {groups = {cracky = 1, level = 2}},
+		craftingot = {cooktime = 2},
 		tools = {
 			pick = {
 				groupcaps = {
@@ -316,7 +317,7 @@ local oredefs = {
 	},
 	mithril = {
 		description = "Mithril",
-		makes = {ore = true, block = true, lump = true, ingot = true, chest = false},
+		makes = {lump = true, ingot = true, chest = false},
 		oredef_high = {
 			clust_scarcity = moreores.mithril_chunk_size_high ^ 3,
 			clust_num_ores = moreores.mithril_ore_per_chunk_high,
@@ -338,10 +339,13 @@ local oredefs = {
 			y_min = moreores.mithril_min_depth_deep,
 			y_max = moreores.mithril_max_depth_deep,
 		},
+		mineral = {groups = {cracky = 1}},
+		block = {groups = {cracky = 1, level = 5}, on_blast = function() end},
+		craftingot = {cooktime = 10},
 		tools = {
 			pick = {
 				groupcaps = {
-					cracky = {times = {[1] = 2.25, [2] = 0.55, [3] = 0.35}, uses = 200, maxlevel = 3},
+					cracky = {times = {[1] = 3.00, [2] = 1.40, [3] = 0.65}, uses = 23, maxlevel = 5},
 				},
 				damage_groups = {fleshy = 6},
 			},
@@ -350,21 +354,21 @@ local oredefs = {
 			},
 			shovel = {
 				groupcaps = {
-					crumbly = {times = {[1] = 0.70, [2] = 0.35, [3] = 0.20}, uses = 200, maxlevel = 3},
+					crumbly = {times = {[1] = 1.65, [2] = 0.70, [3] = 0.40}, uses = 23, maxlevel = 5},
 				},
 				damage_groups = {fleshy = 5},
 			},
 			axe = {
 				groupcaps = {
-					choppy = {times = {[1] = 1.75, [2] = 0.45, [3] = 0.45}, uses = 200, maxlevel = 3},
+					choppy = {times = {[1] = 3.20, [2] = 1.20, [3] = 0.65}, uses = 23, maxlevel = 5},
 					fleshy = {times = {[2] = 0.95, [3] = 0.30}, uses = 200, maxlevel = 2},
 				},
 				damage_groups = {fleshy = 8},
 			},
 			sword = {
 				groupcaps = {
-					fleshy = {times = {[2] = 0.65, [3] = 0.25}, uses = 200, maxlevel = 2},
-					snappy = {times = {[1] = 1.70, [2] = 0.70, [3] = 0.25}, uses = 200, maxlevel = 3},
+					fleshy = {times = {[2] = 0.65, [3] = 0.25}, uses = 67, maxlevel = 3},
+					snappy = {times = {[1] = 2.80, [2] = 1.20, [3] = 0.40}, uses = 23, maxlevel = 5},
 					choppy = {times = {[3] = 0.65}, uses = 200, maxlevel = 0},
 				},
 				damage_groups = {fleshy = 10},
@@ -390,7 +394,7 @@ if default_tin then
 else
 	oredefs.tin = {
 		description = "Tin",
-		makes = {ore = true, block = true, lump = true, ingot = true, chest = false},
+		makes = {lump = true, ingot = true, chest = false},
 		oredef_high = {
 			clust_scarcity = moreores.tin_chunk_size_high ^ 3,
 			clust_num_ores = moreores.tin_ore_per_chunk_high,
@@ -412,6 +416,9 @@ else
 			y_min = moreores.tin_min_depth_deep,
 			y_max = moreores.tin_max_depth_deep,
 		},
+		mineral = {groups = {cracky = 2}},
+		block = {groups = {cracky = 1, level = 2}},
+		craftingot = {cooktime = 3},
 		tools = {},
 	}
 
