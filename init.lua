@@ -25,11 +25,25 @@ end
 -- `frame` support
 local use_frame = minetest.get_modpath("frame")
 
+local is_mcl_core_present = minetest.get_modpath("mcl_core") ~= nil
+local is_mcl_sounds_present = minetest.get_modpath("mcl_sounds") ~= nil
+local is_mcl_copper_present = minetest.registered_items["mcl_copper:copper_ingot"] ~= nil
+
+if is_mcl_sounds_present then
+local default_stone_sounds = mcl_sounds.node_sound_stone_defaults()
+local default_metal_sounds = mcl_sounds.node_sound_metal_defaults()
+else
 local default_stone_sounds = default.node_sound_stone_defaults()
 local default_metal_sounds = default.node_sound_metal_defaults()
+end
+
 
 -- Returns the crafting recipe table for a given material and item.
 local function get_recipe(material, item)
+	if is_mcl_core_present then
+        material = material:gsub("default:", "mcl_core:")
+    end
+
 	if item == "sword" then
 		return {
 			{material},
@@ -75,6 +89,11 @@ local function get_recipe(material, item)
 end
 
 local function add_ore(modname, description, mineral_name, oredef)
+
+	if mineral_name == "copper" and is_mcl_copper_present then
+        return
+    end
+
 	local img_base = modname .. "_" .. mineral_name
 	local toolimg_base = modname .. "_tool_"..mineral_name
 	local tool_base = modname .. ":"
