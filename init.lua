@@ -29,12 +29,15 @@ local is_mcl_core_present = minetest.get_modpath("mcl_core") ~= nil
 local is_mcl_sounds_present = minetest.get_modpath("mcl_sounds") ~= nil
 local is_mcl_copper_present = minetest.registered_items["mcl_copper:copper_ingot"] ~= nil
 
+local default_stone_sounds = nil
+local default_metal_sounds = nil
+
 if is_mcl_sounds_present then
-local default_stone_sounds = mcl_sounds.node_sound_stone_defaults()
-local default_metal_sounds = mcl_sounds.node_sound_metal_defaults()
+default_stone_sounds = mcl_sounds.node_sound_stone_defaults()
+default_metal_sounds = mcl_sounds.node_sound_metal_defaults()
 else
-local default_stone_sounds = default.node_sound_stone_defaults()
-local default_metal_sounds = default.node_sound_metal_defaults()
+default_stone_sounds = default.node_sound_stone_defaults()
+default_metal_sounds = default.node_sound_metal_defaults()
 end
 
 
