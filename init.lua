@@ -95,8 +95,8 @@ end
 local function add_ore(modname, description, mineral_name, oredef)
 
 	if mineral_name == "copper" and is_mcl_copper_present then
-        return
-    end
+		return
+	end
 
 	local img_base = modname .. "_" .. mineral_name
 	local toolimg_base = modname .. "_tool_"..mineral_name
