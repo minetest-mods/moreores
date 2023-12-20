@@ -28,7 +28,7 @@ local use_frame = minetest.get_modpath("frame")
 local is_mcl_core_present = minetest.get_modpath("mcl_core") ~= nil
 local is_mcl_sounds_present = minetest.get_modpath("mcl_sounds") ~= nil
 local is_mcl_copper_present = minetest.registered_items["mcl_copper:copper_ingot"] ~= nil
-
+local stone_ingrediant = mcl_core_modpath and "mcl_core:stone" or "default:stone"
 local default_stone_sounds = nil
 local default_metal_sounds = nil
 
@@ -175,6 +175,7 @@ local function add_ore(modname, description, mineral_name, oredef)
 	end
 
 	if oredef.makes.chest then
+		if not is_mcl_core_present then
 		minetest.register_craft( {
 			output = "default:chest_locked",
 			recipe = {
@@ -182,23 +183,25 @@ local function add_ore(modname, description, mineral_name, oredef)
 				{"default:chest"},
 			}
 		})
+		
 		minetest.register_craft( {
 			output = "default:chest_locked",
 			recipe = get_recipe(ingot, "lockedchest")
 		})
 	end
+	end
 
 	oredef.oredef_high.ore_type = "scatter"
 	oredef.oredef_high.ore = modname .. ":mineral_" .. mineral_name
-	oredef.oredef_high.wherein = "default:stone"
+	oredef.oredef_high.wherein = stone_ingrediant
 
 	oredef.oredef.ore_type = "scatter"
 	oredef.oredef.ore = modname .. ":mineral_" .. mineral_name
-	oredef.oredef.wherein = "default:stone"
+	oredef.oredef.wherein = stone_ingrediant
 
 	oredef.oredef_deep.ore_type = "scatter"
 	oredef.oredef_deep.ore = modname .. ":mineral_" .. mineral_name
-	oredef.oredef_deep.wherein = "default:stone"
+	oredef.oredef_deep.wherein = stone_ingrediant
 
 	minetest.register_ore(oredef.oredef_high)
 	minetest.register_ore(oredef.oredef)
