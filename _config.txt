@@ -54,6 +54,25 @@ moreores.mithril_clust_size_high = 3
 moreores.mithril_clust_size = 3
 moreores.mithril_clust_size_deep = 3
 
+
+if minetest.get_modpath("mcl_core") then
+-- Example adjustments for MineClone2
+moreores.tin_max_depth_high = 0
+moreores.tin_min_depth_high = -10
+moreores.tin_max_depth = -11
+moreores.tin_min_depth = -57
+
+-- Similar adjustments for silver and mithril
+moreores.silver_max_depth_high = 0
+moreores.silver_min_depth_high = -10
+moreores.silver_max_depth = -11
+moreores.silver_min_depth = -57
+
+moreores.mithril_max_depth_high = 0
+moreores.mithril_min_depth_high = -20
+moreores.mithril_max_depth = -21
+moreores.mithril_min_depth = -57
+else
 -- Maximal and minimal depths of ore generation (Y coordinate, 0 being sea level by default)
 -- Tin
 moreores.tin_max_depth_high = 31000
@@ -78,23 +97,4 @@ moreores.mithril_max_depth = -2048          -- For v6 mapgen, -256 fits better
 moreores.mithril_min_depth = -4095          -- For v6 mapgen, -511 fits better
 moreores.mithril_max_depth_deep = -4096     -- For v6 mapgen, -512 fits better
 moreores.mithril_min_depth_deep = -31000
-
-if minetest.get_modpath("mcl_core") then
--- Example adjustments for MineClone2
-moreores.tin_max_depth_high = 0
-moreores.tin_min_depth_high = -10
-moreores.tin_max_depth = -11
-moreores.tin_min_depth = -57
-
--- Similar adjustments for silver and mithril
-moreores.silver_max_depth_high = 0
-moreores.silver_min_depth_high = -10
-moreores.silver_max_depth = -11
-moreores.silver_min_depth = -57
-
-moreores.mithril_max_depth_high = 0
-moreores.mithril_min_depth_high = -20
-moreores.mithril_max_depth = -21
-moreores.mithril_min_depth = -57
-
 end
