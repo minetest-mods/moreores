@@ -45,8 +45,8 @@ end
 -- Returns the crafting recipe table for a given material and item.
 local function get_recipe(material, item)
 	if is_mcl_core_present then
-        material = material:gsub("default:", "mcl_core:")
-    end
+		material = material:gsub("default:", "mcl_core:")
+	end
 
 	if item == "sword" then
 		return {
