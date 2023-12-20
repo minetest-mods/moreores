@@ -29,6 +29,7 @@ local is_mcl_core_present = minetest.get_modpath("mcl_core") ~= nil
 local is_mcl_sounds_present = minetest.get_modpath("mcl_sounds") ~= nil
 local is_mcl_copper_present = minetest.registered_items["mcl_copper:copper_ingot"] ~= nil
 local stone_ingrediant = mcl_core_modpath and "mcl_core:stone" or "default:stone"
+local copper_ingrediant = mcl_core_modpath and "mcl_copper:copper_ingot" or 'default:copper_ingot'
 local default_stone_sounds = nil
 local default_metal_sounds = nil
 
@@ -446,8 +447,8 @@ else
 		output = "default:bronze_ingot 3",
 		recipe = {
 			"moreores:tin_ingot",
-			"default:copper_ingot",
-			"default:copper_ingot",
+			copper_ingrediant,
+			copper_ingrediant,
 		},
 	})
 end
@@ -471,9 +472,9 @@ end
 minetest.register_craft({
 	output = "moreores:copper_rail 24",
 	recipe = {
-		{"default:copper_ingot", "", "default:copper_ingot"},
-		{"default:copper_ingot", "group:stick", "default:copper_ingot"},
-		{"default:copper_ingot", "", "default:copper_ingot"},
+		{copper_ingrediant, "", copper_ingrediant},
+		{copper_ingrediant, "group:stick", copper_ingrediant},
+		{copper_ingrediant, "", copper_ingrediant},
 	},
 })
 
