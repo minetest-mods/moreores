@@ -240,22 +240,38 @@ local function add_ore(modname, description, mineral_name, oredef, extra_node_de
 
 		if tool_name == "sword" then
 			tdef.description = S("@1 Sword", S(description))
-			tdef.groups = merge_tables(tdef.groups, {sword = 1})
+			if tdef.groups then
+				tdef.groups = merge_tables(tdef.groups, {sword = 1})
+			else
+				tdef.groups = {sword = 1}
+			end
 		end
 
 		if tool_name == "pick" then
 			tdef.description = S("@1 Pickaxe", S(description))
-			tdef.groups = merge_tables(tdef.groups,{pickaxe = 1, tool=1})
+			if tdef.groups then
+				tdef.groups = merge_tables(tdef.groups, {pickaxe = 1, tool=1})
+			else
+				tdef.groups = {pickaxe = 1, tool=1}
+			end
 		end
 
 		if tool_name == "axe" then
 			tdef.description = S("@1 Axe", S(description))
-			tdef.groups = merge_tables(tdef.groups,{axe = 1,tool=1})
+			if tdef.groups then
+				tdef.groups = merge_tables(tdef.groups, {axe = 1, tool=1})
+			else
+				tdef.groups = {axe = 1, tool=1}
+			end
 		end
 
 		if tool_name == "shovel" then
 			tdef.description = S("@1 Shovel", S(description))
-			tdef.groups = merge_tables(tdef.groups,{shovel = 1,tool=1})
+			if tdef.groups then
+				tdef.groups = merge_tables(tdef.groups, {shovel = 1, tool=1})
+			else
+				tdef.groups = {shovel = 1, tool=1}
+			end
 			tdef.wield_image = toolimg_base .. tool_name .. ".png^[transformR90"
 		end
 
