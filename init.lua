@@ -28,8 +28,9 @@ local use_frame = minetest.get_modpath("frame")
 local is_mcl_core_present = minetest.get_modpath("mcl_core") ~= nil
 local is_mcl_sounds_present = minetest.get_modpath("mcl_sounds") ~= nil
 local is_mcl_copper_present = minetest.registered_items["mcl_copper:copper_ingot"] ~= nil
-local stone_ingrediant = mcl_core_modpath and "mcl_core:stone" or "default:stone"
-local copper_ingrediant = mcl_core_modpath and "mcl_copper:copper_ingot" or 'default:copper_ingot'
+local stone_ingrediant = is_mcl_core_present and "mcl_core:stone" or "default:stone"
+
+local copper_ingrediant = is_mcl_core_present and "mcl_copper:copper_ingot" or 'default:copper_ingot'
 local default_stone_sounds = nil
 local default_metal_sounds = nil
 
@@ -215,7 +216,7 @@ local function add_ore(modname, description, mineral_name, oredef, extra_node_de
 	oredef.oredef_deep.ore_type = "scatter"
 	oredef.oredef_deep.ore = modname .. ":mineral_" .. mineral_name
 	oredef.oredef_deep.wherein = stone_ingrediant
-
+	
 	minetest.register_ore(oredef.oredef_high)
 	minetest.register_ore(oredef.oredef)
 	minetest.register_ore(oredef.oredef_deep)
