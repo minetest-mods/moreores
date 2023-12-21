@@ -92,7 +92,7 @@ local function get_recipe(material, item)
 	end
 end
 
-local function add_ore(modname, description, mineral_name, oredef)
+local function add_ore(modname, description, mineral_name, oredef, extra_node_def)
 
 	if mineral_name == "copper" and is_mcl_copper_present then
         return
@@ -106,14 +106,26 @@ local function add_ore(modname, description, mineral_name, oredef)
 	local ingot = item_base .. "_ingot"
 	local lump_item = item_base .. "_lump"
 
+	local function merge_tables(t1, t2)
+        if t2 then
+            for k,v in pairs(t2) do t1[k] = v end
+        end
+        return t1
+    end
+
 	if oredef.makes.ore then
-		minetest.register_node(modname .. ":mineral_" .. mineral_name, {
-			description = S("@1 Ore", S(description)),
-			tiles = {"default_stone.png^" .. modname .. "_mineral_" .. mineral_name .. ".png"},
-			groups = {cracky = 2},
-			sounds = default_stone_sounds,
-			drop = lump_item,
-		})
+        local node_def_tbl = {
+            description = S("@1 Ore", S(description)),
+            tiles = {"default_stone.png^" .. modname .. "_mineral_" .. mineral_name .. ".png"},
+            groups = {cracky = 2},
+            sounds = default_stone_sounds,
+            drop = lump_item,
+        }
+		if extra_node_def then
+        	node_def_tbl = merge_tables(node_def_tbl, extra_node_def)
+		end
+        minetest.register_node(modname .. ":mineral_" .. mineral_name, node_def_tbl)
+
 
 		if use_frame then
 			frame.register(modname .. ":mineral_" .. mineral_name)
@@ -339,6 +351,13 @@ local oredefs = {
 			},
 		},
 		full_punch_interval = 1.0,
+		extra_node_def = {
+			_mcl_hardness = 3,
+			_mcl_blast_resistance =  3,
+			_mcl_hardness =  4,
+			_mcl_silk_touch_drop = true,
+			groups = {pickaxey = 4}
+		}
 	},
 	mithril = {
 		description = "Mithril",
@@ -397,6 +416,13 @@ local oredefs = {
 			},
 		},
 		full_punch_interval = 0.45,
+		extra_node_def = {
+			_mcl_hardness = 3,
+			_mcl_blast_resistance =  3,
+			_mcl_hardness =  5,
+			_mcl_silk_touch_drop = true,
+			groups = {pickaxey = 5}
+		},
 	}
 }
 
@@ -439,6 +465,13 @@ else
 			y_max = moreores.tin_max_depth_deep,
 		},
 		tools = {},
+		extra_node_def = {
+			_mcl_hardness = 3,
+			_mcl_blast_resistance =  3,
+			_mcl_hardness =  3,
+			_mcl_silk_touch_drop = true,
+			groups = {pickaxey = 3}
+		},
 	}
 
 	-- Bronze has some special cases, because it is made from copper and tin
@@ -480,5 +513,5 @@ minetest.register_craft({
 
 for orename, def in pairs(oredefs) do
 	-- Register everything
-	add_ore("moreores", def.description, orename, def)
+	add_ore("moreores", def.description, orename, def, def.extra_node_def)
 end

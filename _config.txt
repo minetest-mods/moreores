@@ -59,18 +59,18 @@ if minetest.get_modpath("mcl_core") then
 -- Example adjustments for MineClone2
 moreores.tin_max_depth_high = 0
 moreores.tin_min_depth_high = -10
-moreores.tin_max_depth = -11
+moreores.tin_max_depth = 0
 moreores.tin_min_depth = -57
 
 -- Similar adjustments for silver and mithril
 moreores.silver_max_depth_high = 0
 moreores.silver_min_depth_high = -10
-moreores.silver_max_depth = -11
+moreores.silver_max_depth = 0
 moreores.silver_min_depth = -57
 
 moreores.mithril_max_depth_high = 0
 moreores.mithril_min_depth_high = -20
-moreores.mithril_max_depth = -21
+moreores.mithril_max_depth = 0
 moreores.mithril_min_depth = -57
 else
 -- Maximal and minimal depths of ore generation (Y coordinate, 0 being sea level by default)
