@@ -45,8 +45,8 @@ end
 -- Returns the crafting recipe table for a given material and item.
 local function get_recipe(material, item)
 	if is_mcl_core_present then
-        material = material:gsub("default:", "mcl_core:")
-    end
+		material = material:gsub("default:", "mcl_core:")
+	end
 
 	if item == "sword" then
 		return {
@@ -95,8 +95,8 @@ end
 local function add_ore(modname, description, mineral_name, oredef, extra_node_def)
 
 	if mineral_name == "copper" and is_mcl_copper_present then
-        return
-    end
+		return
+	end
 
 	local img_base = modname .. "_" .. mineral_name
 	local toolimg_base = modname .. "_tool_"..mineral_name
