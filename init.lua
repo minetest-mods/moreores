@@ -232,26 +232,30 @@ local function add_ore(modname, description, mineral_name, oredef, extra_node_de
 				full_punch_interval = oredef.full_punch_interval,
 			},
 			sound = {breaks = "default_tool_breaks"},
+			_repair_material = ingot,
+			_mcl_toollike_wield = true,
+        	_mcl_diggroups = tooldef._mcl_diggroups,
+			groups = tooldef.groups,
 		}
 
 		if tool_name == "sword" then
 			tdef.description = S("@1 Sword", S(description))
-			tdef.groups = {sword = 1}
+			tdef.groups = merge_tables(tdef.groups, {sword = 1})
 		end
 
 		if tool_name == "pick" then
 			tdef.description = S("@1 Pickaxe", S(description))
-			tdef.groups = {pickaxe = 1}
+			tdef.groups = merge_tables(tdef.groups,{pickaxe = 1, tool=1})
 		end
 
 		if tool_name == "axe" then
 			tdef.description = S("@1 Axe", S(description))
-			tdef.groups = {axe = 1}
+			tdef.groups = merge_tables(tdef.groups,{axe = 1,tool=1})
 		end
 
 		if tool_name == "shovel" then
 			tdef.description = S("@1 Shovel", S(description))
-			tdef.groups = {shovel = 1}
+			tdef.groups = merge_tables(tdef.groups,{shovel = 1,tool=1})
 			tdef.wield_image = toolimg_base .. tool_name .. ".png^[transformR90"
 		end
 
@@ -325,15 +329,23 @@ local oredefs = {
 					cracky = {times = {[1] = 2.60, [2] = 1.00, [3] = 0.60}, uses = 100, maxlevel = 1},
 				},
 				damage_groups = {fleshy = 4},
+				groups = {dig_speed_class=4, enchantability=14},
+				_mcl_diggroups = {
+					pickaxey = { speed = 6, level = 4, uses = 126 }
+			},
 			},
 			hoe = {
-				max_uses = 300,
+				max_uses = 150,
 			},
 			shovel = {
 				groupcaps = {
 					crumbly = {times = {[1] = 1.10, [2] = 0.40, [3] = 0.25}, uses = 100, maxlevel = 1},
 				},
 				damage_groups = {fleshy = 3},
+				groups = {dig_speed_class=4, enchantability=14},
+				_mcl_diggroups = {
+					shovely = { speed = 6, level = 4, uses = 126 }
+			},
 			},
 			axe = {
 				groupcaps = {
@@ -341,6 +353,10 @@ local oredefs = {
 					fleshy = {times = {[2] = 1.10, [3] = 0.60}, uses = 100, maxlevel = 1},
 				},
 				damage_groups = {fleshy = 5},
+				groups = {dig_speed_class=4, enchantability=14},
+				_mcl_diggroups = {
+					axey = { speed = 6, level = 4, uses = 126 }
+			},
 			},
 			sword = {
 				groupcaps = {
@@ -349,6 +365,10 @@ local oredefs = {
 					choppy = {times = {[3] = 0.80}, uses = 100, maxlevel = 0},
 				},
 				damage_groups = {fleshy = 6},
+				_mcl_diggroups = {
+					swordy = { speed = 6, level = 4, uses = 126 },
+					swordy_cobweb = { speed = 6, level = 4, uses = 126 }
+			},
 			},
 		},
 		full_punch_interval = 1.0,
@@ -387,33 +407,49 @@ local oredefs = {
 		tools = {
 			pick = {
 				groupcaps = {
-					cracky = {times = {[1] = 2.25, [2] = 0.55, [3] = 0.35}, uses = 200, maxlevel = 3},
+					cracky = {times = {[1] = 2.60, [2] = 1.00, [3] = 0.60}, uses = 3126, maxlevel = 3},
 				},
 				damage_groups = {fleshy = 6},
+				groups = {dig_speed_class=5, enchantability=10},
+				_mcl_diggroups = {
+					pickaxey = { speed = 8, level = 5, uses = 3126 }
+				},
 			},
 			hoe = {
-				max_uses = 1000,
+				max_uses = 2000,
 			},
 			shovel = {
 				groupcaps = {
-					crumbly = {times = {[1] = 0.70, [2] = 0.35, [3] = 0.20}, uses = 200, maxlevel = 3},
+					crumbly = {times = {[1] = 1.10, [2] = 0.40, [3] = 0.25}, uses = 3126, maxlevel = 3},
 				},
-				damage_groups = {fleshy = 5},
+				damage_groups = {fleshy = 6},
+				groups = {dig_speed_class=5, enchantability=10},
+				_mcl_diggroups = {
+					shovely = { speed = 8, level = 5, uses = 3126 }
+				},
 			},
 			axe = {
 				groupcaps = {
-					choppy = {times = {[1] = 1.75, [2] = 0.45, [3] = 0.45}, uses = 200, maxlevel = 3},
-					fleshy = {times = {[2] = 0.95, [3] = 0.30}, uses = 200, maxlevel = 2},
+					choppy = {times = {[1] = 2.50, [2] = 0.80, [3] = 0.50}, uses = 3126, maxlevel = 3},
+					fleshy = {times = {[2] = 1.10, [3] = 0.60}, uses = 3126, maxlevel = 3},
 				},
-				damage_groups = {fleshy = 8},
+				damage_groups = {fleshy = 10},
+				groups = {dig_speed_class=5, enchantability=10},
+				_mcl_diggroups = {
+					axey = { speed = 8, level = 5, uses = 3126 }
+				},
 			},
 			sword = {
 				groupcaps = {
-					fleshy = {times = {[2] = 0.65, [3] = 0.25}, uses = 200, maxlevel = 2},
-					snappy = {times = {[1] = 1.70, [2] = 0.70, [3] = 0.25}, uses = 200, maxlevel = 3},
-					choppy = {times = {[3] = 0.65}, uses = 200, maxlevel = 0},
+					fleshy = {times = {[2] = 0.70, [3] = 0.30}, uses = 3126, maxlevel = 3},
+					snappy = {times = {[1] = 1.70, [2] = 0.70, [3] = 0.30}, uses = 3126, maxlevel = 3},
+					choppy = {times = {[3] = 0.80}, uses = 3126, maxlevel = 0},
 				},
-				damage_groups = {fleshy = 10},
+				damage_groups = {fleshy = 12},
+				_mcl_diggroups = {
+					swordy = { speed = 8, level = 5, uses = 3126 },
+					swordy_cobweb = { speed = 8, level = 5, uses = 3126 }
+				},
 			},
 		},
 		full_punch_interval = 0.45,
