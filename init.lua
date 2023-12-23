@@ -461,7 +461,7 @@ local oredefs = {
 					snappy = {times = {[1] = 1.70, [2] = 0.70, [3] = 0.30}, uses = 3126, maxlevel = 3},
 					choppy = {times = {[3] = 0.80}, uses = 3126, maxlevel = 0},
 				},
-				damage_groups = {fleshy = 12},
+				damage_groups = {fleshy = 7},
 				_mcl_diggroups = {
 					swordy = { speed = 8, level = 5, uses = 3126 },
 					swordy_cobweb = { speed = 8, level = 5, uses = 3126 }
