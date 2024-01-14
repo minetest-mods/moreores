@@ -28,9 +28,9 @@ local use_frame = minetest.get_modpath("frame")
 local is_mcl_core_present = minetest.get_modpath("mcl_core") ~= nil
 local is_mcl_sounds_present = minetest.get_modpath("mcl_sounds") ~= nil
 local is_mcl_copper_present = minetest.registered_items["mcl_copper:copper_ingot"] ~= nil
-local stone_ingrediant = is_mcl_core_present and "mcl_core:stone" or "default:stone"
+local stone_ingredient = is_mcl_core_present and "mcl_core:stone" or "default:stone"
 
-local copper_ingrediant =
+local copper_ingredient =
 is_mcl_core_present and "mcl_copper:copper_ingot" or 'default:copper_ingot'
 
 local default_stone_sounds = nil
@@ -210,15 +210,15 @@ local function add_ore(modname, description, mineral_name, oredef, extra_node_de
 
 	oredef.oredef_high.ore_type = "scatter"
 	oredef.oredef_high.ore = modname .. ":mineral_" .. mineral_name
-	oredef.oredef_high.wherein = stone_ingrediant
+	oredef.oredef_high.wherein = stone_ingredient
 
 	oredef.oredef.ore_type = "scatter"
 	oredef.oredef.ore = modname .. ":mineral_" .. mineral_name
-	oredef.oredef.wherein = stone_ingrediant
+	oredef.oredef.wherein = stone_ingredient
 
 	oredef.oredef_deep.ore_type = "scatter"
 	oredef.oredef_deep.ore = modname .. ":mineral_" .. mineral_name
-	oredef.oredef_deep.wherein = stone_ingrediant
+	oredef.oredef_deep.wherein = stone_ingredient
 
 	minetest.register_ore(oredef.oredef_high)
 	minetest.register_ore(oredef.oredef)
@@ -533,8 +533,8 @@ else
 		output = "default:bronze_ingot 3",
 		recipe = {
 			"moreores:tin_ingot",
-			copper_ingrediant,
-			copper_ingrediant,
+			copper_ingredient,
+			copper_ingredient,
 		},
 	})
 end
@@ -558,9 +558,9 @@ end
 minetest.register_craft({
 	output = "moreores:copper_rail 24",
 	recipe = {
-		{copper_ingrediant, "", copper_ingrediant},
-		{copper_ingrediant, "group:stick", copper_ingrediant},
-		{copper_ingrediant, "", copper_ingrediant},
+		{copper_ingredient, "", copper_ingredient},
+		{copper_ingredient, "group:stick", copper_ingredient},
+		{copper_ingredient, "", copper_ingredient},
 	},
 })
 
