@@ -30,7 +30,9 @@ local is_mcl_sounds_present = minetest.get_modpath("mcl_sounds") ~= nil
 local is_mcl_copper_present = minetest.registered_items["mcl_copper:copper_ingot"] ~= nil
 local stone_ingrediant = is_mcl_core_present and "mcl_core:stone" or "default:stone"
 
-local copper_ingrediant = is_mcl_core_present and "mcl_copper:copper_ingot" or 'default:copper_ingot'
+local copper_ingrediant =
+is_mcl_core_present and "mcl_copper:copper_ingot" or 'default:copper_ingot'
+
 local default_stone_sounds = nil
 local default_metal_sounds = nil
 
@@ -117,13 +119,14 @@ local function add_ore(modname, description, mineral_name, oredef, extra_node_de
 	if oredef.makes.ore then
         local node_def_tbl = {
             description = S("@1 Ore", S(description)),
-            tiles = {"default_stone.png^" .. modname .. "_mineral_" .. mineral_name .. ".png"},
+            tiles = {"default_stone.png^" .. modname .. "_mineral_" .. mineral_name ..
+						".png"},
             groups = {cracky = 2},
             sounds = default_stone_sounds,
             drop = lump_item,
         }
 		if extra_node_def then
-        	node_def_tbl = merge_tables(node_def_tbl, extra_node_def)
+			node_def_tbl = merge_tables(node_def_tbl, extra_node_def)
 		end
         minetest.register_node(modname .. ":mineral_" .. mineral_name, node_def_tbl)
 
@@ -197,7 +200,7 @@ local function add_ore(modname, description, mineral_name, oredef, extra_node_de
 				{"default:chest"},
 			}
 		})
-		
+
 		minetest.register_craft( {
 			output = "default:chest_locked",
 			recipe = get_recipe(ingot, "lockedchest")
@@ -216,7 +219,7 @@ local function add_ore(modname, description, mineral_name, oredef, extra_node_de
 	oredef.oredef_deep.ore_type = "scatter"
 	oredef.oredef_deep.ore = modname .. ":mineral_" .. mineral_name
 	oredef.oredef_deep.wherein = stone_ingrediant
-	
+
 	minetest.register_ore(oredef.oredef_high)
 	minetest.register_ore(oredef.oredef)
 	minetest.register_ore(oredef.oredef_deep)
@@ -234,7 +237,7 @@ local function add_ore(modname, description, mineral_name, oredef, extra_node_de
 			sound = {breaks = "default_tool_breaks"},
 			_repair_material = ingot,
 			_mcl_toollike_wield = true,
-        	_mcl_diggroups = tooldef._mcl_diggroups,
+      mcl_diggroups = tooldef._mcl_diggroups,
 			groups = tooldef.groups,
 		}
 
@@ -389,7 +392,6 @@ local oredefs = {
 		},
 		full_punch_interval = 1.0,
 		extra_node_def = {
-			_mcl_hardness = 3,
 			_mcl_blast_resistance =  3,
 			_mcl_hardness =  4,
 			_mcl_silk_touch_drop = true,
@@ -470,7 +472,6 @@ local oredefs = {
 		},
 		full_punch_interval = 0.45,
 		extra_node_def = {
-			_mcl_hardness = 3,
 			_mcl_blast_resistance =  3,
 			_mcl_hardness =  5,
 			_mcl_silk_touch_drop = true,
@@ -519,7 +520,6 @@ else
 		},
 		tools = {},
 		extra_node_def = {
-			_mcl_hardness = 3,
 			_mcl_blast_resistance =  3,
 			_mcl_hardness =  3,
 			_mcl_silk_touch_drop = true,
