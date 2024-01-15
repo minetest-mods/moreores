@@ -25,11 +25,29 @@ end
 -- `frame` support
 local use_frame = minetest.get_modpath("frame")
 
+local is_mcl_core_present = minetest.get_modpath("mcl_core") ~= nil
+local is_mcl_sounds_present = minetest.get_modpath("mcl_sounds") ~= nil
+local is_mcl_copper_present = minetest.registered_items["mcl_copper:copper_ingot"] ~= nil
+local stone_ingredient = is_mcl_core_present and "mcl_core:stone" or "default:stone"
+
+local copper_ingredient =
+is_mcl_core_present and "mcl_copper:copper_ingot" or 'default:copper_ingot'
+
+if is_mcl_sounds_present then
+local default_stone_sounds = mcl_sounds.node_sound_stone_defaults()
+local default_metal_sounds = mcl_sounds.node_sound_metal_defaults()
+else
 local default_stone_sounds = default.node_sound_stone_defaults()
 local default_metal_sounds = default.node_sound_metal_defaults()
+end
+
 
 -- Returns the crafting recipe table for a given material and item.
 local function get_recipe(material, item)
+	if is_mcl_core_present then
+		material = material:gsub("default:", "mcl_core:")
+	end
+
 	if item == "sword" then
 		return {
 			{material},
@@ -74,7 +92,12 @@ local function get_recipe(material, item)
 	end
 end
 
-local function add_ore(modname, description, mineral_name, oredef)
+local function add_ore(modname, description, mineral_name, oredef, extra_node_def)
+
+	if mineral_name == "copper" and is_mcl_copper_present then
+		return
+	end
+
 	local img_base = modname .. "_" .. mineral_name
 	local toolimg_base = modname .. "_tool_"..mineral_name
 	local tool_base = modname .. ":"
@@ -83,14 +106,27 @@ local function add_ore(modname, description, mineral_name, oredef)
 	local ingot = item_base .. "_ingot"
 	local lump_item = item_base .. "_lump"
 
+	local function merge_tables(t1, t2)
+        if t2 then
+            for k,v in pairs(t2) do t1[k] = v end
+        end
+        return t1
+    end
+
 	if oredef.makes.ore then
-		minetest.register_node(modname .. ":mineral_" .. mineral_name, {
-			description = S("@1 Ore", S(description)),
-			tiles = {"default_stone.png^" .. modname .. "_mineral_" .. mineral_name .. ".png"},
-			groups = {cracky = 2},
-			sounds = default_stone_sounds,
-			drop = lump_item,
-		})
+        local node_def_tbl = {
+            description = S("@1 Ore", S(description)),
+            tiles = {"default_stone.png^" .. modname .. "_mineral_" .. mineral_name ..
+						".png"},
+            groups = {cracky = 2},
+            sounds = default_stone_sounds,
+            drop = lump_item,
+        }
+		if extra_node_def then
+			node_def_tbl = merge_tables(node_def_tbl, extra_node_def)
+		end
+        minetest.register_node(modname .. ":mineral_" .. mineral_name, node_def_tbl)
+
 
 		if use_frame then
 			frame.register(modname .. ":mineral_" .. mineral_name)
@@ -153,6 +189,7 @@ local function add_ore(modname, description, mineral_name, oredef)
 	end
 
 	if oredef.makes.chest then
+		if not is_mcl_core_present then
 		minetest.register_craft( {
 			output = "default:chest_locked",
 			recipe = {
@@ -160,23 +197,25 @@ local function add_ore(modname, description, mineral_name, oredef)
 				{"default:chest"},
 			}
 		})
+
 		minetest.register_craft( {
 			output = "default:chest_locked",
 			recipe = get_recipe(ingot, "lockedchest")
 		})
 	end
+	end
 
 	oredef.oredef_high.ore_type = "scatter"
 	oredef.oredef_high.ore = modname .. ":mineral_" .. mineral_name
-	oredef.oredef_high.wherein = "default:stone"
+	oredef.oredef_high.wherein = stone_ingredient
 
 	oredef.oredef.ore_type = "scatter"
 	oredef.oredef.ore = modname .. ":mineral_" .. mineral_name
-	oredef.oredef.wherein = "default:stone"
+	oredef.oredef.wherein = stone_ingredient
 
 	oredef.oredef_deep.ore_type = "scatter"
 	oredef.oredef_deep.ore = modname .. ":mineral_" .. mineral_name
-	oredef.oredef_deep.wherein = "default:stone"
+	oredef.oredef_deep.wherein = stone_ingredient
 
 	minetest.register_ore(oredef.oredef_high)
 	minetest.register_ore(oredef.oredef)
@@ -193,26 +232,46 @@ local function add_ore(modname, description, mineral_name, oredef)
 				full_punch_interval = oredef.full_punch_interval,
 			},
 			sound = {breaks = "default_tool_breaks"},
+			_repair_material = ingot,
+			_mcl_toollike_wield = true,
+      mcl_diggroups = tooldef._mcl_diggroups,
+			groups = tooldef.groups,
 		}
 
 		if tool_name == "sword" then
 			tdef.description = S("@1 Sword", S(description))
-			tdef.groups = {sword = 1}
+			if tdef.groups then
+				tdef.groups = merge_tables(tdef.groups, {sword = 1})
+			else
+				tdef.groups = {sword = 1}
+			end
 		end
 
 		if tool_name == "pick" then
 			tdef.description = S("@1 Pickaxe", S(description))
-			tdef.groups = {pickaxe = 1}
+			if tdef.groups then
+				tdef.groups = merge_tables(tdef.groups, {pickaxe = 1, tool=1})
+			else
+				tdef.groups = {pickaxe = 1, tool=1}
+			end
 		end
 
 		if tool_name == "axe" then
 			tdef.description = S("@1 Axe", S(description))
-			tdef.groups = {axe = 1}
+			if tdef.groups then
+				tdef.groups = merge_tables(tdef.groups, {axe = 1, tool=1})
+			else
+				tdef.groups = {axe = 1, tool=1}
+			end
 		end
 
 		if tool_name == "shovel" then
 			tdef.description = S("@1 Shovel", S(description))
-			tdef.groups = {shovel = 1}
+			if tdef.groups then
+				tdef.groups = merge_tables(tdef.groups, {shovel = 1, tool=1})
+			else
+				tdef.groups = {shovel = 1, tool=1}
+			end
 			tdef.wield_image = toolimg_base .. tool_name .. ".png^[transformR90"
 		end
 
@@ -286,15 +345,23 @@ local oredefs = {
 					cracky = {times = {[1] = 2.60, [2] = 1.00, [3] = 0.60}, uses = 100, maxlevel = 1},
 				},
 				damage_groups = {fleshy = 4},
+				groups = {dig_speed_class=4, enchantability=14},
+				_mcl_diggroups = {
+					pickaxey = { speed = 6, level = 4, uses = 126 }
+			},
 			},
 			hoe = {
-				max_uses = 300,
+				max_uses = 150,
 			},
 			shovel = {
 				groupcaps = {
 					crumbly = {times = {[1] = 1.10, [2] = 0.40, [3] = 0.25}, uses = 100, maxlevel = 1},
 				},
 				damage_groups = {fleshy = 3},
+				groups = {dig_speed_class=4, enchantability=14},
+				_mcl_diggroups = {
+					shovely = { speed = 6, level = 4, uses = 126 }
+			},
 			},
 			axe = {
 				groupcaps = {
@@ -302,6 +369,10 @@ local oredefs = {
 					fleshy = {times = {[2] = 1.10, [3] = 0.60}, uses = 100, maxlevel = 1},
 				},
 				damage_groups = {fleshy = 5},
+				groups = {dig_speed_class=4, enchantability=14},
+				_mcl_diggroups = {
+					axey = { speed = 6, level = 4, uses = 126 }
+			},
 			},
 			sword = {
 				groupcaps = {
@@ -310,9 +381,19 @@ local oredefs = {
 					choppy = {times = {[3] = 0.80}, uses = 100, maxlevel = 0},
 				},
 				damage_groups = {fleshy = 6},
+				_mcl_diggroups = {
+					swordy = { speed = 6, level = 4, uses = 126 },
+					swordy_cobweb = { speed = 6, level = 4, uses = 126 }
+			},
 			},
 		},
 		full_punch_interval = 1.0,
+		extra_node_def = {
+			_mcl_blast_resistance =  3,
+			_mcl_hardness =  4,
+			_mcl_silk_touch_drop = true,
+			groups = {pickaxey = 4}
+		}
 	},
 	mithril = {
 		description = "Mithril",
@@ -341,36 +422,58 @@ local oredefs = {
 		tools = {
 			pick = {
 				groupcaps = {
-					cracky = {times = {[1] = 2.25, [2] = 0.55, [3] = 0.35}, uses = 200, maxlevel = 3},
+					cracky = {times = {[1] = 2.60, [2] = 1.00, [3] = 0.60}, uses = 3126, maxlevel = 3},
 				},
 				damage_groups = {fleshy = 6},
+				groups = {dig_speed_class=5, enchantability=10},
+				_mcl_diggroups = {
+					pickaxey = { speed = 8, level = 5, uses = 3126 }
+				},
 			},
 			hoe = {
-				max_uses = 1000,
+				max_uses = 2000,
 			},
 			shovel = {
 				groupcaps = {
-					crumbly = {times = {[1] = 0.70, [2] = 0.35, [3] = 0.20}, uses = 200, maxlevel = 3},
+					crumbly = {times = {[1] = 1.10, [2] = 0.40, [3] = 0.25}, uses = 3126, maxlevel = 3},
 				},
-				damage_groups = {fleshy = 5},
+				damage_groups = {fleshy = 6},
+				groups = {dig_speed_class=5, enchantability=10},
+				_mcl_diggroups = {
+					shovely = { speed = 8, level = 5, uses = 3126 }
+				},
 			},
 			axe = {
 				groupcaps = {
-					choppy = {times = {[1] = 1.75, [2] = 0.45, [3] = 0.45}, uses = 200, maxlevel = 3},
-					fleshy = {times = {[2] = 0.95, [3] = 0.30}, uses = 200, maxlevel = 2},
+					choppy = {times = {[1] = 2.50, [2] = 0.80, [3] = 0.50}, uses = 3126, maxlevel = 3},
+					fleshy = {times = {[2] = 1.10, [3] = 0.60}, uses = 3126, maxlevel = 3},
 				},
-				damage_groups = {fleshy = 8},
+				damage_groups = {fleshy = 10},
+				groups = {dig_speed_class=5, enchantability=10},
+				_mcl_diggroups = {
+					axey = { speed = 8, level = 5, uses = 3126 }
+				},
 			},
 			sword = {
 				groupcaps = {
-					fleshy = {times = {[2] = 0.65, [3] = 0.25}, uses = 200, maxlevel = 2},
-					snappy = {times = {[1] = 1.70, [2] = 0.70, [3] = 0.25}, uses = 200, maxlevel = 3},
-					choppy = {times = {[3] = 0.65}, uses = 200, maxlevel = 0},
+					fleshy = {times = {[2] = 0.70, [3] = 0.30}, uses = 3126, maxlevel = 3},
+					snappy = {times = {[1] = 1.70, [2] = 0.70, [3] = 0.30}, uses = 3126, maxlevel = 3},
+					choppy = {times = {[3] = 0.80}, uses = 3126, maxlevel = 0},
 				},
-				damage_groups = {fleshy = 10},
+				damage_groups = {fleshy = 7},
+				_mcl_diggroups = {
+					swordy = { speed = 8, level = 5, uses = 3126 },
+					swordy_cobweb = { speed = 8, level = 5, uses = 3126 }
+				},
 			},
 		},
 		full_punch_interval = 0.45,
+		extra_node_def = {
+			_mcl_blast_resistance =  3,
+			_mcl_hardness =  5,
+			_mcl_silk_touch_drop = true,
+			groups = {pickaxey = 5}
+		},
 	}
 }
 
@@ -413,6 +516,12 @@ else
 			y_max = moreores.tin_max_depth_deep,
 		},
 		tools = {},
+		extra_node_def = {
+			_mcl_blast_resistance =  3,
+			_mcl_hardness =  3,
+			_mcl_silk_touch_drop = true,
+			groups = {pickaxey = 3}
+		},
 	}
 
 	-- Bronze has some special cases, because it is made from copper and tin
@@ -421,8 +530,8 @@ else
 		output = "default:bronze_ingot 3",
 		recipe = {
 			"moreores:tin_ingot",
-			"default:copper_ingot",
-			"default:copper_ingot",
+			copper_ingredient,
+			copper_ingredient,
 		},
 	})
 end
@@ -446,13 +555,13 @@ end
 minetest.register_craft({
 	output = "moreores:copper_rail 24",
 	recipe = {
-		{"default:copper_ingot", "", "default:copper_ingot"},
-		{"default:copper_ingot", "group:stick", "default:copper_ingot"},
-		{"default:copper_ingot", "", "default:copper_ingot"},
+		{copper_ingredient, "", copper_ingredient},
+		{copper_ingredient, "group:stick", copper_ingredient},
+		{copper_ingredient, "", copper_ingredient},
 	},
 })
 
 for orename, def in pairs(oredefs) do
 	-- Register everything
-	add_ore("moreores", def.description, orename, def)
+	add_ore("moreores", def.description, orename, def, def.extra_node_def)
 end
