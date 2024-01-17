@@ -107,11 +107,18 @@ local function add_ore(modname, description, mineral_name, oredef, extra_node_de
 	local lump_item = item_base .. "_lump"
 
 	local function merge_tables(t1, t2)
-        if t2 then
-            for k,v in pairs(t2) do t1[k] = v end
-        end
-        return t1
-    end
+	    for k, v in pairs(t2) do
+	        if type(v) == "table" and type(t1[k]) == "table" then
+	            -- If both t1[k] and v are tables, merge them recursively
+	            merge_tables(t1[k], v)
+	        else
+	            -- Otherwise, simply set the value
+	            t1[k] = v
+	        end
+	    end
+	    return t1
+	end
+
 
 	if oredef.makes.ore then
         local node_def_tbl = {
