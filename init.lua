@@ -146,6 +146,7 @@ local function add_ore(modname, description, mineral_name, oredef, extra_node_de
 			description = S("@1 Block", S(description)),
 			tiles = {img_base .. "_block.png"},
 			groups = {snappy = 1, bendy = 2, cracky = 1, melty = 2, level = 2},
+			is_ground_content = false,
 			sounds = default_metal_sounds,
 		})
 		minetest.register_alias(mineral_name.."_block", block_item)
