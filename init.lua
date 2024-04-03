@@ -33,12 +33,15 @@ local stone_ingredient = is_mcl_core_present and "mcl_core:stone" or "default:st
 local copper_ingredient =
 is_mcl_core_present and "mcl_copper:copper_ingot" or 'default:copper_ingot'
 
+local default_stone_sounds
+local default_metal_sounds
+
 if is_mcl_sounds_present then
-local default_stone_sounds = mcl_sounds.node_sound_stone_defaults()
-local default_metal_sounds = mcl_sounds.node_sound_metal_defaults()
+	default_stone_sounds = mcl_sounds.node_sound_stone_defaults()
+	default_metal_sounds = mcl_sounds.node_sound_metal_defaults()
 else
-local default_stone_sounds = default.node_sound_stone_defaults()
-local default_metal_sounds = default.node_sound_metal_defaults()
+	default_stone_sounds = default.node_sound_stone_defaults()
+	default_metal_sounds = default.node_sound_metal_defaults()
 end
 
 
