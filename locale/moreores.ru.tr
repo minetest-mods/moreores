@@ -1,0 +1,19 @@
+# textdomain: moreores
+
+@1 Ore=Руда @1
+@1 Lump=Кусок @1
+@1 Ingot=Слиток @1
+@1 Block=Блок @1
+@1 Pickaxe=Кирка из @1
+@1 Shovel=Лопата из @1
+@1 Axe=Топор из @1
+@1 Sword=Меч из @1
+@1 Hoe=Мотыга из @1
+
+Copper=меди
+Tin=олова
+Bronze=бронзы
+Silver=серебра
+Gold=золота
+Mithril=мифрила
+Copper Rail=медные рельсы
