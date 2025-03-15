@@ -1,0 +1,22 @@
+# textdomain: moreores
+
+More Ores=Більше Руд
+Adds new ore types.=Додає нові типи руд.
+
+@1 Ore=Руда @1
+@1 Lump=Шматок @1
+@1 Ingot=Злиток @1
+@1 Block=Блок @1
+@1 Pickaxe=Кайло з @1
+@1 Shovel=Лопата з @1
+@1 Axe=Сокира з @1
+@1 Sword=Меч з @1
+@1 Hoe=Мотика з @1
+
+Copper=міді
+Tin=олова
+Bronze=бронзи
+Silver=срібла
+Gold=золота
+Mithril=міфрілу
+Copper Rail=Мідні рейки
